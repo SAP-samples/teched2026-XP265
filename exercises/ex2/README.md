@@ -1,40 +1,37 @@
-# Exercise 2 - Exercise 2 Description
+# Define the governance constraints
 
-In this exercise, we will create...
+In this exercise, you will define the governance constraints of the project setup as a first step in the spec-driven development flow. These constraints serve as a guardrail for the project and will be used to validated in each step. They are a very important step in the spec-driven development flow as they ensure that the generated code adheres to the constraints and policies of your organization.
 
-## Exercise 2.1 Sub Exercise 1 Description
+## 🛠️ Execute the govern command
 
-After completing these steps you will have created...
+## Step 1 - Start the agentic tooling
 
-1. Click here.
+Execute the following command in the terminal:
 
-2.	Insert this line of code.
-```abap
-response->set_text( |Hello ABAP World! | ).
+```bash
+claude
 ```
 
+> [!NOTE]
+> Make sure that you start claude inside of the folder that you have created (`SAPTechEd2026-XXX`).
 
+## Step 2 - Execute the govern command
 
-## Exercise 2.2 Sub Exercise 2 Description
+Execute the following command in the claude terminal:
 
-After completing these steps you will have...
-
-1.	Enter this code.
-```abap
-DATA(lt_params) = request->get_form_fields(  ).
-READ TABLE lt_params REFERENCE INTO DATA(lr_params) WITH KEY name = 'cmd'.
-  IF sy-subrc = 0.
-    response->set_status( i_code = 200
-                     i_reason = 'Everything is fine').
-    RETURN.
-  ENDIF.
-
+```bash
+/btp-iac.govern
 ```
 
-2.	Click here.
+### 🔬 Look behind the curtains
 
-## Summary
+The technical foundation of the step is the `btp-iac.govern.md` skill located in the `.claude/commands` folder. The skill contains the instructions for the agentic tooling covering some important governance constraints. If you are curious check out what is contained in this file.
 
-You've now ...
+### ✅ Result
 
-Continue to - [Exercise 3 - Excercise 3 ](../ex3/README.md)
+- Result + Check the created markdown file in the `specs` folder. Cross check what has happened in the `memory` folder.
+
+## 📋 Summary
+
+Now that you have ...
+Continue to - [Exercise 3 - Define the scenario](../ex3/README.md)
