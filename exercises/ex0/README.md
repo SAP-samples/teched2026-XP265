@@ -154,6 +154,9 @@ In the following sections we will go through each of the steps in detail and exp
 
 ## Technical Setup
 
+> [!NOTE]
+> All commands in these exercises work on **macOS, Linux, and Windows**. On Windows, use **PowerShell** (recommended) or Command Prompt — not Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/btp-iac.*`) and all Terraform commands are platform-independent.
+
 ### MCP Server for Terraform
 
 - Start MCP Server for Terraform

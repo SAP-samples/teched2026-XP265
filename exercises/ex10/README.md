@@ -28,11 +28,27 @@ Both should succeed without errors.
 
 ### Step 3 - Add your credentials
 
-Add your SAP BTP credentials as environment variables in the terminal:
+Add your SAP BTP credentials as environment variables in the terminal.
+
+**macOS / Linux:**
 
 ```bash
 export BTP_USER=<your-username>
 export BTP_PASSWORD=<your-password>
+```
+
+**Windows — PowerShell:**
+
+```powershell
+$env:BTP_USER = "<your-username>"
+$env:BTP_PASSWORD = "<your-password>"
+```
+
+**Windows — Command Prompt:**
+
+```cmd
+set BTP_USER=<your-username>
+set BTP_PASSWORD=<your-password>
 ```
 
 > [!CAUTION]
