@@ -8,6 +8,26 @@ This repository contains the material for the SAP TechEd 2026 session called XP2
 
 This session introduces attendees to the concept of spec-driven development and how to use it for infrastructure as code (IaC) with Terraform. Attendees will experience an end-to-end flow from installing the relevant tooling, defining and refining the specification as well as generating and deploying the generated code to SAP BTP.
 
+## The Scenario
+
+You are the infrastructure lead for a development team building an **Inventory Management application** using SAP Cloud Application Programming Model (CAP). Before a single line of application code can be written, you need to provision the complete developer environment on SAP BTP — correctly, consistently, and in a way that can be reproduced and audited.
+
+The application needs:
+
+| Requirement | SAP BTP Service |
+|---|---|
+| Cloud Foundry runtime for deploying and testing the CAP app | Cloud Foundry Environment |
+| Persistent database for inventory data | SAP HANA Cloud |
+| Compliance audit trail for all inventory changes | SAP Audit Log Service |
+| Centralized application and runtime logs | SAP Cloud Logging Service |
+| Fiori Launchpad for the inventory UI | SAP Build Work Zone, standard edition |
+| Development tools and CI/CD pipeline | SAP Build Code |
+| Enterprise authentication (no default SAP ID Service) | SAP Cloud Identity Services |
+
+The team operates under real-world governance rules: data must stay in the EU region, subaccounts must follow a naming convention, HANA Cloud costs must be tracked, and SAP Cloud Identity Services is mandatory as the identity provider.
+
+Rather than hand-crafting Terraform from scratch or prompting an LLM to generate it from a single vague sentence, you will follow a **spec-driven development** flow — producing a living specification that the AI agent validates at each step before writing a single line of Terraform.
+
 ## Requirements
 
 > [!NOTE]
@@ -28,6 +48,17 @@ Optionally you can also install:
 - the [btp CLI](https://help.sap.com/docs/btp/sap-business-technology-platform/download-and-start-using-btp-cli-client)
 - The [Terraform extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
 
+> [!NOTE]
+> The SAP BTP account used in this session requires the following entitlements to be available in the global account:
+> - Cloud Foundry Runtime (MEMORY)
+> - SAP HANA Cloud (`hana` service, `hana` plan)
+> - SAP Audit Log Service (`auditlog-management`, `free` plan)
+> - SAP Cloud Logging Service (`cloud-logging`, `free` plan)
+> - SAP Build Work Zone, standard edition (`SAPLaunchpad`, `standard` plan)
+> - SAP Build Code (`build-code`, `free` plan)
+> - SAP Cloud Identity Services (`sap-identity-services-onboarding`, `default` plan)
+> - Authorization and Trust Management Service (XSUAA) (`xsuaa`, `application` plan)
+> - Destination Service (`destination`, `lite` plan)
 
 > [!CAUTION]
 > Executing the steps that include the usage of a AI coding tool like Claude Code or GitHub Copilot will use tokens and consequently incur costs. Please make sure you are aware of the costs and have the necessary budget before executing the steps. SAP does not cover any costs for executing the steps in your own environment.
