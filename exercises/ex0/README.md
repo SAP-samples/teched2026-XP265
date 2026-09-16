@@ -155,22 +155,128 @@ In the following sections we will go through each of the steps in detail and exp
 ## Technical Setup
 
 > [!NOTE]
-> All commands in these exercises work on **macOS, Linux, and Windows**. On Windows, use **PowerShell** (recommended) or Command Prompt — not Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/btp-iac.*`) and all Terraform commands are platform-independent.
+> All commands in these exercises work on **macOS, Linux, and Windows**. On Windows, use **PowerShell7** (recommended) — not Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/btp-iac.*`) and all Terraform commands are platform-independent.
+
+Before starting with the exercises some technical setup is required to ensure that all tools and services are properly configured.
+
+You need the following components set up before starting the exercises:
+
+- MCP Server for Terraform
+- Configure Claude code to connect to the MCP Server for Terraform
+- Install the Spec-kit CLI
+- Check your access to the SAP BTP cockpit and via btp CLI
+
+The following sections guide you through the setup process for each of the required components.
 
 ### MCP Server for Terraform
 
-- Start MCP Server for Terraform
+We require the [MCP server for Terraform](https://github.com/hashicorp/terraform-mcp-server) to be running and accessible before proceeding with the exercises. On the system we are using [podman](https://podman.io/) as the container runtime. To install and run the MCP server, open a Powershell window and execute the following commands:
+
+1. Start podman:
+
+```powershell
+podman machine start
+```
+
+2. Install and start the MCP server:
+
+```powershell
+podman run -i --rm hashicorp/terraform-mcp-server
+```
+
+> [!NOTE]
+> Some error might occur stating the the `TFE client` and the `TFE tools` will not be available. This is okay as we do not connect to a Terraform Enterprise instance.
+
+You can stop the MCP server by pressing `Ctrl+C` in the terminal where it is running.
 
 ### Wire up Claude Code to the MCP Server
 
-- Wire up the MCP Server to Claude Code
+We need to make Claude awre of the MCP server for Terraform that we just installed. To do so go to your terminal windows and enter the following command:
 
-### Install the spec-kit CLI
+```powershell
+claude mcp add terraform -s user -t stdio -- podman run -i --rm hashicorp/terraform-mcp-server
+```
+You should get a confirmation message indicating that the MCP server has been successfully added to Claude Code:
 
-- Install the spec-kit CLI and make sure it is available in your PATH
+```powershell
+Added stdio MCP server terraform with command podman run -i --rm hashicorp/terraform-mcp-server to user config
+```
+
+Let us verify that the MCP server has been correctly added to Claude Code by listing the configured MCP servers:
+
+```powershell
+claude mcp list
+```
+You should see an entry for the `terraform` MCP server, confirming that it is connected to Claude Code.
+
+### Install the Spec-kit CLI
+
+The central ingredient for this exercise is the Spec-kit CLI, which allows you to interact with the spec-driven development framework. You need to install it and ensure it is available in your system's PATH.
+
+1. Navigate to the project's GitHub repository namely the [release page](https://github.com/SAP/btp-iac-spec-kit/releases)
+2. Download the latest release of the Spec-kit CLI for Windows (`*_windows_amd64.zip`)
+3. Extract the downloaded ZIP file to the Desktop
+
+You can now either run the Spec-kit CLI directly from the extracted location or add it to your system's PATH for easier access.
+For the later you must add the extracted binary to your system's PATH.
+
+1. Right click on the Windows Logo and click "System"
+
+      ![Windows System Settings](./images/1_system_settings.png)
+
+2. Click on "Advanced system settings"
+
+      ![Advanced System Settings](./images/2_advanced_system_settings.png)
+
+3. Click on "Environment Variables ..."
+
+      ![Environment Variables](./images/3_environment_variables.png)
+
+4. Click on the Path Variable and then click "Edit"
+
+      ![Edit Path Variable](./images/4_edit_path_variable.png)
+
+5. Click "New" and add the path to the extracted spec-kit CLI binary
+
+      ![Add New Path](./images/5_add_new_path.png)
+
+6. Click "OK" a few times to close all the dialog boxes
+
+
+Verify that the spec-kit CLI is correctly installed and accessible from your terminal by opening a new terminal and running:
+
+```powershell
+btp-iac
+```
+
+### Validate your SAP BTP access
+
+As we want to deploy resources to the SAP BTP, it is essential to validate that you have the necessary access both via the SAP BTP Cockpit and the btp CLI.
+
+#### SAP BTP Cockpit
+
+- Open a browser and navigate to the URL <https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/>
+- Log in via the credential provided by the HandsOn Team during the session
+
+#### btp CLI
+
+Verify your access to the SAP BTP via the btp CLI by running:
+
+```powershell
+btp login --idp ainfvn15r --user '<your-username>' --password '<your-password>'
+```
+
+> [!NOTE]
+> Put the username and the password into single quotes
+
+Confirm the defaulted CLI server URL (`https://cli.btp.cloud.sap`)
+
+You should see a success message indicating that you have successfully logged in to the SAP BTP via the btp CLI.
 
 ## 📋 Summary
 
 You now understand the motivation for spec-driven development, the inventory management scenario you will be building, and the governance constraints that will be enforced throughout the exercises.
+
+In addition you have installed the prerequistes for the exercise and validated your access to the SAP BTP. Now the real fun can start!
 
 Continue to - [Exercise 1 - Initialize the project](../ex1/README.md)
