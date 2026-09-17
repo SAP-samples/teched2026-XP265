@@ -1,16 +1,12 @@
 # Define the scenario
 
-With governance guardrails in place, you now describe **what you are building** in plain language. The `/btp-iac.scenario` skill translates your description into a structured set of BTP infrastructure requirements — the first document in the `specs/` folder.
+With the governance guardrails in place, you now describe **what you are building** in plain language. The `/btp-iac.scenario` skill translates your description into a structured set of BTP infrastructure requirements — the first document in the `specs/` folder.
 
-This is where spec-driven development shines: you do not write Terraform, you do not configure services — you describe the application and its needs as a business person would. The AI agent extracts the infrastructure signals and captures them in a machine-readable specification.
+This is where spec-driven development shines: you do not write Terraform, you do not configure services — you describe the application and its needs from a functional perspective. The AI agent extracts the infrastructure signals and captures them in a machine-readable specification.
 
-## The scenario prompt
+## The scenario
 
-You are setting up the developer environment for the **Inventory Management CAP application**. Use the following description as your prompt when running the command:
-
-> I need a developer environment on Cloud Foundry for our Inventory Management CAP application. It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance. Application and runtime logs are collected in SAP Cloud Logging Service. The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code for the CAP tooling and CI/CD pipeline. Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
-
-
+Your goal is to sketch the developer environment for the **Inventory Management CAP application** to define the overall sceanrio.
 
 ## 🛠️ Execute the scenario command
 
@@ -20,7 +16,21 @@ Execute the following command in the Claude Code terminal:
 /btp-iac.scenario
 ```
 
-When prompted, paste or type the scenario description above. Answer the follow-up questions as described.
+The command will first check if there is an existing scenario defined in the project. As we start from scratch, it will prompt us to define a new scenario.
+
+When prompted, use the following description as your input:
+
+```text
+I need a developer environment on Cloud Foundry for our Inventory Management CAP application. It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance. Application and runtime logs are collected in SAP Cloud Logging Service. The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code and the Continuous Integration & Delivery service for CI/CD pipelines. Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
+```
+
+The command will analyze the input and ask some additonal questions to detail the technical configuration of the scenario:
+
+- **Runtime sizing** Use a 1GB single instance for dev.
+- **Integration**  A destination to S/4HANA Public Cloud is required.
+- **Environment isolation** Each stage gets its own dedicated subaccount.
+
+After answering these follow-up questions an overview of the scenario description is presented to you. Claude will ask for confirmation before finalizing the scenario. Confirm by selecting `Yes`. This will create a new file in `specs/` as `scenario.md`.
 
 ### 🔬 Look behind the curtains
 

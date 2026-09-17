@@ -51,7 +51,7 @@ The skill will ask you up to one targeted question per governance category. For 
 - **Security:** Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings.
 - **Cost controls:** A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.
 
-Once all questions have been answered, the skill will summarize the governance rules and ask you to confirm if the `governance.md` file should be created. Confirm by selecting `Yes`. This will create a new file is in `memory/` as `governance.md`.
+Once all questions have been answered, the skill will summarize the governance rules and ask you to confirm if the captured data is correct. Confirm by selecting `Yes`. This will create a new file is in `memory/` as `governance.md`.
 
 ### 🔬 Look behind the curtains
 
