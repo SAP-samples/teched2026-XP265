@@ -10,26 +10,25 @@ The manufacturing company running this project has the following policies:
 
 | Category | Rule |
 |---|---|
-| **Region** | All BTP resources must be deployed in `cf-eu10` (Frankfurt). Data residency requirement — inventory data is subject to GDPR and must stay in the EU. |
-| **Naming** | Subaccounts must follow the pattern `invmgmt-<env>`. Valid environment tiers are `dev`, `staging`, `prod`. Maximum name length: 60 characters. |
-| **Service plans** | For the `dev` tier: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev`. |
-| **Security** | SAP Cloud Identity Services is **required** as the identity provider (type: OIDC). The default SAP ID Service is not permitted as the application IdP. |
-| **Cost controls** | HANA Cloud is a metered service — a warning must be issued. The tag key `cost-centre` is mandatory on all subaccounts. |
+| **Region** | The subaccount should be placed in the EU, primary region is `eu10`, secondary region is `eu20`. All other regions are forbidden. Data residency requirement — inventory data is subject to GDPR and must stay in the EU. |
+| **Naming** | The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters. The directory structure is flat. |
+| **Service plans** | For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev`. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages. |
+| **Security** | Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings. |
+| **Cost controls** | A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`. |
 
-When you run `/btp-iac.govern`, the skill will ask you a targeted question for each category that is not already fully specified. Answer using the values from the table above.
+In this exercise we will make the spek-kit aware of the governance constraints by executing the `/btp-iac.govern` command.
 
 ## 🛠️ Execute the govern command
 
 ### Step 1 - Start the agentic tooling
 
-Execute the following command in the terminal:
+Navigate into the project folder you created in Exercise 1 (`SAPTechEd2026-XXX`). Execute the following command in the terminal:
 
 ```bash
 claude
 ```
 
-> [!NOTE]
-> Make sure that you start Claude Code inside the project folder you created in Exercise 1 (`SAPTechEd2026-XXX`).
+Claude will ask you if you trust this folder, confirm by selecting `Yes`.
 
 ### Step 2 - Execute the govern command
 
@@ -39,13 +38,20 @@ Execute the following command in the Claude Code terminal:
 /btp-iac.govern
 ```
 
+> [!NOTE]
+> If Claude Code does not recognize the command, make sure that you started Claude Code **inside the project folder** you created in Exercise 1 (`SAPTechEd2026-XXX`).
+
+The skill will check the basic layout of your project folder to ensure it meets the expected structure. Once it has done this, it will proceed to ask you the targeted governance questions.
+
 The skill will ask you up to one targeted question per governance category. For this session, use the following answers:
 
-- **Regions:** `cf-eu10` is the only allowed region. Data residency reason: GDPR.
-- **Naming:** Pattern is `invmgmt-<env>`. Tiers: `dev`, `staging`, `prod`.
-- **Service plans:** For `dev`: `free` for Audit Log and Cloud Logging; `hana` for HANA Cloud. Forbidden: `premium` in dev.
-- **Security:** Custom IdP required. Type: OIDC (SAP Cloud Identity Services). Default SAP ID Service is not permitted as application IdP.
-- **Cost controls:** Metered service warning enabled for HANA Cloud. Tag key `cost-centre` is mandatory.
+- **Regions:** The subaccount should be placed in the EU, primary region is `eu10`, secondary region is `eu20`. All other regions are forbidden. Data residency requirement — inventory data is subject to GDPR and must stay in the EU.
+- **Naming:** The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters. The directory structure is flat.
+- **Service plans:** For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev`. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages.
+- **Security:** Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings.
+- **Cost controls:** A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.
+
+Once all questions have been answered, the skill will summarize the governance rules and ask you to confirm if the `governance.md` file should be created. Confirm by selecting `Yes`. This will create a new file is in `memory/` as `governance.md`.
 
 ### 🔬 Look behind the curtains
 
@@ -64,6 +70,6 @@ After the command completes:
 
 ## 📋 Summary
 
-The governance guardrails are now in place. Every skill from this point will validate against these rules. In the next exercise you will describe the inventory management application in plain language — and the AI agent will translate that into structured BTP infrastructure requirements.
+The governance guardrails are in place. Every skill from this point will validate against these rules. In the next exercise you will describe the inventory management application in plain language — and the AI agent will translate that into structured BTP infrastructure requirements.
 
 Continue to - [Exercise 3 - Define the scenario](../ex3/README.md)

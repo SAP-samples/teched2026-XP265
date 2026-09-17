@@ -14,7 +14,7 @@ btp-iac init SAPTechEd2026-XXX
 
 Replace the XXX with your group name.
 
-You will then be asked to select the agentic tooling you want to use. For this session we will use **Claude Code**.
+You will then be asked to select the agentic tooling you want to use. Select `claude` as we will use **Claude Code** for this session.
 
 The command will create a folder with the name `SAPTechEd2026-XXX`. Navigate into the folder using the command:
 
@@ -57,10 +57,10 @@ Let's walk through the files and folders in the project structure:
 - The `terraform` folder will contain the generated code that will be used to create the infrastructure. This is the final output of the spec-driven development process.
 
 > [!NOTE]
-> Notice that the `specs` and `terraform` folders are empty at this point. They will be populated progressively as you work through the exercises. This is intentional — spec-driven development builds up the artifact incrementally, with a review opportunity at each step.
+> Notice that the `memory`, `specs` and `terraform` folders are empty at this point. They will be populated progressively as you work through the exercises. This is intentional — spec-driven development builds up the artifact incrementally, with a review opportunity at each step.
 
 ## 📋 Summary
 
-Having this setup in place, we are now ready to start with the spec-driven development process. The first real step is defining the governance constraints that will act as guardrails for all subsequent decisions.
+Having this setup in place, we are now ready to start with the spec-driven development process. The first real step is defining the governance constraints that will act as guardrails for all subsequent steps.
 
 Continue to - [Exercise 2 - Define the governance constraints](../ex2/README.md)
