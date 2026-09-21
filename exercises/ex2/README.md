@@ -10,7 +10,10 @@ The manufacturing company running this project has the following policies:
 
 | Category | Rule |
 |---|---|
+| **Preferred infrastructure provider:** | The preferred infrastructure provider is Microsoft Azure. |
+| **Provider** | The preferred infrastructure provider is Microsoft Azure. |
 | **Region** | The subaccount should be placed in the EU, primary region is `eu10`, secondary region is `eu20`. All other regions are forbidden. Data residency requirement — inventory data is subject to GDPR and must stay in the EU. |
+| **Environment** | The environment is Cloud Foundry only (no Kyma is used here). One org and one space per stage should be created. |
 | **Naming** | The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters. The directory structure is flat. |
 | **Service plans** | For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev`. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages. |
 | **Security** | Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings. |
@@ -19,6 +22,20 @@ The manufacturing company running this project has the following policies:
 In this exercise we will make the spek-kit aware of the governance constraints by executing the `/btp-iac.govern` command.
 
 ## 🛠️ Execute the govern command
+
+### Step 0 - btp CLI login
+
+Execute the following command in the terminal to log in to the BTP CLI:
+
+```bash
+btp login --idp ainfvn15r --user '<your-username>' --password '<your-password>'
+```
+
+And target the global account subdomain you want to use:
+
+```bash
+btp target --global-account '<your-global-account-subdomain>'
+```
 
 ### Step 1 - Start the agentic tooling
 
@@ -41,12 +58,18 @@ Execute the following command in the Claude Code terminal:
 > [!NOTE]
 > If Claude Code does not recognize the command, make sure that you started Claude Code **inside the project folder** you created in Exercise 1 (`SAPTechEd2026-XXX`).
 
-The skill will check the basic layout of your project folder to ensure it meets the expected structure. Once it has done this, it will proceed to ask you the targeted governance questions.
+The skill will check the basic layout of your project folder to ensure it meets the expected structure. Once it has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
+
+It will then proceed to ask you the targeted governance questions.
 
 The skill will ask you up to one targeted question per governance category. For this session, use the following answers:
 
-- **Regions:** The subaccount should be placed in the EU, primary region is `eu10`, secondary region is `eu20`. All other regions are forbidden. Data residency requirement — inventory data is subject to GDPR and must stay in the EU.
-- **Naming:** The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters. The directory structure is flat.
+- **Preferred infrastructure provider:** Microsoft Azure
+- **Regions:** The subaccount should be placed in the EU, primary region is `eu20`, secondary region is `eu22`. All other regions are forbidden. Data residency requirement — inventory data is subject to GDPR and must stay in the EU.
+- **Environment:** The environment should be CloudFoundry. No Kyma is used in this project. One org and one space per stage should be created.
+- **Naming:** The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters.
+Kyma is not used in this project. For CF orgs the naming convention is `invmgmt-cf-<stage>`, the CF space is then `<stage>`.
+The directory structure is flat.
 - **Service plans:** For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev`. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages.
 - **Security:** Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings.
 - **Cost controls:** A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.

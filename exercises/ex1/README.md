@@ -14,7 +14,10 @@ btp-iac init SAPTechEd2026-XXX
 
 Replace the XXX with your group name.
 
-You will then be asked to select the agentic tooling you want to use. Select `claude` as we will use **Claude Code** for this session.
+You will be asked:
+
+- To select the agentic tooling you want to use. Select `claude` as we will use **Claude Code** for this session.
+- To specify the global account subdomain you want to use. You will need to provide the subdomain of your global account from the BTP cockpit.
 
 The command will create a folder with the name `SAPTechEd2026-XXX`. Navigate into the folder using the command:
 
@@ -31,6 +34,8 @@ code .
 A VS Code screen opens and you should see the following project structure:
 
 ```bash
+├── .btp-iac
+│   └── platform-validation.md
 ├── .claude
 │   └── commands
 │       ├── btp-iac.accounts.md
@@ -50,6 +55,7 @@ A VS Code screen opens and you should see the following project structure:
 
 Let's walk through the files and folders in the project structure:
 
+- The `.btp-iac` folder contains local file records and optional validation capabilities detected by `btp-iac init`.
 - The `.claude` folder contains all the commands and the corresponding instructions for the agentic tooling (in this case Claude Code). These are the **skills** — each one knows exactly what to build, what to validate, and what to write to disk. You will invoke them one by one throughout the exercises.
 - The `.gitignore` file contains the files and folders that should be ignored by Git. This is important to avoid committing sensitive information or unnecessary files to the repository.
 - The `memory` folder will contain the memory of the agentic tooling. The governance constraints written in Exercise 2 live here and are read by every subsequent skill.
