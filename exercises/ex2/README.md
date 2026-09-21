@@ -78,7 +78,7 @@ Once all questions have been answered, the skill will summarize the governance r
 
 ### 🔬 Look behind the curtains
 
-The technical foundation of this step is the `btp-iac.govern.md` skill in the `.claude/commands` folder. Open the file and notice how the skill defines a precise governance schema — five categories, each with specific fields.
+The technical foundation of this step is the `btp-iac.govern.md` skill in the `.claude/commands` folder. Open the file and notice how the skill defines a precise governance schema — each category with specific fields.
 
 The skill writes its output to `memory/governance.md`. This file is **not a spec** — it is a contract. Every skill from this point forward will open `memory/governance.md` before doing anything and validate its decisions against it. If a later step tries to use a forbidden region or a forbidden service plan, the agent will stop with a clear error message pointing to the violated rule.
 
@@ -86,7 +86,7 @@ The skill writes its output to `memory/governance.md`. This file is **not a spec
 
 After the command completes:
 
-- Check `memory/governance.md` — you should see all five categories populated with the rules you specified.
+- Check `memory/governance.md` — you should see all categories populated with the rules you specified.
 - Notice there is no `specs/` file yet — governance is stored in `memory/` because it is not a requirement, it is a constraint applied to all requirements.
 
 **Key insight:** Without spec-driven development, these rules would live in a team wiki nobody reads. Here they are machine-readable and enforced automatically.
