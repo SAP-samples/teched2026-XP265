@@ -11,7 +11,7 @@ Based on the scenario definition (a single `dev` environment), the expected resu
 | Field | Value |
 |---|---|
 | Subaccount name | `invmgmt-dev` |
-| Region | `eu10` (Frankfurt) |
+| Region | `eu20` |
 | Subdomain | `invmgmt-dev` (must be globally unique — you may be asked to adjust) |
 | Environment | Cloud Foundry enabled |
 | CF org | Automatically created with the subaccount |
@@ -20,7 +20,7 @@ Based on the scenario definition (a single `dev` environment), the expected resu
 
 The governance rules will be applied automatically:
 
-- `eu10` is the only allowed region — the agent checks this before creating the subaccount resource ✅
+- `eu20` is the only allowed region — the agent checks this before creating the subaccount resource ✅
 - The name `invmgmt-dev` matches the `invmgmt-<env>` pattern ✅
 - The tier `dev` is a defined environment tier ✅
 
@@ -34,26 +34,14 @@ Execute the following command in the Claude Code terminal:
 /btp-iac.accounts
 ```
 
-The skill reads `specs/scenario.md` and `memory/governance.md`. As some information is missing, it will ask you for the following information:
-
-- Your **global account subdomain** (needed for the Terraform provider configuration)
-- The Cloud Foundry setup.
-
-Look up the Global account subdomain in the SAP BTP Cockpit and provide the following input when prompted:
-
-```text
-The global account subdomain of my account is <your-subdomain>.
-The Cloud Foundry setup should be one CF environment per subaccount. The naming convention of the org should follow `invmgmt-<env>` as for the subaccount. Within each org, create a space that is named as the stage of the subaccount namely dev, staging and prod.
-```
-
-All checks should pass. After answering these follow-up questions an overview of the landscape description is presented to you. Claude will ask for confirmation before finalizing the accounts setup. Confirm by selecting `Yes`. This will create a new file in `specs/` as `landscape.md`.
+The skill reads `specs/scenario.md` and `memory/governance.md`. As we already provided all information necessary for the account setup, it will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `landscape.md`.
 
 ### 🔬 Look behind the curtains
 
 Open the `btp-iac.accounts.md` skill file. Notice:
 
 1. The skill starts with a **governance check** — it loads `memory/governance.md` and prepares to validate against it before writing anything.
-2. Region validation: if you somehow specified a region outside `eu10`, the skill would `STOP` — not warn, not continue, `STOP`.
+2. Region validation: if you somehow specified a region outside `eu20`, the skill would `STOP` — not warn, not continue, `STOP`.
 3. Naming validation: the `invmgmt-<env>` pattern is enforced. A subaccount named `inventory-development` would fail.
 4. The output — `specs/landscape.md` — becomes the **authoritative account structure** that the services and security skills read in the next exercises. It is not regenerated later; it is referenced.
 
@@ -61,11 +49,11 @@ Open the `btp-iac.accounts.md` skill file. Notice:
 
 After the command completes:
 
-- Open `specs/landscape.md` — you should see the subaccount definition for `invmgmt-dev` in region `eu10`, with the CF environment enabled and a `development` space.
+- Open `specs/landscape.md` — you should see the subaccount definition for `invmgmt-dev` in region `eu20`, with the CF environment enabled and a `development` space.
 - Verify the cost centre tag is present in the subaccount definition.
 - Cross-check what has happened in the `memory/` folder.
 
-**Key insight:** The agent chose `cf-eu10` not because it is the default, but because it is the only allowed region per the governance file. If you were to repeat this flow for a project with no governance file, the agent would ask which region to use. The governance file removes that ambiguity — it is answered once and enforced everywhere.
+**Key insight:** The agent chose `cf-eu20` not because it is the default, but because it is the only allowed region per the governance file. If you were to repeat this flow for a project with no governance file, the agent would ask which region to use. The governance file removes that ambiguity — it is answered once and enforced everywhere.
 
 ## 📋 Summary
 

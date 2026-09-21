@@ -24,16 +24,6 @@ The agent will derive the following from `specs/scenario.md` and `specs/landscap
 > [!NOTE]
 > The agent understands that a CAP application on Cloud Foundry requires XSUAA for application security. This is a BTP-specific dependency the skill brings — you described an "Inventory Management CAP app" and the skill inferred the need for XSUAA without you having to ask for it.
 
-## Governance check: service plan validation
-
-For the `dev` environment tier, the governance file specifies:
-- `free` plan is permitted for Audit Log and Cloud Logging ✓
-- `hana` plan is permitted for HANA Cloud ✓
-- `standard` plan is permitted for Build Work Zone ✓
-- `premium` plan is **forbidden** in `dev`
-
-If the agent were to suggest a `premium` plan for any service, the governance enforcement would stop it with an explicit error. Try modifying a plan after the exercise and re-running to see the enforcement in action.
-
 ## 🛠️ Execute the services command
 
 Execute the following command in the Claude Code terminal:
@@ -42,7 +32,7 @@ Execute the following command in the Claude Code terminal:
 /btp-iac.services
 ```
 
-The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals.
+The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals. It will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `services.md`.
 
 ### 🔬 Look behind the curtains
 

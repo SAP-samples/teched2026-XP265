@@ -24,11 +24,11 @@ When prompted, use the following description as your input:
 I need a developer environment on Cloud Foundry for our Inventory Management CAP application. It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance. Application and runtime logs are collected in SAP Cloud Logging Service. The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code and the Continuous Integration & Delivery service for CI/CD pipelines. Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
 ```
 
-The command will analyze the input and ask some additonal questions to detail the technical configuration of the scenario:
+The command will analyze the input. It will then ask some additonal questions to detail the technical configuration of the scenario:
 
-- **Runtime sizing** Use a 1GB single instance for dev.
-- **Integration**  A destination to S/4HANA Public Cloud is required.
-- **Environment isolation** Each stage gets its own dedicated subaccount.
+- **CF sizing/memory allocation:** Use a 1GB single instance for dev.
+- **Integration:**  A destination to S/4HANA Public Cloud with OAuth2 is required.
+- **Subaccount structure:** Each stage gets its own dedicated subaccount.
 
 After answering these follow-up questions an overview of the scenario description is presented to you. Claude will ask for confirmation before finalizing the scenario. Confirm by selecting `Yes`. This will create a new file in `specs/` as `scenario.md`.
 

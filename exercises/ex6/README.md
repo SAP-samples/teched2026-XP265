@@ -16,29 +16,6 @@ The governance rules make this exercise particularly interesting: the default SA
 > [!NOTE]
 > Configuring SAP Cloud Identity Services as the **platform IdP** is a global account level setting. The subaccount-level trust configuration sets up IAS as the **application IdP** for the `invmgmt-dev` subaccount. Both are captured in the spec.
 
-### Role Collections
-
-The inventory application has three user personas, each mapped to a role collection:
-
-| Role Collection | Purpose | Assigned Roles |
-|---|---|---|
-| `InventoryViewer` | Read-only access — warehouse staff viewing stock levels | Viewer roles from the CAP app, Build Work Zone site viewer |
-| `InventoryManager` | Full CRUD on inventory records — procurement team | All viewer roles + create/update/delete on inventory entities |
-| `InventoryAdmin` | Configuration and user management — IT admin | All manager roles + application administration |
-
-Role collections are assigned to user groups from SAP Cloud Identity Services (not individual users), so onboarding new team members only requires adding them to the correct IAS group.
-
-### Destination for S/4HANA Connectivity
-
-The inventory app reads material master data from an on-premise SAP S/4HANA system. A destination is required:
-
-| Field | Value |
-|---|---|
-| Destination name | `S4HANA-MaterialMaster` |
-| Type | HTTP |
-| Authentication | `OAuth2SAMLBearerAssertion` |
-| Description | SAP S/4HANA on-premise system for material master data |
-
 ## 🛠️ Execute the security command
 
 Execute the following command in the Claude Code terminal:
@@ -51,13 +28,27 @@ The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governanc
 
 The skill will perform a governance check: since `Custom IdP: required` is set in the governance file, it will verify that an IAS trust configuration is included. If you had not mentioned SAP Cloud Identity Services in the scenario, the skill would stop here with an error — it cannot produce a compliant security spec without the required IdP trust.
 
+It will also derive a proposal for role collection assignments based on the IAS groups defined in the scenario. This should look like this:
+
+```bash
+| IAS Group | BTP Role Collection | Notes |
+|---|---|---|
+| `invmgmt-dev-admins` | `InvMgmt_Dev_Admin` | Assigned to senior devs / infra owners managing the dev environment |
+| `invmgmt-dev-developers` | `InvMgmt_Dev_Developer` | Assigned to all active developers on the project |
+| `invmgmt-dev-viewers` | `InvMgmt_Dev_Viewer` | Assigned to stakeholders or testers with read-only needs |
+| `invmgmt-dev-audit-viewers` | `InvMgmt_Dev_AuditLog_Viewer` | Assigned to compliance/audit team members |
+```
+
+Role collections are assigned to user groups from SAP Cloud Identity Services (not individual users), so onboarding new team members only requires adding them to the correct IAS group.
+
+Review the proposed security configuration and role collection assignments. Confirm by selecting `Yes`. This will create a new file in `specs/` as `trust.md`.
+
 ### 🔬 Look behind the curtains
 
 Open the `btp-iac.security.md` skill file. Notice:
 
 1. **Governance enforcement for IdP:** The skill checks whether `Custom IdP: required` is in the governance file. If it is, and no IAS trust is being configured, it stops. This is a hard block, not a warning.
 2. **Role collection scope:** The governance file specifies role collection scope as `application` (not `platform`). The skill will ensure `InventoryViewer`, `InventoryManager`, and `InventoryAdmin` are application-level role collections assigned via IAS groups.
-3. **Destination validation:** If the governance file had restricted destinations to specific allowed types, the `OAuth2SAMLBearerAssertion` destination would be validated against that list.
 
 The output `specs/trust.md` is the final piece of the specification puzzle — after this step, the agent has everything it needs to generate Terraform code.
 
@@ -69,7 +60,6 @@ After the command completes:
   - IAS trust configuration for both platform and application IdP
   - Three role collections: `InventoryViewer`, `InventoryManager`, `InventoryAdmin`
   - IAS user group assignments for each role collection
-  - The `S4HANA-MaterialMaster` destination configuration
 - Verify that **no reference to the default SAP ID Service** appears in the trust configuration — the governance rule was enforced.
 - Cross-check what has happened in the `memory/` folder.
 

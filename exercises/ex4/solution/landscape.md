@@ -1,42 +1,45 @@
-# BTP Account Landscape
+# BTP Account Landscape — Inventory Management CAP
 
 ## Global Account
 
 | Field | Value |
-|-------|-------|
-| Subdomain | terraformintprod |
-| Directory structure | flat — no directories |
+|---|---|
+| Subdomain | `terraformintprod` |
+| Display name | terraform-integration-prod |
+
+## Directory Structure
+
+Flat — no directory groupings. Subaccounts sit directly under the global account.
 
 ## Subaccounts
 
-| Name | Region | Subdomain | Description | Cost Centre Tag |
-|------|--------|-----------|-------------|-----------------|
-| invmgmt-dev | eu10 | invmgmt-dev | Inventory Management — development | CC-123456 |
-| invmgmt-staging | eu10 | invmgmt-staging | Inventory Management — staging | CC-123456 |
-| invmgmt-prod | eu10 | invmgmt-prod | Inventory Management — production | CC-123456 |
+### `invmgmt-dev`
 
-## Runtime Environments
+| Field | Value |
+|---|---|
+| Display name | `invmgmt-dev` |
+| Subdomain | `invmgmt-dev` |
+| Region | `eu20` |
+| Infrastructure provider | Microsoft Azure |
+| Description | Inventory Management CAP — developer environment |
+| Stage | `dev` |
+| Cost centre tag | `cost-center: CC-123456` |
 
-| Subaccount | Environment Type | CF Org Name | CF Space(s) |
-|------------|-----------------|-------------|-------------|
-| invmgmt-dev | Cloud Foundry | invmgmt-dev | dev |
-| invmgmt-staging | Cloud Foundry | invmgmt-staging | staging |
-| invmgmt-prod | Cloud Foundry | invmgmt-prod | prod |
+#### Cloud Foundry Environment
 
-## Governance Validation
+| Field | Value |
+|---|---|
+| CF org name | `invmgmt-cf-dev` |
+| CF space | `dev` |
 
-| Rule | Status |
-|------|--------|
-| Regions (eu10 only) | PASS — all subaccounts in eu10 |
-| Naming pattern `invmgmt-{stage}` | PASS — dev / staging / prod |
-| Environment tiers | PASS — dev, staging, prod defined in governance |
-| Cost centre tag `cost-centre = CC-123456` | PASS — applied to all subaccounts |
-| Max name length ≤ 60 | PASS — longest is `invmgmt-staging` (16 chars) |
-| CF org naming (`invmgmt-<env>`) | PASS — matches subaccount naming convention |
-| CF space naming (stage name) | PASS — dev / staging / prod |
+#### Governance Checks
 
-## Notes
-
-- eu20 is approved as secondary/DR; not provisioned here — scenario specifies no cross-region HA requirement.
-- Subdomains match subaccount names (standard BTP convention).
-- Global account GUID must be supplied at terraform plan time via `terraform.tfvars` or env variable; only the subdomain is recorded here.
+| Rule | Value | Status |
+|---|---|---|
+| Region allowed | `eu20` in `[eu20, eu22]` | compliant |
+| Region preferred | `eu20` (Azure) matches preferred provider Microsoft Azure | compliant |
+| Subaccount name pattern | `invmgmt-dev` matches `invmgmt-{stage}` | compliant |
+| CF org pattern | `invmgmt-cf-dev` matches `invmgmt-cf-{stage}` | compliant |
+| CF space pattern | `dev` matches `{stage}` | compliant |
+| Allowed environment | Cloud Foundry | compliant |
+| Directory structure | flat | compliant |
