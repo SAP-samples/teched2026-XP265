@@ -74,10 +74,11 @@ The exercises are designed to be completed in order, as each exercise builds upo
 - [Exercise 4 - Detail the account setup](exercises/ex4/)
 - [Exercise 5 - Detail the service setup](exercises/ex5/)
 - [Exercise 6 - Detail the security setup](exercises/ex6/)
-- [Exercise 7 - Define the tasks](exercises/ex7/)
-- [Exercise 8 - Evaluate the design](exercises/ex8/)
-- [Exercise 9 - Generate the code](exercises/ex9/)
-- [Exercise 10 - Deploy the generated code](exercises/ex10/)
+- [Exercise 7 - Detail the connectivity setup](exercises/ex7/)
+- [Exercise 8 - Define the tasks](exercises/ex8/)
+- [Exercise 9 - Evaluate the design](exercises/ex9/)
+- [Exercise 10 - Generate the code](exercises/ex10/)
+- [Exercise 11 - Deploy the generated code](exercises/ex11/)
 
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.

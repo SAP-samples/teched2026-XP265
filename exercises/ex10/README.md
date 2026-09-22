@@ -1,104 +1,66 @@
-# Deploy the generated code
+# Generate the code
 
-The Terraform code is generated, formatted, and validated. The final step is to deploy it to your SAP BTP account — provisioning the `invmgmt-dev` subaccount with all the services the inventory management team needs to start building.
+This is the step that the entire spec-driven flow has been building toward. The `/btp-iac.generate` skill reads the annotated task list and generates complete, validated Terraform HCL — writing each resource to the file path defined in the design step.
 
-## 🛠️ Deploy to SAP BTP
+But before writing a single file, the skill runs a **full governance validation pass** across all five categories. This is the final safety net — even if a decision was missed or changed since Exercise 2, the governance rules still catch it here.
 
-### Step 1 - Initialize the Terraform working directory
+## What the governance validation pass checks
 
-Navigate to the `terraform/` folder and initialize the working directory. This downloads the SAP BTP Terraform provider and prepares the backend.
+Before any Terraform file is written, the agent validates:
+
+| Category | What is checked |
+|---|---|
+| **Regions** | Every `btp_subaccount` resource uses `cf-eu10`. Any other region → STOP. |
+| **Naming** | Every subaccount name matches `invmgmt-<env>`. `invmgmt-dev` ✓ |
+| **Service plans** | HANA Cloud uses `hana` plan ✓, Audit Log uses `free` ✓, Cloud Logging uses `free` ✓. Any `premium` plan → STOP. |
+| **Security** | IAS trust is configured ✓. No reference to the default SAP ID Service ✓. Role collections present ✓. |
+| **Cost controls** | HANA Cloud triggers the metered-service warning (does not block). The `cost-centre` tag is present on the subaccount resource → validated. Missing tag → STOP. |
+
+Only after all five checks pass does the agent begin writing files.
+
+## 🛠️ Execute the generate command
+
+Execute the following command in the Claude Code terminal:
 
 ```bash
-cd terraform
-terraform init
+/btp-iac.generate
 ```
 
-You should see the BTP provider being downloaded. The version used will be the one resolved by the Terraform MCP server during code generation.
+The skill reads `specs/tasks.md` (with file path annotations) and `memory/governance.md`.
 
-### Step 2 - Format and validate the Terraform code
-
-The generate skill already ran these — but it is good practice to run them again after `terraform init` confirms the provider is in place:
+After generating all files, the skill automatically runs:
 
 ```bash
 terraform fmt
 terraform validate
 ```
 
-Both should succeed without errors.
+Watch the output — you will see each task being processed, the governance validation results, and finally the `terraform validate` result.
 
-### Step 3 - Add your credentials
+### 🔬 Look behind the curtains
 
-Add your SAP BTP credentials as environment variables in the terminal.
+Open the `btp-iac.generate.md` skill file. Notice:
 
-**macOS / Linux:**
-
-```bash
-export BTP_USER=<your-username>
-export BTP_PASSWORD=<your-password>
-```
-
-**Windows — PowerShell:**
-
-```powershell
-$env:BTP_USER = "<your-username>"
-$env:BTP_PASSWORD = "<your-password>"
-```
-
-**Windows — Command Prompt:**
-
-```cmd
-set BTP_USER=<your-username>
-set BTP_PASSWORD=<your-password>
-```
-
-> [!CAUTION]
-> Never commit these values to Git. The `.gitignore` file created by `btp-iac init` already excludes files that commonly contain credentials, but always verify before committing.
-
-### Step 4 - Plan the deployment
-
-Review what Terraform intends to create before applying:
-
-```bash
-terraform plan -out=plan.out
-```
-
-Scan the plan output and verify:
-
-- A `btp_subaccount` resource named `invmgmt-dev` in region `cf-eu10` will be created
-- Entitlements for all 10 services are included
-- The HANA Cloud instance and HDI container are present
-- The IAS trust configuration is included
-- The three role collections (`InventoryViewer`, `InventoryManager`, `InventoryAdmin`) will be created
-
-### Step 5 - Apply the deployment
-
-Execute the following command in the terminal:
-
-```bash
-terraform apply plan.out
-```
-
-Terraform will provision resources in the order defined by the dependency graph in the generated code — the same dependency order the spec-driven flow established back in Exercise 7.
-
-> [!NOTE]
-> Some resources take longer to provision than others. SAP HANA Cloud instances, SAP Build Work Zone subscriptions, and SAP Cloud Identity Services subscriptions can take several minutes. Terraform will wait for each resource to become available before proceeding to dependent resources.
+1. The **pre-generation governance pass** happens before the first `Write` call — this is not a post-hoc check, it prevents non-compliant code from being written at all.
+2. The skill iterates through tasks **in the order defined in `specs/tasks.md`** — the dependency ordering from Exercise 7 is preserved in the generated code.
+3. The **Terraform MCP server** is used to look up the exact resource schema for `btp_subaccount`, `btp_subaccount_entitlement`, `btp_subaccount_service_instance`, etc. — ensuring the generated HCL uses valid argument names and current provider version syntax.
+4. After all files are written, `terraform fmt` normalizes spacing and indentation, and `terraform validate` checks the schema and references.
 
 ### ✅ Result
 
-After the deployment succeeds:
+After the command completes:
 
-- Log in to the [SAP BTP Cockpit](https://account.hana.ondemand.com/) and verify that:
-  - The `invmgmt-dev` subaccount exists in the `cf-eu10` region
-  - The Cloud Foundry environment is enabled with a `development` space
-  - All 10 services are entitled and the subscriptions are active
-  - The IAS trust configuration is visible under *Security → Trust Configuration*
-  - The three role collections are listed under *Security → Role Collections*
-- The inventory management development team can now access the subaccount, connect to HANA Cloud via the HDI container, and start building the CAP application.
+- Open the `terraform/` folder — you should see all the files defined in the design step: `main.tf`, `variables.tf`, `outputs.tf`, `subaccount.tf`, `entitlements.tf`, `subscriptions.tf`, `services.tf`, `trust.tf`, `destinations.tf`, `roles.tf`.
+- Open `terraform/subaccount.tf` — verify that the subaccount resource uses region `cf-eu10` and includes the `cost-centre` tag.
+- Open `terraform/services.tf` — verify that the HANA Cloud instance uses the `hana` plan and that the HDI container instance depends on the HANA Cloud instance.
+- Open `terraform/trust.tf` — verify that IAS is configured as the application IdP and that no reference to the default SAP ID Service exists.
+- Open `terraform/roles.tf` — verify that all three role collections (`InventoryViewer`, `InventoryManager`, `InventoryAdmin`) are present with IAS group assignments.
+- Confirm that `terraform validate` passed — there should be no schema errors.
+
+**Key insight:** Compare the `terraform/` output to what you would get from a vibe-coded session — "hey ChatGPT, write me Terraform for HANA Cloud on BTP." The spec-driven result is: governance-compliant, dependency-ordered, consistently structured, and validated. The vibe-coded result is: possibly correct on a good day, definitely not reproducible next week.
 
 ## 📋 Summary
 
-🎉 Congratulations — you have completed the full spec-driven development flow for Terraform on SAP BTP!
+The Terraform code is generated, formatted, and validated. Every resource is compliant with the governance rules, correctly ordered by dependency, and ready to be deployed to SAP BTP.
 
-You started with a plain-language description of an inventory management application, encoded governance rules that were enforced automatically at every step, built up a living specification across five structured documents, and ended with validated, deployment-ready Terraform code.
-
-The `invmgmt-dev` environment is now live. The specification in `specs/` documents exactly why every decision was made. When the team needs to add staging or production environments, the spec-driven flow means it is a matter of adding a new environment tier — not starting from scratch.
+Continue to - [Exercise 11 - Deploy the generated code](../ex11/README.md)

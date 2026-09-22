@@ -67,6 +67,6 @@ After the command completes:
 
 ## 📋 Summary
 
-The security configuration is now fully specified. The three spec files (`specs/landscape.md`, `specs/services.md`, `specs/trust.md`) together form the complete picture of the `invmgmt-dev` environment. In the next exercise, the agent consolidates them into a single dependency-ordered task list.
+The security configuration is now fully specified.  In the next exercise, we finish the specification tasks by detailing the connectivity setup.
 
-Continue to - [Exercise 7 - Define the tasks](../ex7/README.md)
+Continue to - [Exercise 7 - Detail the connectivity setup](../ex7/README.md)
