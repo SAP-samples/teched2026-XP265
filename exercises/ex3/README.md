@@ -26,7 +26,7 @@ I need a developer environment on Cloud Foundry for our Inventory Management CAP
 
 The command will analyze the input. It will then ask some additonal questions to detail the technical configuration of the scenario:
 
-- **CF sizing/memory allocation:** Use a 1GB single instance for dev.
+- **CF sizing/memory allocation:** Use a 1GB single instance.
 - **Integration:**  A destination to S/4HANA Public Cloud with Basic Authentication is required.
 - **Subaccount structure:** Each stage gets its own dedicated subaccount.
 

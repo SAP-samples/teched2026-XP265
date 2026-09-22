@@ -34,7 +34,9 @@ Execute the following command in the Claude Code terminal:
 /btp-iac.accounts
 ```
 
-The skill reads `specs/scenario.md` and `memory/governance.md`. As we already provided all information necessary for the account setup, it will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `landscape.md`.
+The skill reads `specs/scenario.md` and `memory/governance.md`. As we already provided all information necessary for the account setup, it will present you the summary including the passed governance checks. In addition the skill will derive a reasonable setting for the `beta_enabled` and the `usage` attribute of the subaccount in the different stages. Accept the proposal by typing `Accepted`
+
+The skill will then present the final summary and ask for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `landscape.md`.
 
 ### 🔬 Look behind the curtains
 

@@ -32,7 +32,9 @@ Execute the following command in the Claude Code terminal:
 /btp-iac.services
 ```
 
-The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals. It will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `services.md`.
+The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals. The skill will validate the settings using the btp CLI. You might be prompted to accept these calls of the CLI
+
+After validating the settings using the btp CLI, it will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `services.md`.
 
 ### 🔬 Look behind the curtains
 

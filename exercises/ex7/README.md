@@ -10,7 +10,7 @@ As we do not have a real S/4HANA system setup, we will simulate the connectivity
 |---|---|
 | Name | InventoryQueryEndpoint |
 | Type | HTTP |
-| URL | https://mydemo-api.s4hana.ondemand.com>|
+| URL | https://mydemo-api.s4hana.ondemand.com |
 | Proxy type | Internet |
 | Authentication | BasicAuthentication |
 | User | INVENTORY_API_USER |

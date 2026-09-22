@@ -70,7 +70,7 @@ The skill will ask you up to one targeted question per governance category. For 
 - **Naming:** The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters.
 Kyma is not used in this project. For CF orgs the naming convention is `invmgmt-cf-<stage>`, the CF space is then `<stage>`.
 No directories are required.
-- **Service plans:** For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev`. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages.
+- **Service plans:** For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev` if there is a free plan. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages.
 - **Security:** Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings.
 - **Cost controls:** A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.
 
