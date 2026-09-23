@@ -6,7 +6,7 @@ This step is also where the governance guardrails run for the first time. Before
 
 ## What the account topology looks like for our scenario
 
-Based on the scenario definition (a single `dev` environment), the expected result is:
+Based on the scenario definition, the expected result for dev looks like this:
 
 | Field | Value |
 |---|---|
@@ -17,12 +17,16 @@ Based on the scenario definition (a single `dev` environment), the expected resu
 | CF org | Automatically created with the subaccount |
 | CF space | `development` |
 | Cost centre tag | Required — you will provide your team's cost centre identifier |
+| Usage | NOT_USED_FOR_PRODUCTION |
+| Beta enabled | true |
 
 The governance rules will be applied automatically:
 
 - `eu20` is the only allowed region — the agent checks this before creating the subaccount resource ✅
-- The name `invmgmt-dev` matches the `invmgmt-<env>` pattern ✅
-- The tier `dev` is a defined environment tier ✅
+- The subaccount names match the `invmgmt-<env>` pattern ✅
+- Cloud Foundry org and spaces match the naming pattern ✅
+
+In addition the `beta_enabled` and `usage` attributes are derived based on the governance rules and the environment type.
 
 If any of these checks failed, the agent would stop with an error message describing the exact rule violated — rather than silently generating non-compliant infrastructure.
 
@@ -34,7 +38,11 @@ Execute the following command in the Claude Code terminal:
 /btp-iac.accounts
 ```
 
-The skill reads `specs/scenario.md` and `memory/governance.md`. As we already provided all information necessary for the account setup, it will present you the summary including the passed governance checks. In addition the skill will derive a reasonable setting for the `beta_enabled` and the `usage` attribute of the subaccount in the different stages. Accept the proposal by typing `Accepted`
+The skill reads `specs/scenario.md` and `memory/governance.md`. As we already provided all information necessary for the account setup, it will present you the summary including the passed governance checks.
+
+In addition the skill will derive a reasonable setting for the `beta_enabled` and the `usage` attribute of the subaccount in the different stages. Accept the proposal by typing `Accepted`
+
+Accept the proposed setup by keying in `Accept`.
 
 The skill will then present the final summary and ask for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `landscape.md`.
 
@@ -45,7 +53,8 @@ Open the `btp-iac.accounts.md` skill file. Notice:
 1. The skill starts with a **governance check** — it loads `memory/governance.md` and prepares to validate against it before writing anything.
 2. Region validation: if you somehow specified a region outside `eu20`, the skill would `STOP` — not warn, not continue, `STOP`.
 3. Naming validation: the `invmgmt-<env>` pattern is enforced. A subaccount named `inventory-development` would fail.
-4. The output — `specs/landscape.md` — becomes the **authoritative account structure** that the services and security skills read in the next exercises. It is not regenerated later; it is referenced.
+4. Derivation of the `beta_enabled` and `usage` attributes based on the governance rules and environment type.
+5. The output — `specs/landscape.md` — becomes the **authoritative account structure** that the services and security skills read in the next exercises. It is not regenerated later; it is referenced.
 
 ### ✅ Result
 

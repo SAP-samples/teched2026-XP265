@@ -34,7 +34,16 @@ Execute the following command in the Claude Code terminal:
 
 The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals. The skill will validate the settings using the btp CLI. You might be prompted to accept these calls of the CLI
 
-After validating the settings using the btp CLI, it will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `services.md`.
+After validating the settings using the btp CLI, it will ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it.
+
+Choose the default value for each service/app.
+
+After that it will ask about the target environment for each service (BTP or Cloud Foundry). Choose BTP except for the service `destination`, which should be targeted to Cloud Foundry.
+
+> [!TIP]
+> The flow considers any rules defined in governance which can lead to less manual decision-making and ensures compliance with organizational policies.
+
+After answering the questions it will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `services.md`.
 
 ### 🔬 Look behind the curtains
 
@@ -42,7 +51,8 @@ Open the `btp-iac.services.md` skill file. Notice:
 
 1. The skill builds the service list **in dependency order** — services that other services depend on are listed first. HANA Cloud entitlement before HANA Cloud instance; XSUAA before the CAP application binding.
 2. For each service, it identifies the **environment tier** from `specs/landscape.md` (in this case `dev`) and validates the plan choice against the governance file's `## Service Plans` section.
-3. The output `specs/services.md` is structured as a dependency-ordered list, not a flat catalogue. This ordering will be preserved all the way into the generated Terraform code.
+3. The skill asks for each service/app if it should be provisioned or entitled only as well as into which environment it should be provisioned to if no restrictions are already defined in the governance step.
+4. The output `specs/services.md` is structured as a dependency-ordered list, not a flat catalogue. This ordering will be preserved all the way into the generated Terraform code.
 
 ### ✅ Result
 

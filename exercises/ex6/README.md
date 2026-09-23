@@ -28,16 +28,19 @@ The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governanc
 
 The skill will perform a governance check: since `Custom IdP: required` is set in the governance file, it will verify that an IAS trust configuration is included. If you had not mentioned SAP Cloud Identity Services in the scenario, the skill would stop here with an error — it cannot produce a compliant security spec without the required IdP trust.
 
-It will also derive a proposal for role collection assignments based on the IAS groups defined in the scenario. This should look like this:
+It might raise some follow-up questions to clarify the trust configuration or role collections. Add the following information:
 
-```bash
+URL of SAP Cloud Identity tenant: SAP Cloud Identity Services tenant
+Role Collections: `InvMgmt_Dev_Admin`, `InvMgmt_Dev_Developer`, `InvMgmt_Dev_Viewer`, `InvMgmt_Dev_AuditLog_Viewer`
+User/group assignment: Group assignment should be done at the IAS group level following the pattern
+
 | IAS Group | BTP Role Collection | Notes |
 |---|---|---|
 | `invmgmt-dev-admins` | `InvMgmt_Dev_Admin` | Assigned to senior devs / infra owners managing the dev environment |
 | `invmgmt-dev-developers` | `InvMgmt_Dev_Developer` | Assigned to all active developers on the project |
 | `invmgmt-dev-viewers` | `InvMgmt_Dev_Viewer` | Assigned to stakeholders or testers with read-only needs |
 | `invmgmt-dev-audit-viewers` | `InvMgmt_Dev_AuditLog_Viewer` | Assigned to compliance/audit team members |
-```
+
 
 Role collections are assigned to user groups from SAP Cloud Identity Services (not individual users), so onboarding new team members only requires adding them to the correct IAS group.
 

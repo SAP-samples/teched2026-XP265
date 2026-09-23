@@ -6,7 +6,7 @@ This is where spec-driven development shines: you do not write Terraform, you do
 
 ## The scenario
 
-Your goal is to sketch the developer environment for the **Inventory Management CAP application** to define the overall sceanrio.
+Your goal is to sketch the developer environment for the **Inventory Management CAP application** to define the overall scenario.
 
 ## 🛠️ Execute the scenario command
 
@@ -21,16 +21,32 @@ The command will first check if there is an existing scenario defined in the pro
 When prompted, use the following description as your input:
 
 ```text
-I need a developer environment on Cloud Foundry for our Inventory Management CAP application. It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance. Application and runtime logs are collected in SAP Cloud Logging Service. The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code and the Continuous Integration & Delivery service for CI/CD pipelines. Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
+In this scenario we focus on the development stage only. I need a developer environment on Cloud Foundry for our Inventory Management CAP application. It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance. Application and runtime logs are collected in SAP Cloud Logging Service. The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code and the Continuous Integration & Delivery service for CI/CD pipelines. Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
 ```
 
 The command will analyze the input. It will then ask some additonal questions to detail the technical configuration of the scenario:
 
-- **CF sizing/memory allocation:** Use a 1GB single instance.
-- **Integration:**  A destination to S/4HANA Public Cloud with Basic Authentication is required.
-- **Subaccount structure:** Each stage gets its own dedicated subaccount.
+**CF sizing/memory allocation:**
 
-After answering these follow-up questions an overview of the scenario description is presented to you. Claude will ask for confirmation before finalizing the scenario. Confirm by selecting `Yes`. This will create a new file in `specs/` as `scenario.md`.
+```text
+Use a 1GB single instance.
+```
+
+**Integration:**  
+
+```text
+A destination to S/4HANA Public Cloud with Basic Authentication is required.
+```
+
+**Subaccount structure:**
+
+```text
+Each stage gets its own dedicated subaccount.
+```
+
+After answering these follow-up questions the agent will validate the availability of the entitlements on the global account.
+
+After that an overview of the scenario description is presented to you. Claude will ask for confirmation before finalizing the scenario. Confirm by selecting `Yes`. This will create a new file in `specs/` as `scenario.md`.
 
 ### 🔬 Look behind the curtains
 
@@ -38,10 +54,11 @@ The technical foundation of this step is the `btp-iac.scenario.md` skill in the 
 
 1. Accepts a plain-language description of the application
 2. Identifies the runtime (`Cloud Foundry`), integration points (HANA Cloud, Audit Log, Cloud Logging, Build Work Zone, Build Code, IAS, S/4HANA destination), and environment isolation needs
-3. Asks **at most three follow-up questions** — it does not bombard you with an endless form
-4. Writes the result to `specs/scenario.md` as structured requirements
+3. Asks follow-up questions to detail the scenario requirements for the runtime, integration points and stage setup.
+4. It validates the requirements against the available entitlements on the global account.
+5. Writes the result to `specs/scenario.md` as structured requirements
 
-The skill also checks whether an `sap-docs` MCP server is available — if it is, it uses it to look up current service names and plan details. If not, it falls back to web search.
+The skill also checks whether an `sap-docs` MCP server is available — if it is, it uses it to look up current service names and plan details. If not, it falls back to web search to fetch the correct names.
 
 ### ✅ Result
 
