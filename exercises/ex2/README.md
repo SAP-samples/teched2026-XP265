@@ -47,6 +47,12 @@ claude
 
 Claude will ask you if you trust this folder, confirm by selecting `Yes`.
 
+In addition, make sure that you are in plan mode by entering:
+
+```bash
+/plan
+```
+
 ### Step 2 - Execute the govern command
 
 Execute the following command in the Claude Code terminal:
