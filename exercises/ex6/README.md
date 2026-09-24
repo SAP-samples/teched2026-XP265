@@ -30,8 +30,26 @@ The skill will perform a governance check: since `Custom IdP: required` is set i
 
 It might raise some follow-up questions to clarify the trust configuration or role collections. Add the following information:
 
-URL of SAP Cloud Identity tenant: SAP Cloud Identity Services tenant
-Role Collections: `InvMgmt_Dev_Admin`, `InvMgmt_Dev_Developer`, `InvMgmt_Dev_Viewer`, `InvMgmt_Dev_AuditLog_Viewer`
+**URL of SAP Cloud Identity tenant:**
+
+```text
+ainfvn15r.accounts.ondemand.com
+```
+
+
+**Definition of Role Collections:**
+
+```text
+Define the role collections `InvMgmt_Dev_Admin`, `InvMgmt_Dev_Developer`, `InvMgmt_Dev_Viewer`, `InvMgmt_Dev_AuditLog_Viewer`
+``
+
+The agent will propose a security specification.
+
+Select `No`, press `Tab` and enter the following statement:
+
+```text
+I also want to define a user group assignment:
+
 User/group assignment: Group assignment should be done at the IAS group level following the pattern
 
 | IAS Group | BTP Role Collection | Notes |
@@ -40,11 +58,8 @@ User/group assignment: Group assignment should be done at the IAS group level fo
 | `invmgmt-dev-developers` | `InvMgmt_Dev_Developer` | Assigned to all active developers on the project |
 | `invmgmt-dev-viewers` | `InvMgmt_Dev_Viewer` | Assigned to stakeholders or testers with read-only needs |
 | `invmgmt-dev-audit-viewers` | `InvMgmt_Dev_AuditLog_Viewer` | Assigned to compliance/audit team members |
-
-
-Role collections are assigned to user groups from SAP Cloud Identity Services (not individual users), so onboarding new team members only requires adding them to the correct IAS group.
-
-Review the proposed security configuration and role collection assignments. Confirm by selecting `Yes`. This will create a new file in `specs/` as `trust.md`.
+```
+This should create a new security specification containing the IAS group assignment. Confirm the proposal by selecting `Yes`. This will create a new file in `specs/` as `trust.md`.
 
 ### 🔬 Look behind the curtains
 

@@ -15,48 +15,33 @@ Execute the following command in the Claude Code terminal:
 
 The skill reads `specs/landscape.md`, `specs/services.md`, `specs/trust.md`, and `specs/connectivity.md`. Based on the information it will derive the **dependency-ordered task list**.
 
-The task sequence should be *similar* **(NOT NECESSARILY SAME)** to the following.
+The task sequence should be *similar* **(NOT NECESSARILY SAME)** to the following:
 
 | ID | Task | Stage | Depends on | Parallel |
 |---|---|---|---|---|
-| T-001 | Create subaccount `invmgmt-dev` (region: `eu20`, cost-centre: `CC-123456`) | dev | — | ✦ |
- T-002 | Enable Cloud Foundry environment — org `invmgmt-cf-dev` | dev | T-001 | — |
-| T-003 | Create CF space `dev` in org `invmgmt-cf-dev` | dev | T-002 | — |
-| T-004 | Assign entitlement `xsuaa` / `application` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-005 | Assign entitlement `html5-apps-repo` / `app-host` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-006 | Assign entitlement `html5-apps-repo` / `app-runtime` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-007 | Assign entitlement `destination` / `lite` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-008 | Assign entitlement `auditlog` / `oauth2` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-009 | Assign entitlement `cloud-logging` / `dev` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-010 | Assign entitlement `hana-cloud` / `hana` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-011 | Assign entitlement `hana` / `hdi-shared` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-012 | Assign entitlement `identity` / `application` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-013 | Assign entitlement `build-workzone-standard` / `standard` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-014 | Assign entitlement `build-code` / `free` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-015 | Assign entitlement `cicd-app` / `free` to `invmgmt-dev` | dev | T-001 | ✦ |
-| T-016 | Subscribe to `build-workzone-standard` / `standard` | dev | T-013 | ✦ |
-| T-017 | Subscribe to `build-code` / `free` | dev | T-014 | ✦ |
-| T-018 | Subscribe to `cicd-app` / `free` | dev | T-015 | ✦ |
-| T-019 | Create service instance `invmgmt-xsuaa` (`xsuaa` / `application`) in CF space `dev` | dev | T-004, T-003 | ✦ |
-| T-020 | Create service instance `invmgmt-destination` (`destination` / `lite`) in CF space `dev` | dev | T-007, T-003 | ✦ |
-| T-021 | Create service instance `invmgmt-auditlog` (`auditlog` / `oauth2`) in CF space `dev` | dev | T-008, T-003 | ✦ |
-| T-022 | Create service instance `invmgmt-cloud-logging` (`cloud-logging` / `dev`) in CF space `dev` | dev | T-009, T-003 | ✦ |
-| T-023 | Create service instance `invmgmt-hana-cloud` (`hana-cloud` / `hana`) — subaccount level | dev | T-010 | — |
-| T-024 | Create service instance `invmgmt-hdi-container` (`hana` / `hdi-shared`) in CF space `dev` | dev | T-011, T-023, T-003 | — |
-| T-025 | Create service instance `invmgmt-identity` (`identity` / `application`) in CF space `dev` | dev | T-012, T-003 | ✦ |
-| T-026 | Create service instance `invmgmt-html5-host` (`html5-apps-repo` / `app-host`) in CF space `dev` | dev | T-005, T-003 | ✦ |
-| T-027 | Configure custom IdP trust — SAP Cloud Identity Services (OIDC) on `invmgmt-dev` | dev | T-025 | — |
-| T-028 | Create role collection `InvMgmt_Dev_Admin` | dev | T-027 | ✦ |
-| T-029 | Create role collection `InvMgmt_Dev_Developer` | dev | T-027 | ✦ |
-| T-030 | Create role collection `InvMgmt_Dev_Viewer` | dev | T-027 | ✦ |
-| T-031 | Create role collection `InvMgmt_Dev_AuditLog_Viewer` | dev | T-027 | ✦ |
-| T-032 | Map IAS group `invmgmt-dev-admins` → role collection `InvMgmt_Dev_Admin` | dev | T-028 | ✦ |
-| T-033 | Map IAS group `invmgmt-dev-developers` → role collection `InvMgmt_Dev_Developer` | dev | T-029 | ✦ |
-| T-034 | Map IAS group `invmgmt-dev-viewers` → role collection `InvMgmt_Dev_Viewer` | dev | T-030 | ✦ |
-| T-035 | Map IAS group `invmgmt-dev-audit-viewers` → role collection `InvMgmt_Dev_AuditLog_Viewer` | dev | T-031 | ✦ |
-| T-036 | Create destination `S4HANA_PC` (HTTP / BasicAuthentication / Internet) on subaccount `invmgmt-dev` | dev | T-001 | ✦ |
+| T-001 | Create subaccount invmgmt-dev | dev | — | — |
+| T-002 | Enable Cloud Foundry environment | dev | T-001 | — |
+| T-003 | Create Cloud Foundry space: dev | dev | T-002 | — |
+| T-004 | Entitle + create SAP HANA Cloud instance | dev | T-001 | ✦ |
+| T-005 | Entitle + create Audit Log Management Service instance | dev | T-001 | ✦ |
+| T-006 | Entitle + create Cloud Logging instance | dev | T-001 | ✦ |
+| T-007 | Entitle + subscribe SAP Business Application Studio | dev | T-001 | ✦ |
+| T-008 | Entitle + subscribe Continuous Integration & Delivery | dev | T-001 | ✦ |
+| T-009 | Entitle + subscribe SAP Build Work Zone, standard edition | dev | T-001 | ✦ |
+| T-010 | Configure IdP trust (SAP Cloud Identity Services) | dev | T-001 | — |
+| T-011 | Create role collection: InvMgmt_Dev_Admin | dev | T-010 | ✦ |
+| T-012 | Create role collection: InvMgmt_Dev_Developer | dev | T-010 | ✦ |
+| T-013 | Create role collection: InvMgmt_Dev_Viewer | dev | T-010 | ✦ |
+| T-014 | Create role collection: InvMgmt_Dev_AuditLog_Viewer | dev | T-010 | ✦ |
+| T-015 | Assign IAS group invmgmt-dev-admins → InvMgmt_Dev_Admin | dev | T-011 | ✦ |
+| T-016 | Assign IAS group invmgmt-dev-developers → InvMgmt_Dev_Developer | dev | T-012 | ✦ |
+| T-017 | Assign IAS group invmgmt-dev-viewers → InvMgmt_Dev_Viewer | dev | T-013 | ✦ |
+| T-018 | Assign IAS group invmgmt-dev-audit-viewers → InvMgmt_Dev_AuditLog_Viewer | dev | T-014 | ✦ |
+| T-019 | Create destination: S4HANA_CLOUD | dev | T-001 | — |
 
-Tasks that can be executed in parallel are marked accordingly.
+Tasks that can be executed in parallel are marked accordingly and additional meta information about each task is provided.
+
+Confirm the proposed task list by selecting `Yes`. This will create a new file in `specs/` as `tasks.md`.
 
 ### 🔬 Look behind the curtains
 

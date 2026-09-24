@@ -21,7 +21,15 @@ The command will first check if there is an existing scenario defined in the pro
 When prompted, use the following description as your input:
 
 ```text
-In this scenario we focus on the development stage only. I need a developer environment on Cloud Foundry for our Inventory Management CAP application. It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance. Application and runtime logs are collected in SAP Cloud Logging Service. The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code and the Continuous Integration & Delivery service for CI/CD pipelines. Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
+In this scenario we focus on the development stage only. I need a developer environment on Cloud Foundry for our Inventory Management CAP application.
+
+It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance.
+
+Application and runtime logs are collected in SAP Cloud Logging Service.
+
+The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code and the Continuous Integration & Delivery service for CI/CD pipelines.
+
+Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
 ```
 
 The command will analyze the input. It will then ask some additonal questions to detail the technical configuration of the scenario:

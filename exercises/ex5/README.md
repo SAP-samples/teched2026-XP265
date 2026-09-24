@@ -34,11 +34,9 @@ Execute the following command in the Claude Code terminal:
 
 The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals. The skill will validate the settings using the btp CLI. You might be prompted to accept these calls of the CLI
 
-After validating the settings using the btp CLI, it will ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it.
+After validating the settings using the btp CLI, it will check for available plans and categories of the services. If adjustments concerning the selections are required, it will ask you to confirm them. Confirm the proposals.
 
-Choose the default value for each service/app.
-
-After that it will ask about the target environment for each service (BTP or Cloud Foundry). Choose BTP except for the service `destination`, which should be targeted to Cloud Foundry.
+The skill should then ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it. Confirm the default choice for each service/app.
 
 > [!TIP]
 > The flow considers any rules defined in governance which can lead to less manual decision-making and ensures compliance with organizational policies.

@@ -32,17 +32,19 @@ Execute the following command in the Claude Code terminal:
 
 The skill reads `specs/scenario.md` and `memory/governance.md`. Based on the information from the scenario it can identify the pattern for the connectivity setup. Based on that pattern, it will ask you for the necessary details to complete the configuration.
 
-Copy the following text to the terminal when prompted by the skill.
+Copy the following text to the terminal when prompted by the skill about the data
 
-- The URL is https://mydemo-api.s4hana.ondemand.com
-- The ProxyType is Internet
-- The Authentication is BasicAuthentication
-- The User is INVENTORY_API_USER
-- The Scope is subaccount
-- The destination needs an additional property `TrustAll` set to `true`
-- No destination certificates are required
+```text
+The URL is https://mydemo-api.s4hana.ondemand.com
+The ProxyType is Internet
+The authentication is BasicAuthentication
+The user is INVENTORY_API_USER
+The scope is subaccount
+The destination needs an additional property `TrustAll` set to `true`
+No destination certificates are required
+```
 
-The agent will present you a summary and ask for confirmation before applying the connectivity setup. Confirm by selecting `Yes`. This will create a new file in `specs/` as `connectivity.md`.
+The agent will present a summary and ask for confirmation before applying the connectivity setup. Confirm by selecting `Yes`. This will create a new file in `specs/` as `connectivity.md`.
 
 ### 🔬 Look behind the curtains
 
