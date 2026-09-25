@@ -4,7 +4,7 @@ This is the step that the entire spec-driven flow has been building toward. The 
 
 But before writing a single file, the skill runs a **full governance validation pass** across all five categories. This is the final safety net — even if a decision was missed or changed since Exercise 2, the governance rules still catch it here.
 
-## What the governance validation pass checks
+## 🎯 Intent of the exercise
 
 Before any Terraform file is written, the agent validates:
 

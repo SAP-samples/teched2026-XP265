@@ -4,7 +4,7 @@ In this exercise, you will define the governance constraints for the inventory m
 
 This is one of the most important exercises in the session because it demonstrates a key advantage of spec-driven development: **governance is encoded once and validated everywhere**, rather than being checked manually at the end (or not at all).
 
-## The governance rules for our scenario
+## 🎯 Intent of the exercise
 
 The manufacturing company running this project has the following policies:
 

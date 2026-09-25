@@ -4,7 +4,7 @@ With the account topology defined, the agent now resolves the full set of servic
 
 This is the exercise where the richness of the inventory management scenario really pays off. The agent must reason about which services the CAP application needs, which plans are appropriate for a `dev` environment, and which services depend on other services being in place first. It also performs another round of governance validation, this time checking every service plan choice against the governance rules you defined in Exercise 2.
 
-## What services the inventory management scenario needs
+## 🎯 Intent of the exercise
 
 The agent will derive the following from `specs/scenario.md` and `specs/landscape.md`:
 

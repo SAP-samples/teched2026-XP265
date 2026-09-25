@@ -2,7 +2,7 @@
 
 The last missing piece for our scenario is the connectivity setup, which defines the destination setup in the subaccount. We already mentioned the destinations in the earlier exercises, but now we will detail how to configure them properly.
 
-## What the connectivity setup covers for our scenario
+## 🎯 Intent of the exercise
 
 As we do not have a real S/4HANA system setup, we will simulate the connectivity by configuring the destinations with placeholder values.
 

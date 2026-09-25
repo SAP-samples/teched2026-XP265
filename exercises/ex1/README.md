@@ -69,8 +69,8 @@ Let's walk through the files and folders in the project structure:
 
 ## 📋 Summary
 
->[!INFO]
-> In the following exercises we will interact with an agentic tool. The output can not always be anticipated, hence you might have to provide additional input e.g., when the agent wants to use the btp CLI for validating data on the platform.
+>[!IMPORTANT]
+> In the following exercises we will interact with an agentic tool. We cannot fully anticipate the output, hence questions might deviate and you might have to provide additional input like confirmations. Read the section explaining the intent of the exercise carefully, as this will help you in unforeseen interactions.
 
 Having this setup in place, we are now ready to start with the spec-driven development process. The first real step is defining the governance constraints that will act as guardrails for all subsequent steps.
 
