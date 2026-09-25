@@ -212,6 +212,19 @@ claude mcp list
 ```
 You should see an entry for the `terraform` MCP server, confirming that it is connected to Claude Code.
 
+### Verify the model used in Claude
+
+To ensure that Claude is using the correct model, open a terminal and run the following command:
+
+```powershell
+claude
+```
+
+Next key in `/model` and validate that the model is `Sonnet 4.6` and the reasing effort is `High` as shown in this screenshot:
+
+![Claude Model Verification](./images/6_claude_model_verification.png)
+
+
 ### Install the Spec-kit CLI
 
 The central ingredient for this exercise is the Spec-kit CLI, which allows you to interact with the spec-driven development framework. You need to install it and ensure it is available in your system's PATH.
