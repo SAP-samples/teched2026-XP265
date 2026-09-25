@@ -1,8 +1,8 @@
 # Detail the account setup
 
-The scenario is defined. Now the agent needs to translate the abstract requirements into a concrete BTP account topology: which subaccounts to create, in which region, with which Cloud Foundry configuration, and how they are named.
+The scenario is defined. Now the agent needs to translate the abstract requirements into a concrete account topology: which subaccounts to create, in which region, with which Cloud Foundry configuration, and how they are named.
 
-This step is also where the governance guardrails run for the first time. Before writing anything, the `/btp-iac.accounts` skill opens `memory/governance.md` and validates every decision it makes.
+This step is also where the governance guardrails run for the first time. Before writing anything, the `/sap-iac.accounts` skill opens `memory/governance.md` and validates every decision it makes.
 
 ## What the account topology looks like for our scenario
 
@@ -35,7 +35,7 @@ If any of these checks failed, the agent would stop with an error message descri
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.accounts
+/sap-iac.accounts
 ```
 
 The skill reads `specs/scenario.md` and `memory/governance.md`. As we already provided all information necessary for the account setup, it will present you the summary including the passed governance checks.
@@ -48,7 +48,7 @@ The skill will then present the final summary and ask for confirmation before pr
 
 ### 🔬 Look behind the curtains
 
-Open the `btp-iac.accounts.md` skill file. Notice:
+Open the `sap-iac.accounts.md` skill file. Notice:
 
 1. The skill starts with a **governance check** — it loads `memory/governance.md` and prepares to validate against it before writing anything.
 2. Region validation: if you somehow specified a region outside `eu20`, the skill would `STOP` — not warn, not continue, `STOP`.
@@ -68,6 +68,6 @@ After the command completes:
 
 ## 📋 Summary
 
-The BTP account topology is now defined and governance-validated. The next exercise resolves which SAP BTP services, entitlements, and subscriptions are needed — and validates each service plan choice against the governance rules.
+The account topology is now defined and governance-validated. The next exercise resolves which services, entitlements, and subscriptions are needed — and validates each service plan choice against the governance rules.
 
 Continue to - [Exercise 5 - Detail the service setup](../ex5/README.md)

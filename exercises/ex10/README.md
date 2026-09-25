@@ -1,6 +1,6 @@
 # Generate the code
 
-This is the step that the entire spec-driven flow has been building toward. The `/btp-iac.generate` skill reads the annotated task list and generates complete, validated Terraform HCL — writing each resource to the file path defined in the design step.
+This is the step that the entire spec-driven flow has been building toward. The `/sap-iac.generate` skill reads the annotated task list and generates complete, validated Terraform HCL — writing each resource to the file path defined in the design step.
 
 But before writing a single file, the skill runs a **full governance validation pass** across all five categories. This is the final safety net — even if a decision was missed or changed since Exercise 2, the governance rules still catch it here.
 
@@ -23,7 +23,7 @@ Only after all five checks pass does the agent begin writing files.
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.generate
+/sap-iac.generate
 ```
 
 The skill reads `specs/tasks.md` (with file path annotations) and `memory/governance.md`.
@@ -39,7 +39,7 @@ Watch the output — you will see each task being processed, the governance vali
 
 ### 🔬 Look behind the curtains
 
-Open the `btp-iac.generate.md` skill file. Notice:
+Open the `sap-iac.generate.md` skill file. Notice:
 
 1. The **pre-generation governance pass** happens before the first `Write` call — this is not a post-hoc check, it prevents non-compliant code from being written at all.
 2. The skill iterates through tasks **in the order defined in `specs/tasks.md`** — the dependency ordering from Exercise 7 is preserved in the generated code.
@@ -57,10 +57,10 @@ After the command completes:
 - Open `terraform/roles.tf` — verify that all three role collections (`InventoryViewer`, `InventoryManager`, `InventoryAdmin`) are present with IAS group assignments.
 - Confirm that `terraform validate` passed — there should be no schema errors.
 
-**Key insight:** Compare the `terraform/` output to what you would get from a vibe-coded session — "hey ChatGPT, write me Terraform for HANA Cloud on BTP." The spec-driven result is: governance-compliant, dependency-ordered, consistently structured, and validated. The vibe-coded result is: possibly correct on a good day, definitely not reproducible next week.
+**Key insight:** Compare the `terraform/` output to what you would get from a vibe-coded session — "hey ChatGPT, write me Terraform for HANA Cloud." The spec-driven result is: governance-compliant, dependency-ordered, consistently structured, and validated. The vibe-coded result is: possibly correct on a good day, definitely not reproducible next week.
 
 ## 📋 Summary
 
-The Terraform code is generated, formatted, and validated. Every resource is compliant with the governance rules, correctly ordered by dependency, and ready to be deployed to SAP BTP.
+The Terraform code is generated, formatted, and validated. Every resource is compliant with the governance rules, correctly ordered by dependency, and ready to be deployed to SAP Business AI Platform.
 
 Continue to - [Exercise 11 - Deploy the generated code](../ex11/README.md)

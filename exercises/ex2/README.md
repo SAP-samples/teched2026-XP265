@@ -19,7 +19,7 @@ The manufacturing company running this project has the following policies:
 | **Security** | Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings. |
 | **Cost controls** | A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`. |
 
-In this exercise we will make the spek-kit aware of the governance constraints by executing the `/btp-iac.govern` command.
+In this exercise we will make the spek-kit aware of the governance constraints by executing the `/sap-iac.govern` command.
 
 ## 🛠️ Execute the govern command
 
@@ -54,7 +54,7 @@ In addition make sure that you are in *manual mode*. You can cycle through the m
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.govern
+/sap-iac.govern
 ```
 
 > [!NOTE]
@@ -114,7 +114,7 @@ Once all questions have been answered, the skill will summarize the governance r
 
 ### 🔬 Look behind the curtains
 
-The technical foundation of this step is the `btp-iac.govern.md` skill in the `.claude/commands` folder. Open the file and notice how the skill defines a precise governance schema — each category with specific fields.
+The technical foundation of this step is the `sap-iac.govern.md` skill in the `.claude/commands` folder. Open the file and notice how the skill defines a precise governance schema — each category with specific fields.
 
 The skill writes its output to `memory/governance.md`. This file is **not a spec** — it is a contract. Every skill from this point forward will open `memory/governance.md` before doing anything and validate its decisions against it. If a later step tries to use a forbidden region or a forbidden service plan, the agent will stop with a clear error message pointing to the violated rule.
 
@@ -129,6 +129,6 @@ After the command completes:
 
 ## 📋 Summary
 
-The governance guardrails are in place. Every skill from this point will validate against these rules. In the next exercise you will describe the inventory management application in plain language — and the AI agent will translate that into structured BTP infrastructure requirements.
+The governance guardrails are in place. Every skill from this point will validate against these rules. In the next exercise you will describe the inventory management application in plain language — and the AI agent will translate that into structured infrastructure requirements.
 
 Continue to - [Exercise 3 - Define the scenario](../ex3/README.md)

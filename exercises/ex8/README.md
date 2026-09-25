@@ -1,6 +1,6 @@
 # Define the tasks
 
-You now have all specification files covering the account topology, the services, the security configuration and the connectivity setup. The `/btp-iac.tasks` skill consolidates all four into a **single dependency-ordered task list** — the direct input to code generation.
+You now have all specification files covering the account topology, the services, the security configuration and the connectivity setup. The `/sap-iac.tasks` skill consolidates all four into a **single dependency-ordered task list** — the direct input to code generation.
 
 This step makes the ordering explicit and human-reviewable. You can read through the task list and verify: does the sequence make sense? Are any dependencies missing? Is there anything surprising? This is the last opportunity to adjust the specification before code is generated.
 
@@ -10,7 +10,7 @@ This step makes the ordering explicit and human-reviewable. You can read through
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.tasks
+/sap-iac.tasks
 ```
 
 The skill reads `specs/landscape.md`, `specs/services.md`, `specs/trust.md`, and `specs/connectivity.md`. Based on the information it will derive the **dependency-ordered task list**.
@@ -45,7 +45,7 @@ Confirm the proposed task list by selecting `Yes`. This will create a new file i
 
 ### 🔬 Look behind the curtains
 
-Open the `btp-iac.tasks.md` skill file. Notice how the skill:
+Open the `sap-iac.tasks.md` skill file. Notice how the skill:
 
 1. Reads all four spec files and identifies the resources defined in each
 2. Builds a dependency graph — for example, service instances cannot be created before the necessary entitlements are in place.
@@ -63,7 +63,7 @@ After the command completes:
 - Verify that role collections appear after the IAS trust configuration.
 - Verify that parallel execution markers are present for tasks with no mutual dependencies.
 
-**Key insight:** This task list would take an experienced BTP architect an hour to produce correctly on paper. The spec-driven approach produces it in seconds, from the specifications you have been building up over the past exercises — and it is correct by construction because it reads from validated spec files.
+**Key insight:** This task list would take an experienced architect an hour to produce correctly on paper. The spec-driven approach produces it in seconds, from the specifications you have been building up over the past exercises — and it is correct by construction because it reads from validated spec files.
 
 ## 📋 Summary
 

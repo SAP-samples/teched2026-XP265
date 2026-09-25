@@ -6,15 +6,15 @@ This repository contains the material for the SAP TechEd 2026 session called XP2
 
 ## Overview
 
-This session introduces attendees to the concept of spec-driven development and how to use it for infrastructure as code (IaC) with Terraform. Attendees will experience an end-to-end flow from installing the relevant tooling, defining and refining the specification as well as generating and deploying the generated code to SAP BTP.
+This session introduces attendees to the concept of spec-driven development and how to use it for infrastructure as code (IaC) with Terraform. Attendees will experience an end-to-end flow from installing the relevant tooling, defining and refining the specification as well as generating and deploying the generated code to the .
 
 ## The Scenario
 
-You are the infrastructure lead for a development team building an **Inventory Management application** using SAP Cloud Application Programming Model (CAP). Before a single line of application code can be written, you need to provision the complete developer environment on SAP BTP — correctly, consistently, and in a way that can be reproduced and audited.
+You are the infrastructure lead for a development team building an **Inventory Management application** using SAP Cloud Application Programming Model (CAP). Before a single line of application code can be written, you need to provision the complete developer environment on SAP Business AI Platform — correctly, consistently, and in a way that can be reproduced and audited.
 
 The application needs:
 
-| Requirement | SAP BTP Service |
+| Requirement | Service |
 |---|---|
 | Cloud Foundry runtime for deploying and testing the CAP app | Cloud Foundry Environment |
 | Persistent database for inventory data | SAP HANA Cloud |
@@ -41,7 +41,7 @@ The requirements to follow the exercises in this repository are:
 - The [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 - A container runtime like [Docker](https://www.docker.com/get-started) or [Podman](https://podman.io/getting-started/installation)
 - The [Terraform MCP Server](https://github.com/hashicorp/terraform-mcp-server) connected to your AI coding assistant of choice (e.g. GitHub Copilot or Claude Code)
-- Access to an SAP BTP account with the necessary entitlements and authorization to deploy the generated Terraform code
+- Access to an SAP Business AI Platform account with the necessary entitlements and authorization to deploy the generated Terraform code
 
 Optionally you can also install:
 
@@ -49,7 +49,7 @@ Optionally you can also install:
 - The [Terraform extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
 
 > [!NOTE]
-> The SAP BTP account used in this session requires the following entitlements to be available in the global account:
+> The SAP Business AI Platform account used in this session requires the following entitlements to be available in the global account:
 > - Cloud Foundry Runtime (MEMORY)
 > - SAP HANA Cloud (`hana` service, `hana` plan)
 > - SAP Audit Log Service (`auditlog-management`, `free` plan)

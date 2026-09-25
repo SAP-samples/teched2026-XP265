@@ -60,7 +60,7 @@ The file should contain information like this:
 
 If this is not the case get in touch with the handson team onsite.
 
-## The login to SAP BTP via the btp CLI fails
+## Login via the btp CLI fails
 
 Make sure that the following points are met:
 

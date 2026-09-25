@@ -27,7 +27,7 @@ We also need to set one additional property:
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.connectivity
+/sap-iac.connectivity
 ```
 
 The skill reads `specs/scenario.md` and `memory/governance.md`. Based on the information from the scenario it can identify the pattern for the connectivity setup. Based on that pattern, it will ask you for the necessary details to complete the configuration.
@@ -48,7 +48,7 @@ The agent will present a summary and ask for confirmation before applying the co
 
 ### 🔬 Look behind the curtains
 
-Open the `btp-iac.connectivity.md` skill file. Notice how the skill:
+Open the `sap-iac.connectivity.md` skill file. Notice how the skill:
 
 1. **Detected the pattern:** The skill checks if the description in the scenario matches known connectivity patterns and determines the necessary configuration steps accordingly.
 2. **Avoided credential:** The skill does not ask your for sensitive information. If such information is required, it will put a placeholder into the specification.

@@ -43,7 +43,7 @@ However, the shift from coding to specifying is the hardest skill: instead of wr
 
 Your team is building an **Inventory Management application** using SAP Cloud Application Programming Model (CAP). The app tracks stock levels, purchase orders, and goods movements across a manufacturing company's warehouses.
 
-Before a single line of application code can be written, the developer environment on SAP BTP must exist and be correctly configured. This is what you will build today.
+Before a single line of application code can be written, the developer environment on SAP Business AI Platform must exist and be correctly configured. This is what you will build today.
 
 **What the environment needs:**
 
@@ -55,11 +55,11 @@ Before a single line of application code can be written, the developer environme
 | SAP Cloud Logging Service | Centralized log aggregation for developers to trace issues |
 | SAP Build Work Zone | Fiori launchpad — the entry point for end users accessing the inventory UI |
 | SAP Build Code | Integrated development environment with CAP tooling and CI/CD |
-| SAP Cloud Identity Services | Enterprise IdP — the company requires all BTP applications to use their corporate identity provider, not the default SAP ID Service |
+| SAP Cloud Identity Services | Enterprise IdP — the company requires all applications to use their corporate identity provider, not the default SAP ID Service |
 
 **Governance constraints the company has:**
 
-- All BTP data must remain in the EU (region `cf-eu10`)
+- All data must remain in the EU (region `cf-eu10`)
 - Subaccounts must follow the naming pattern `invmgmt-<env>` (e.g., `invmgmt-dev`, `invmgmt-prod`)
 - HANA Cloud is a metered service — cost centre tagging is mandatory on all subaccounts
 - SAP Cloud Identity Services is required as the identity provider — the default SAP ID Service is not permitted
@@ -68,7 +68,7 @@ These constraints will be encoded in the very first exercise and enforced automa
 
 ```mermaid
 graph TD
-    subgraph GA["SAP BTP Global Account"]
+    subgraph GA["Global Account"]
         subgraph SA["Subaccount: invmgmt-dev · Region: cf-eu10"]
             subgraph CF["Cloud Foundry Environment"]
                 SPACE["Space: development"]
@@ -126,24 +126,27 @@ Spec-driven development is a disciplined approach. All spec-kits support the use
 4. Detail the account setup
 5. Detail the service setup
 6. Detail the security setup
-7. Define the tasks
-8. Evaluate the design
-9. Generate the code
+7. Detail the connectivity setup
+8. Define the tasks
+9. Evaluate the design
+10. Generate the code
+11. Deploy the generated code
 
 ```mermaid
 flowchart LR
     E1["Ex 1\nInitialize\nproject"]
-    E2["Ex 2\n/btp-iac.govern\nGovernance"]
-    E3["Ex 3\n/btp-iac.scenario\nScenario"]
-    E4["Ex 4\n/btp-iac.accounts\nAccounts"]
-    E5["Ex 5\n/btp-iac.services\nServices"]
-    E6["Ex 6\n/btp-iac.security\nSecurity"]
-    E7["Ex 7\n/btp-iac.tasks\nTasks"]
-    E8["Ex 8\n/btp-iac.design\nDesign"]
-    E9["Ex 9\n/btp-iac.generate\nGenerate"]
-    E10["Ex 10\nterraform apply\nDeploy"]
+    E2["Ex 2\n/sap-iac.govern\nGovernance"]
+    E3["Ex 3\n/sap-iac.scenario\nScenario"]
+    E4["Ex 4\n/sap-iac.accounts\nAccounts"]
+    E5["Ex 5\n/sap-iac.services\nServices"]
+    E6["Ex 6\n/sap-iac.security\nSecurity"]
+    E7["Ex 7\n/sap-iac.connectivity\nConnectivity"]
+    E8["Ex 8\n/sap-iac.tasks\nTasks"]
+    E9["Ex 9\n/sap-iac.design\nDesign"]
+    E10["Ex 10\n/sap-iac.generate\nGenerate"]
+    E11["Ex 11\nterraform apply\nDeploy"]
 
-    E1 --> E2 --> E3 --> E4 --> E5 --> E6 --> E7 --> E8 --> E9 --> E10
+    E1 --> E2 --> E3 --> E4 --> E5 --> E6 --> E7 --> E8 --> E9 --> E10 --> E11
 
     style E2 fill:#fff0cc,stroke:#e8a000
     style E9 fill:#e6f2ff,stroke:#0070b1
@@ -155,7 +158,7 @@ In the following sections we will go through each of the steps in detail and exp
 ## Technical Setup
 
 > [!NOTE]
-> All commands in these exercises work on **macOS, Linux, and Windows**. On Windows, use **PowerShell7** (recommended) — not Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/btp-iac.*`) and all Terraform commands are platform-independent.
+> All commands in these exercises work on **macOS, Linux, and Windows**. On Windows, use **PowerShell7** (recommended) — not Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/sap-iac.*`) and all Terraform commands are platform-independent.
 
 Before starting with the exercises some technical setup is required to ensure that all tools and services are properly configured.
 
@@ -164,7 +167,7 @@ You need the following components set up before starting the exercises:
 - MCP Server for Terraform
 - Configure Claude code to connect to the MCP Server for Terraform
 - Install the Spec-kit CLI
-- Check your access to the SAP BTP cockpit and via btp CLI
+- Check your access to the Cockpit and via btp CLI
 
 The following sections guide you through the setup process for each of the required components.
 
@@ -246,24 +249,24 @@ For the later you must add the extracted binary to your system's PATH.
 Verify that the spec-kit CLI is correctly installed and accessible from your terminal by opening a new terminal and running:
 
 ```powershell
-btp-iac
+sap-iac
 ```
 
-### Validate your SAP BTP access
+### Validate your access
 
-As we want to deploy resources to the SAP BTP, it is essential to validate that you have the necessary access both via the SAP BTP Cockpit and the btp CLI.
+As we want to deploy resources to the SAP Business AI Platform, it is essential to validate that you have the necessary access both via the cockpit and the btp CLI.
 
-#### SAP BTP Cockpit
+#### Cockpit
 
 - Open a browser and navigate to the URL <https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/>
 - Log in via the credential provided by the HandsOn Team during the session
 
 #### btp CLI
 
-Verify your access to the SAP BTP via the btp CLI by running:
+Verify your access via the btp CLI by running:
 
 ```powershell
-btp login --idp ainfvn15r --user '<your-username>' --password '<your-password>'
+btp login --idp ainfvn15r --user 'XP265-<your-group-number' --password '<your-password>'
 ```
 
 > [!NOTE]
@@ -271,12 +274,12 @@ btp login --idp ainfvn15r --user '<your-username>' --password '<your-password>'
 
 Confirm the defaulted CLI server URL (`https://cli.btp.cloud.sap`)
 
-You should see a success message indicating that you have successfully logged in to the SAP BTP via the btp CLI.
+You should see a success message indicating that you have successfully logged in via the btp CLI.
 
 ## 📋 Summary
 
 You now understand the motivation for spec-driven development, the inventory management scenario you will be building, and the governance constraints that will be enforced throughout the exercises.
 
-In addition you have installed the prerequistes for the exercise and validated your access to the SAP BTP. Now the real fun can start!
+In addition you have installed the prerequistes for the exercise and validated your access to the SAP Business AI Platform. Now the real fun can start!
 
 Continue to - [Exercise 1 - Initialize the project](../ex1/README.md)

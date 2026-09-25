@@ -1,6 +1,6 @@
 # Evaluate the design
 
-The task list tells us *what* to build and in what order. The design step decides *where* each piece of Terraform code lives. The `/btp-iac.design` skill translates the task list into a concrete Terraform folder structure — determining how resources are split across files, and annotating each task with the file path where its Terraform HCL will be written.
+The task list tells us *what* to build and in what order. The design step decides *where* each piece of Terraform code lives. The `/sap-iac.design` skill translates the task list into a concrete Terraform folder structure — determining how resources are split across files, and annotating each task with the file path where its Terraform HCL will be written.
 
 This step is important because it separates the structural decision from code generation. You can review the proposed file layout, ask the agent to reorganize it, and only then proceed to generation.
 
@@ -32,14 +32,14 @@ This layout groups resources by their logical concern rather than by the order t
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.design
+/sap-iac.design
 ```
 
 The skill reads `specs/tasks.md` and annotates each task with a `file:` field indicating which Terraform file it belongs to.
 
 ### 🔬 Look behind the curtains
 
-Open the `btp-iac.design.md` skill file. Notice how the skill:
+Open the `sap-iac.design.md` skill file. Notice how the skill:
 
 1. Groups tasks by logical concern — subaccount, entitlements, subscriptions, service instances, security
 2. Decides whether to introduce Terraform modules (for this scenario: no, the flat file structure is sufficient for a single subaccount)

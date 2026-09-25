@@ -1,19 +1,19 @@
 # Deploy the generated code
 
-The Terraform code is generated, formatted, and validated. The final step is to deploy it to your SAP BTP account — provisioning the `invmgmt-dev` subaccount with all the services the inventory management team needs to start building.
+The Terraform code is generated, formatted, and validated. The final step is to deploy it to your account — provisioning the `invmgmt-dev` subaccount with all the services the inventory management team needs to start building.
 
-## 🛠️ Deploy to SAP BTP
+## 🛠️ Deploy to SAP Business AI Platform
 
 ### Step 1 - Initialize the Terraform working directory
 
-Navigate to the `terraform/` folder and initialize the working directory. This downloads the SAP BTP Terraform provider and prepares the backend.
+Navigate to the `terraform/` folder and initialize the working directory. This downloads the Terraform provider for SAP BTP and prepares the backend.
 
 ```bash
 cd terraform
 terraform init
 ```
 
-You should see the BTP provider being downloaded. The version used will be the one resolved by the Terraform MCP server during code generation.
+You should see the Terraform provider for SAP BTP being downloaded. The version used will be the one resolved by the Terraform MCP server during code generation.
 
 ### Step 2 - Format and validate the Terraform code
 
@@ -28,7 +28,7 @@ Both should succeed without errors.
 
 ### Step 3 - Add your credentials
 
-Add your SAP BTP credentials as environment variables in the terminal.
+Add your redentials as environment variables in the terminal.
 
 **macOS / Linux:**
 
@@ -52,7 +52,7 @@ set BTP_PASSWORD=<your-password>
 ```
 
 > [!CAUTION]
-> Never commit these values to Git. The `.gitignore` file created by `btp-iac init` already excludes files that commonly contain credentials, but always verify before committing.
+> Never commit these values to Git. The `.gitignore` file created by `sap-iac init` already excludes files that commonly contain credentials, but always verify before committing.
 
 ### Step 4 - Plan the deployment
 
@@ -87,7 +87,7 @@ Terraform will provision resources in the order defined by the dependency graph 
 
 After the deployment succeeds:
 
-- Log in to the [SAP BTP Cockpit](https://account.hana.ondemand.com/) and verify that:
+- Log in to the [Cockpit](https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/) and verify that:
   - The `invmgmt-dev` subaccount exists in the `cf-eu10` region
   - The Cloud Foundry environment is enabled with a `development` space
   - All 10 services are entitled and the subscriptions are active
@@ -97,7 +97,7 @@ After the deployment succeeds:
 
 ## 📋 Summary
 
-🎉 Congratulations — you have completed the full spec-driven development flow for Terraform on SAP BTP!
+🎉 Congratulations — you have completed the full spec-driven development flow!
 
 You started with a plain-language description of an inventory management application, encoded governance rules that were enforced automatically at every step, built up a living specification across five structured documents, and ended with validated, deployment-ready Terraform code.
 

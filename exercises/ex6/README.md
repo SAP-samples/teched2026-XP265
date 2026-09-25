@@ -1,6 +1,6 @@
 # Detail the security setup
 
-Security configuration is often the most error-prone part of a BTP setup — IdP trust misconfiguration, missing role assignments, and destinations with wrong authentication types are common causes of application failures that are difficult to diagnose. In this exercise, the agent defines the complete security configuration for the inventory management environment.
+Security configuration is often the most error-prone part of a setup — IdP trust misconfiguration, missing role assignments, and destinations with wrong authentication types are common causes of application failures that are difficult to diagnose. In this exercise, the agent defines the complete security configuration for the inventory management environment.
 
 The governance rules make this exercise particularly interesting: the default SAP ID Service is **not permitted** as the application IdP. The agent knows this from `memory/governance.md` and will enforce it. SAP Cloud Identity Services must be configured as both the platform IdP and the application IdP.
 
@@ -10,7 +10,7 @@ The governance rules make this exercise particularly interesting: the default SA
 
 | Trust type | Provider | Why |
 |---|---|---|
-| Platform IdP | SAP Cloud Identity Services (IAS) | Administrators logging into the BTP cockpit use corporate credentials |
+| Platform IdP | SAP Cloud Identity Services (IAS) | Administrators logging into the cockpit use corporate credentials |
 | Application IdP | SAP Cloud Identity Services (IAS) | End users accessing the inventory Fiori app use corporate credentials |
 
 > [!NOTE]
@@ -21,7 +21,7 @@ The governance rules make this exercise particularly interesting: the default SA
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.security
+/sap-iac.security
 ```
 
 The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`.
@@ -52,7 +52,7 @@ I also want to define a user group assignment:
 
 User/group assignment: Group assignment should be done at the IAS group level following the pattern
 
-| IAS Group | BTP Role Collection | Notes |
+| IAS Group | Role Collection | Notes |
 |---|---|---|
 | `invmgmt-dev-admins` | `InvMgmt_Dev_Admin` | Assigned to senior devs / infra owners managing the dev environment |
 | `invmgmt-dev-developers` | `InvMgmt_Dev_Developer` | Assigned to all active developers on the project |
@@ -63,7 +63,7 @@ This should create a new security specification containing the IAS group assignm
 
 ### 🔬 Look behind the curtains
 
-Open the `btp-iac.security.md` skill file. Notice:
+Open the `sap-iac.security.md` skill file. Notice:
 
 1. **Governance enforcement for IdP:** The skill checks whether `Custom IdP: required` is in the governance file. If it is, and no IAS trust is being configured, it stops. This is a hard block, not a warning.
 2. **Role collection scope:** The governance file specifies role collection scope as `application` (not `platform`). The skill will ensure `InventoryViewer`, `InventoryManager`, and `InventoryAdmin` are application-level role collections assigned via IAS groups.
@@ -81,7 +81,7 @@ After the command completes:
 - Verify that **no reference to the default SAP ID Service** appears in the trust configuration — the governance rule was enforced.
 - Cross-check what has happened in the `memory/` folder.
 
-**Key insight:** Without spec-driven development, this security configuration would be set up manually in the BTP cockpit — undocumented, unrepeatable, and impossible to review in a pull request. Here it is a structured document that can be version-controlled, reviewed, and reproduced exactly.
+**Key insight:** Without spec-driven development, this security configuration would be set up manually in the cockpit — undocumented, unrepeatable, and impossible to review in a pull request. Here it is a structured document that can be version-controlled, reviewed, and reproduced exactly.
 
 ## 📋 Summary
 

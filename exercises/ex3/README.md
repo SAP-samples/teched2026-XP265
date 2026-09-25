@@ -1,6 +1,6 @@
 # Define the scenario
 
-With the governance guardrails in place, you now describe **what you are building** in plain language. The `/btp-iac.scenario` skill translates your description into a structured set of BTP infrastructure requirements — the first document in the `specs/` folder.
+With the governance guardrails in place, you now describe **what you are building** in plain language. The `/sap-iac.scenario` skill translates your description into a structured set of infrastructure requirements — the first document in the `specs/` folder.
 
 This is where spec-driven development shines: you do not write Terraform, you do not configure services — you describe the application and its needs from a functional perspective. The AI agent extracts the infrastructure signals and captures them in a machine-readable specification.
 
@@ -13,7 +13,7 @@ Your goal is to sketch the developer environment for the **Inventory Management 
 Execute the following command in the Claude Code terminal:
 
 ```bash
-/btp-iac.scenario
+/sap-iac.scenario
 ```
 
 The command will first check if there is an existing scenario defined in the project. As we start from scratch, it will prompt us to define a new scenario.
@@ -58,7 +58,7 @@ After that an overview of the scenario description is presented to you. Claude w
 
 ### 🔬 Look behind the curtains
 
-The technical foundation of this step is the `btp-iac.scenario.md` skill in the `.claude/commands` folder. Notice how the skill:
+The technical foundation of this step is the `sap-iac.scenario.md` skill in the `.claude/commands` folder. Notice how the skill:
 
 1. Accepts a plain-language description of the application
 2. Identifies the runtime (`Cloud Foundry`), integration points (HANA Cloud, Audit Log, Cloud Logging, Build Work Zone, Build Code, IAS, S/4HANA destination), and environment isolation needs
@@ -76,10 +76,10 @@ After the command completes:
 - The document should capture: runtime (CF), services needed (HANA Cloud, Audit Log, Cloud Logging, Build Work Zone, Build Code, Cloud Identity Service etc), environment scope (single `dev` subaccount), and the S/4HANA connectivity requirement.
 - Cross-check what has happened in the `memory/` folder.
 
-**Key insight:** Compare the plain-language description you typed with `specs/scenario.md`. The skill has extracted the infrastructure signals that a developer familiar with BTP would know (e.g., that a HANA Cloud instance needs an HDI container for CAP, that XSUAA is required for application security). This is knowledge the skill brings — you did not have to specify it.
+**Key insight:** Compare the plain-language description you typed with `specs/scenario.md`. The skill has extracted the infrastructure signals that a developer would know (e.g., that a HANA Cloud instance needs an HDI container for CAP, that XSUAA is required for application security). This is knowledge the skill brings — you did not have to specify it.
 
 ## 📋 Summary
 
-The scenario is now defined as structured infrastructure requirements. In the next exercise, the agent will translate this into a concrete BTP account topology — determining which subaccounts to create, in which region, and how to name them.
+The scenario is now defined as structured infrastructure requirements. In the next exercise, the agent will translate this into a concrete account topology — determining which subaccounts to create, in which region, and how to name them.
 
 Continue to - [Exercise 4 - Detail the account setup](../ex4/README.md)
