@@ -60,7 +60,7 @@ Execute the following command in the Claude Code terminal:
 > [!NOTE]
 > If Claude Code does not recognize the command, make sure that you started Claude Code **inside the project folder** you created in Exercise 1 (`SAPTechEd2026-XXX`).
 
-The skill will check the basic layout of your project folder to ensure it meets the expected structure. Once it has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
+The skill will check the basic layout of your project folder to ensure it meets the expected structure. You might be asked to confirm the execution of some PowerShell commands as well as the btp CLI. Do so to allow the agent to scan the project folder. Once it has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
 
 It will then proceed to ask you the targeted governance questions.
 
@@ -75,27 +75,39 @@ Microsoft Azure
 **Regions:**
 
 ```text
-The subaccount should be placed in the EU, primary region is `eu20`, secondary region is `eu22`. All other regions are forbidden. Data residency requirement — inventory data is subject to GDPR and must stay in the EU.
+The subaccount should be placed in the EU, primary region is `eu20`, secondary region is `eu22`.
+All other regions are forbidden.
+Data residency requirement — inventory data is subject to GDPR and must stay in the EU.
 ```
 
 **Environment:**
 
 ```text
-The environment should be Cloud Foundry. No Kyma is used in this project. One org and one space per stage should be created.
+The environment should be Cloud Foundry.
+No Kyma is used in this project.
+One org and one space per stage should be created.
 ```
 
 **Naming:**
 
 ```text
-The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters.
-Kyma is not used in this project. For CF orgs the naming convention is `invmgmt-cf-<stage>`, the CF space is then `<stage>`.
+The naming pattern is given by `invmgmt-<stage>`.
+The allowed values for `<stage>` are `dev`, `staging`, `prod`.
+Maximum name length: 60 characters.
+Kyma is not used in this project.
+For CF orgs the naming convention is `invmgmt-cf-<stage>`, the CF space is then `<stage>`.
 No directories are required.
 ```
 
 **Service plans:**
 
 ```text
-For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `free` plan. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev` if there is a free plan. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages.
+For the `dev` stage: SAP Audit Log Service and SAP Cloud Logging use the `standard` plan.
+HANA Cloud uses the `hana` plan.
+Paid plans (e.g., `premium`) are forbidden in `dev`.
+If there is a free plan in `dev` use it.
+If multiple plans are available but no free plan, always use the `standard` plan for all stages.
+No restrictions for `staging` and `prod`.
 ```
 
 **Security:**

@@ -32,20 +32,28 @@ It might raise some follow-up questions to clarify the trust configuration or ro
 
 **URL of SAP Cloud Identity tenant:**
 
-```text
-ainfvn15r.accounts.ondemand.com
+```texta
+infvn15r.accounts.ondemand.com
 ```
 
+> [!NOTE]
+> Configuring SAP Cloud Identity Services as the **platform IdP** is a global account level setting. The subaccount-level trust configuration sets up IAS as the **application IdP** for the `invmgmt-dev` subaccount. Both are captured in the spec.
 
 **Definition of Role Collections:**
 
 ```text
-Define the role collections `InvMgmt_Dev_Admin`, `InvMgmt_Dev_Developer`, `InvMgmt_Dev_Viewer`, `InvMgmt_Dev_AuditLog_Viewer`
-``
+Define the role collections:
+InvMgmt_Dev_Admin
+InvMgmt_Dev_Developer
+InvMgmt_Dev_Viewer
+InvMgmt_Dev_AuditLog_Viewer
+```
 
-The agent will propose a security specification.
+If asked if roles should be assigned, state that:
 
-Select `No`, press `Tab` and enter the following statement:
+```text
+Do not assign roles to the role collections
+```
 
 ```text
 I also want to define a user group assignment:

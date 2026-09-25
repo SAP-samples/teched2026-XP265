@@ -17,7 +17,7 @@ Replace the XXX with your group name.
 You will be asked:
 
 - To select the agentic tooling you want to use. Select `claude` as we will use **Claude Code** for this session.
-- To specify the global account subdomain you want to use. You will need to provide the subdomain of your global account from the cockpit.
+- To specify the global account subdomain you want to use. You will need to provide the **subdomain** of your global account from the cockpit.
 
 The command will create a folder with the name `SAPTechEd2026-XXX`. Navigate into the folder using the command:
 
@@ -40,9 +40,11 @@ A VS Code screen opens and you should see the following project structure:
 │   └── commands
 │       ├── sap-iac.accounts.md
 │       ├── sap-iac.analyse.md
+│       ├── sap-iac.connectivity.md
 │       ├── sap-iac.design.md
 │       ├── sap-iac.generate.md
 │       ├── sap-iac.govern.md
+│       ├── sap-iac.next.md
 │       ├── sap-iac.scenario.md
 │       ├── sap-iac.security.md
 │       ├── sap-iac.services.md

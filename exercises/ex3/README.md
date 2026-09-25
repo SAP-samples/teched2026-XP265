@@ -27,7 +27,8 @@ It stores data in SAP HANA Cloud. All create, update, and delete operations on i
 
 Application and runtime logs are collected in SAP Cloud Logging Service.
 
-The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code and the Continuous Integration & Delivery service for CI/CD pipelines.
+The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code.
+Developers also use the Continuous Integration & Delivery service (application only).
 
 Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
 ```

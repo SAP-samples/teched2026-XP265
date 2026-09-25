@@ -4,71 +4,48 @@ The Terraform code is generated, formatted, and validated. The final step is to 
 
 ## 🛠️ Deploy to SAP Business AI Platform
 
-### Step 1 - Initialize the Terraform working directory
+### Step 1 - Rename the terraform.tfvars example files
 
-Navigate to the `terraform/` folder and initialize the working directory. This downloads the Terraform provider for SAP BTP and prepares the backend.
+The code generation created `terraform.tfvars` files but added `.example` to their names to ensure that they are treated as examples.Rename them by removing the `.example` suffix so that Terraform can pick them up automatically.
 
-```bash
-cd terraform
-terraform init
+### Step 2 - Add your credentials into the terraform.tfvars files
+
+> [!WARNING]
+> Critical: We put our credentials into the `terraform.tfvars` files. This is not a good practice as it exposes sensitive information and should therefore not be done in real-world scenarios. For the sake of this exercise, we will proceed this way, but always consider more secure alternatives in production environments.
+
+- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-000/terraform/btp/` and fill in your credentials. Set the value for the custom IdP to `ainfvn15r`.
+- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-000/terraform/cf/` and fill in your credentials. Set the value for the custom origin to `ainfvn15r-platform`.
+
+### Step 3 - Remove the service instance for SAP HANA Cloud
+
+As the provisioning of HANA Cloud can take a while, we remove the service instance from the Terraform configuration before applying the deployment. To do so open the file `SAPTechEd2026-000/terraform/btp/main.tf` and comment out or remove the HANA Cloud service instance block. The resulting block should look like this:
+
+```terraform
+#resource "btp_subaccount_service_instance" "hana_cloud_hana" {
+#  subaccount_id         = btp_subaccount.dev.id
+#  service_offering_name = "hana-cloud"
+#  serviceplan_name      = "hana"
+#  name                  = "hana-cloud-hana"
+#  parameters = jsonencode({
+#    data = {
+#      memory                 = 32
+#      edition                = "cloud"
+#      generateSystemPassword = true
+#    }
+#  })
+#  depends_on = [btp_subaccount_entitlement.hana_cloud_hana]
+#}
 ```
-
-You should see the Terraform provider for SAP BTP being downloaded. The version used will be the one resolved by the Terraform MCP server during code generation.
-
-### Step 2 - Format and validate the Terraform code
-
-The generate skill already ran these — but it is good practice to run them again after `terraform init` confirms the provider is in place:
-
-```bash
-terraform fmt
-terraform validate
-```
-
-Both should succeed without errors.
-
-### Step 3 - Add your credentials
-
-Add your redentials as environment variables in the terminal.
-
-**macOS / Linux:**
-
-```bash
-export BTP_USER=<your-username>
-export BTP_PASSWORD=<your-password>
-```
-
-**Windows — PowerShell:**
-
-```powershell
-$env:BTP_USER = "<your-username>"
-$env:BTP_PASSWORD = "<your-password>"
-```
-
-**Windows — Command Prompt:**
-
-```cmd
-set BTP_USER=<your-username>
-set BTP_PASSWORD=<your-password>
-```
-
-> [!CAUTION]
-> Never commit these values to Git. The `.gitignore` file created by `sap-iac init` already excludes files that commonly contain credentials, but always verify before committing.
 
 ### Step 4 - Plan the deployment
 
-Review what Terraform intends to create before applying:
+Open a terminal in the root folder of the generated Terraform code. Review what Terraform intends to create before applying:
 
 ```bash
 terraform plan -out=plan.out
 ```
 
-Scan the plan output and verify:
-
-- A `btp_subaccount` resource named `invmgmt-dev` in region `cf-eu10` will be created
-- Entitlements for all 10 services are included
-- The HANA Cloud instance and HDI container are present
-- The IAS trust configuration is included
-- The three role collections (`InventoryViewer`, `InventoryManager`, `InventoryAdmin`) will be created
+Scan the plan output and validate that it aligns with your expectations before proceeding to apply the deployment.
 
 ### Step 5 - Apply the deployment
 
@@ -78,10 +55,40 @@ Execute the following command in the terminal:
 terraform apply plan.out
 ```
 
-Terraform will provision resources in the order defined by the dependency graph in the generated code — the same dependency order the spec-driven flow established back in Exercise 7.
+Terraform will provision resources in the order defined by the dependency graph in the generated code.
 
-> [!NOTE]
-> Some resources take longer to provision than others. SAP HANA Cloud instances, SAP Build Work Zone subscriptions, and SAP Cloud Identity Services subscriptions can take several minutes. Terraform will wait for each resource to become available before proceeding to dependent resources.
+The Terraform apply command will also output the Cloud Foundry API URL, which you need to log in to the Cloud Foundry environment.
+
+
+### Step 6 - Plan the deployment for Cloud Foundry
+
+As we have the Cloud Foundry environment enabled, we can now plan the deployment for it specifically.
+
+In the terminal, navigate to the root folder of the generated Terraform code for Cloud Foundry at `terraform/cf/`
+
+Add the value for the Cloud Foundry API URL and the Cloud Foundry Org ID in the appropriate variable in the `terraform.tfvars` file before planning the deployment.
+
+> [!TIP]
+> If you cleaned or closed the terminal, you can access the Cloud Foundry API URL via the command `terraform output` in the folder of the Terraform configuration `terraform/btp/`.
+
+Execute the following command in the terminal:
+
+```bash
+terraform plan -out=cf-plan.out
+```
+
+Scan the plan output and validate that it aligns with your expectations before proceeding to apply the deployment.
+
+### Step 7 - Apply the deployment for Cloud Foundry
+
+Execute the following command in the terminal:
+
+```bash
+terraform apply cf-plan.out
+```
+
+Terraform will provision resources in the order defined by the dependency graph in the generated code.
+
 
 ### ✅ Result
 

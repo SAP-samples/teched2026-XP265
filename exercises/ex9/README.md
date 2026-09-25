@@ -6,26 +6,25 @@ This step is important because it separates the structural decision from code ge
 
 ## The expected Terraform file layout for our scenario
 
-Based on the task list, the agent will propose a file structure similar to this:
+Based on the task list, the agent will ask you about the desired Terraform file layout with the two options:
 
+```bash
+- Per-stage directories — terraform/dev/btp/ and terraform/dev/cf/ (one directory per stage)
+- Single configuration — terraform/btp/ and terraform/cf/ with a dev.tfvars file per stage
 ```
+
+Chose the `Single Configuration`.
+
+The proposed layout shoudl look like this:
+
+```bash
 terraform/
-├── main.tf              # Provider configuration and global account data source
-├── variables.tf         # Parameterizable values (global account subdomain, cost centre, etc.)
-├── outputs.tf           # Output values (subaccount ID, CF org GUID, etc.)
-├── subaccount.tf        # T01: subaccount resource + CF environment + CF space + cost centre tag
-├── entitlements.tf      # T04: all service entitlements in one place
-├── subscriptions.tf     # T05–T07: SaaS subscriptions (IAS, Build Work Zone, Build Code)
-├── services.tf          # T09–T14: service instances (XSUAA, HANA Cloud, HDI, Audit Log, Cloud Logging, Destination)
-├── trust.tf             # T08: IAS trust configuration (platform + application IdP)
-├── destinations.tf      # T15: destination resources (S4HANA-MaterialMaster)
-└── roles.tf             # T16–T19: role collections and IAS group assignments
+    btp/   { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
+    cf/    { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
 ```
 
-This layout groups resources by their logical concern rather than by the order they were defined. Entitlements together, subscriptions together, services together, security together. A developer unfamiliar with the project can navigate to the right file immediately.
 
-> [!NOTE]
-> The agent may propose a slightly different layout depending on its current reasoning. If you would prefer a different file structure (e.g., a single large `main.tf`, or per-service files), you can ask the agent to reorganize before proceeding to code generation.
+Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code. We confirm that.
 
 ## 🛠️ Execute the design command
 
@@ -35,7 +34,25 @@ Execute the following command in the Claude Code terminal:
 /sap-iac.design
 ```
 
-The skill reads `specs/tasks.md` and annotates each task with a `file:` field indicating which Terraform file it belongs to.
+Based on the task list, the agent will ask you about the desired Terraform file layout with the two options:
+
+```bash
+- Per-stage directories — terraform/dev/btp/ and terraform/dev/cf/ (one directory per stage)
+- Single configuration — terraform/btp/ and terraform/cf/ with a dev.tfvars file per stage
+```
+
+Chose the `Single Configuration`.
+
+The proposed layout shoudl look like this:
+
+```bash
+terraform/
+    btp/   { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
+    cf/    { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
+```
+
+
+Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code. We confirm that and the agent will update the task list accordingly.
 
 ### 🔬 Look behind the curtains
 
@@ -53,11 +70,13 @@ After this step, `specs/tasks.md` contains not just the *what* and *order* but a
 After the command completes:
 
 - Open `specs/tasks.md` — each task should now have a `file:` annotation, e.g.:
-  - `T01 → file: terraform/subaccount.tf`
-  - `T04 → file: terraform/entitlements.tf`
-  - `T08 → file: terraform/trust.tf`
-  - `T10 → file: terraform/services.tf`
-  - `T16–T19 → file: terraform/roles.tf`
+
+```markdown
+- [ ] T-001 `[dev]` Create subaccount "invmgmt-dev"
+  - Task metadata: `resource_type = btp_subaccount`, `subaccount = invmgmt-dev`, `subdomain = invmgmt-dev`, `region = eu20`, `usage = NOT_USED_FOR_PRODUCTION`, `beta_enabled = true`, `labels = { cost-center = CC-123456 }`
+  - File: `terraform/btp/main.tf`
+```
+
 - Verify that the `terraform/` folder is **still empty** — no code has been written yet. The design is a plan, not an implementation.
 - Cross-check what has happened in the `memory/` folder.
 

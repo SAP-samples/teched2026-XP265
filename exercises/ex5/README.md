@@ -29,14 +29,39 @@ Execute the following command in the Claude Code terminal:
 /sap-iac.services
 ```
 
-The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals. The skill will validate the settings using the btp CLI. You might be prompted to accept these calls of the CLI
+The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. No additional input is needed — the scenario description already contains all the signals. The skill will validate the settings using the btp CLI. You might be prompted to accept these calls of the CLI.
 
 After validating the settings using the btp CLI, it will check for available plans and categories of the services. If adjustments concerning the selections are required, it will ask you to confirm them. Confirm the proposals.
 
-The skill should then ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it. Confirm the default choice for each service/app.
+The skill will then then ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it. Confirm the default choice for each service/app by stating `default`.
+
+After that it will ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform
+(environment "Other" in the cockpit). Select `BTP` except for the destination service that should be deployed to Cloud Foundry.
 
 > [!TIP]
 > The flow considers any rules defined in governance which can lead to less manual decision-making and ensures compliance with organizational policies.
+
+As some services require parameters, the skill will prompt you to provide the necessary values during the execution.
+
+For **hana-cloud / hana** key in the following values:
+
+```text
+memory: 32
+edition: cloud
+generateSystemPassword: true
+```
+
+For the optional parameters of HANA Cloud enter the following statement:
+
+```text
+Use default or leave empty for all optional parameters.
+```
+
+For **destination / lite** key in the following values:
+
+```text
+HTML5Runtime_enabled true
+```
 
 After answering the questions it will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`. This will create a new file in `specs/` as `services.md`.
 
