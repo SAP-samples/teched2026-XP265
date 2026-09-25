@@ -4,6 +4,9 @@ The scenario is defined. Now the agent needs to translate the abstract requireme
 
 This step is also where the governance guardrails run for the first time. Before writing anything, the `/sap-iac.accounts` skill opens `memory/governance.md` and validates every decision it makes.
 
+> [!TIP]
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
+
 ## 🎯 Intent of the exercise
 
 Based on the scenario definition, the expected result for dev looks like this:

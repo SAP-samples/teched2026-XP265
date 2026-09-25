@@ -4,6 +4,9 @@ Security configuration is often the most error-prone part of a setup — IdP tru
 
 The governance rules make this exercise particularly interesting: the default SAP ID Service is **not permitted** as the application IdP. The agent knows this from `memory/governance.md` and will enforce it. SAP Cloud Identity Services must be configured as both the platform IdP and the application IdP.
 
+> [!TIP]
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
+
 ## 🎯 Intent of the exercise
 
 ### IdP Trust Configuration
@@ -32,8 +35,8 @@ It might raise some follow-up questions to clarify the trust configuration or ro
 
 **URL of SAP Cloud Identity tenant:**
 
-```texta
-infvn15r.accounts.ondemand.com
+```text
+ainfvn15r.accounts.ondemand.com
 ```
 
 > [!NOTE]

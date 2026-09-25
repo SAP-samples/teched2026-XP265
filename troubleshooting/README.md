@@ -70,3 +70,15 @@ Make sure that the following points are met:
 ## The Spec-kit CLI is not found
 
 Make sure that the Spec-kit CLI is installed and available in your system's PATH as described in [Exercise 0 - Install the Spec-kit CLI](../exercises/ex0/README.md#install-the-spec-kit-cli).
+
+## I see a red error message "Invalid Tool parameters"
+
+This error does not interfere with the execution of the skill and can be ignored. The agent will continue to function correctly despite this message.
+
+## The skill execution somehow gets off-track
+
+Depending on your interaction with the agent, it might deviate from the expected sequence of steps. If you get the clear impression that the agent is off-track, you can try the following:
+
+- Abort the execution by pressing the escape key
+- Clear the context by enterning `/clear`
+- Redo the previous step by re-executing the relevant command or action

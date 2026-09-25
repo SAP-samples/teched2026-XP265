@@ -30,6 +30,9 @@ The skill reads `specs/tasks.md` (with file path annotations) and `memory/govern
 
 If the skill asks you which stages to generate make sure that you generate for the `dev` stage only.
 
+> [!NOTE]
+> If the skill tries to do access the Terraform registry via webfetches or curl requests, make sure that the MCP server is running and accessible (see [Getting Started - MCP Server for Terraform](../ex0/README.md#mcp-server-for-terraform) and [Getting Started - Wire up Claude Code to the MCP Server](../ex0/README.md#wire-up-claude-code-to-the-mcp-server)).
+
 The skill will ask you how you want to authenticate
 
 - For the Terraform Provider for SAP BTP chose: `Username / password + custom IdP`.
@@ -42,7 +45,6 @@ After collecting all required information the skill will ask for confirmation to
 When the files get created you will get asked if the agent is allowed to do edits. Confirm by selecting ` Yes, and switch to accept edits ...`.
 
 After the files are generated the skill wants to run `terraform init`. Confirm the execution if asked.
-
 
 After generating all files, the skill will run:
 

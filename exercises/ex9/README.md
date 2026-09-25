@@ -4,6 +4,9 @@ The task list tells us *what* to build and in what order. The design step decide
 
 This step is important because it separates the structural decision from code generation. You can review the proposed file layout, ask the agent to reorganize it, and only then proceed to generation.
 
+> [!TIP]
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
+
 ## 🎯 Intent of the exercise
 
 In this exercise, the agent evaluates the design of the Terraform code structure based on the task list. The goal is to decide where each piece of Terraform code should reside, ensuring a clear and maintainable folder structure before any code is generated.

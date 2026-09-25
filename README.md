@@ -80,6 +80,10 @@ The exercises are designed to be completed in order, as each exercise builds upo
 - [Exercise 10 - Generate the code](exercises/ex10/)
 - [Exercise 11 - Deploy the generated code](exercises/ex11/)
 
+## Troubleshooting
+
+You find a FAQ-like troubleshooting guide in the [troubleshooting section](troubleshooting/README.md) that can help you resolve common issues encountered during the exercises.
+
 ## Contributing
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) to understand the contribution guidelines.
 

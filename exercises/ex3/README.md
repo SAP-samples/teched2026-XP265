@@ -4,6 +4,9 @@ With the governance guardrails in place, you now describe **what you are buildin
 
 This is where spec-driven development shines: you do not write Terraform, you do not configure services — you describe the application and its needs from a functional perspective. The AI agent extracts the infrastructure signals and captures them in a machine-readable specification.
 
+> [!TIP]
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can copy into the `specs` folder. After copying, make sure that you clean the context of the agent via the `/clear` command.
+
 ## 🎯 Intent of the exercise
 
 Your goal is to sketch the developer environment for the **Inventory Management CAP application** to define the overall scenario.

@@ -4,6 +4,9 @@ You now have all specification files covering the account topology, the services
 
 This step makes the ordering explicit and human-reviewable. You can read through the task list and verify: does the sequence make sense? Are any dependencies missing? Is there anything surprising? This is the last opportunity to adjust the specification before code is generated.
 
+> [!TIP]
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
+
 ## 🎯 Intent of the exercise
 
 In this exercise, the agent consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify the sequence of tasks before generating the corresponding Terraform code. The goal is to ensure that all dependencies are correctly captured and that tasks that can be executed in parallel are identified.
