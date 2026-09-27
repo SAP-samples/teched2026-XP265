@@ -59,7 +59,7 @@ Do not assign roles to the role collections
 ```
 
 ```text
-I also want to define a user group assignment:
+I want to define a user group assignment:
 
 User/group assignment: Group assignment should be done at the IAS group level following the pattern
 
@@ -70,6 +70,16 @@ User/group assignment: Group assignment should be done at the IAS group level fo
 | `invmgmt-dev-viewers` | `InvMgmt_Dev_Viewer` | Assigned to stakeholders or testers with read-only needs |
 | `invmgmt-dev-audit-viewers` | `InvMgmt_Dev_AuditLog_Viewer` | Assigned to compliance/audit team members |
 ```
+
+Finally the skill should ask you about the roles that should be assigned in the cloud Foundry space `dev`. Add the following information andreplace the XXX with your group number:
+
+```text
+Space: `dev`
+User `xp265-XXX@education.cloud.sap` needs the following roles assigned:
+- `space_developer`
+- `space_manager`
+```
+
 This should create a new security specification containing the IAS group assignment. Confirm the proposal by selecting `Yes`. This will create a new file in `specs/` as `trust.md`.
 
 ### 🔬 Look behind the curtains

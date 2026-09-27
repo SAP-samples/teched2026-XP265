@@ -4,21 +4,24 @@ The Terraform code is generated, formatted, and validated. The final step is to 
 
 ## 🛠️ Deploy to SAP Business AI Platform
 
+Before proceeding, open a new terminal window in the root folder of the generated Terraform code
+
 ### Step 1 - Rename the terraform.tfvars example files
 
-The code generation created `terraform.tfvars` files but added `.example` to their names to ensure that they are treated as examples.Rename them by removing the `.example` suffix so that Terraform can pick them up automatically.
+The code generation created `terraform.tfvars` files in the `terraform/btp/` and `terraform/cf/` folders and added `.example` to their names to ensure that they are treated as examples. Rename them by removing the `.example` suffix so that Terraform can pick them up automatically.
 
 ### Step 2 - Add your credentials into the terraform.tfvars files
 
 > [!WARNING]
 > Critical: We put our credentials into the `terraform.tfvars` files. This is not a good practice as it exposes sensitive information and should therefore not be done in real-world scenarios. For the sake of this exercise, we will proceed this way, but always consider more secure alternatives in production environments.
 
-- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-000/terraform/btp/` and fill in your credentials. Set the value for the custom IdP to `ainfvn15r`.
-- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-000/terraform/cf/` and fill in your credentials. Set the value for the custom origin to `ainfvn15r-platform`.
+- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-XXX/terraform/btp/` and fill in your credentials. Set the value for the custom IdP to `ainfvn15r`.
+- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-XXX/terraform/cf/` and fill in your credentials. Set the value for the custom origin to `ainfvn15r-platform`.
+- For both cases adjust the names for the service instances like `hana-cloud-teXXX` where XXX is your group name.
 
 ### Step 3 - Remove the service instance for SAP HANA Cloud
 
-As the provisioning of HANA Cloud can take a while, we remove the service instance from the Terraform configuration before applying the deployment. To do so open the file `SAPTechEd2026-000/terraform/btp/main.tf` and comment out or remove the HANA Cloud service instance block. The resulting block should look like this:
+As the provisioning of HANA Cloud can take a while, we remove the service instance from the Terraform configuration before applying the deployment. To do so open the file `SAPTechEd2026-XXX/terraform/btp/main.tf` and comment out or remove the HANA Cloud service instance block. The resulting block should look like this:
 
 ```terraform
 #resource "btp_subaccount_service_instance" "hana_cloud_hana" {
@@ -39,7 +42,7 @@ As the provisioning of HANA Cloud can take a while, we remove the service instan
 
 ### Step 4 - Plan the deployment
 
-Open a terminal in the root folder of the generated Terraform code. Review what Terraform intends to create before applying:
+Review what Terraform intends to create before applying by executing a `terraform plan` command in the terminal:
 
 ```bash
 terraform plan -out=plan.out
@@ -58,7 +61,6 @@ terraform apply plan.out
 Terraform will provision resources in the order defined by the dependency graph in the generated code.
 
 The Terraform apply command will also output the Cloud Foundry API URL, which you need to log in to the Cloud Foundry environment.
-
 
 ### Step 6 - Plan the deployment for Cloud Foundry
 
@@ -89,18 +91,18 @@ terraform apply cf-plan.out
 
 Terraform will provision resources in the order defined by the dependency graph in the generated code.
 
-
 ### ✅ Result
 
 After the deployment succeeds:
 
 - Log in to the [Cockpit](https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/) and verify that:
-  - The `invmgmt-dev` subaccount exists in the `cf-eu10` region
-  - The Cloud Foundry environment is enabled with a `development` space
-  - All 10 services are entitled and the subscriptions are active
+  - The `invmgmt-dev` subaccount exists in the `eu20` region
+  - The Cloud Foundry environment is enabled with a `dev` space
+  - All services are created and the subscriptions are active
   - The IAS trust configuration is visible under *Security → Trust Configuration*
   - The three role collections are listed under *Security → Role Collections*
-- The inventory management development team can now access the subaccount, connect to HANA Cloud via the HDI container, and start building the CAP application.
+  - The Cloud Foundry space `dev` contains the destination service instance
+
 
 ## 📋 Summary
 

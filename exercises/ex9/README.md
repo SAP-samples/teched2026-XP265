@@ -13,25 +13,7 @@ In this exercise, the agent evaluates the design of the Terraform code structure
 
 ## The expected Terraform file layout for our scenario
 
-Based on the task list, the agent will ask you about the desired Terraform file layout with the two options:
-
-```bash
-- Per-stage directories — terraform/dev/btp/ and terraform/dev/cf/ (one directory per stage)
-- Single configuration — terraform/btp/ and terraform/cf/ with a dev.tfvars file per stage
-```
-
-Chose the `Single Configuration`.
-
-The proposed layout shoudl look like this:
-
-```bash
-terraform/
-    btp/   { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
-    cf/    { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
-```
-
-
-Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code. We confirm that.
+TODO
 
 ## 🛠️ Execute the design command
 

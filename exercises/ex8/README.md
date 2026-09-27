@@ -22,31 +22,9 @@ Execute the following command in the Claude Code terminal:
 
 The skill reads `specs/landscape.md`, `specs/services.md`, `specs/trust.md`, and `specs/connectivity.md`. Based on the information it will derive the **dependency-ordered task list**.
 
-The task sequence should be *similar* **(NOT NECESSARILY SAME)** to the following:
+The task sequence should be *similar* **(NOT NECESSARILY SAME)** to the file in the [sample folder](./sample/tasks.md).
 
-| ID | Task | Stage | Depends on | Parallel |
-|---|---|---|---|---|
-| T-001 | Create subaccount invmgmt-dev | dev | — | — |
-| T-002 | Enable Cloud Foundry environment | dev | T-001 | — |
-| T-003 | Create Cloud Foundry space: dev | dev | T-002 | — |
-| T-004 | Entitle + create SAP HANA Cloud instance | dev | T-001 | ✦ |
-| T-005 | Entitle + create Audit Log Management Service instance | dev | T-001 | ✦ |
-| T-006 | Entitle + create Cloud Logging instance | dev | T-001 | ✦ |
-| T-007 | Entitle + subscribe SAP Business Application Studio | dev | T-001 | ✦ |
-| T-008 | Entitle + subscribe Continuous Integration & Delivery | dev | T-001 | ✦ |
-| T-009 | Entitle + subscribe SAP Build Work Zone, standard edition | dev | T-001 | ✦ |
-| T-010 | Configure IdP trust (SAP Cloud Identity Services) | dev | T-001 | — |
-| T-011 | Create role collection: InvMgmt_Dev_Admin | dev | T-010 | ✦ |
-| T-012 | Create role collection: InvMgmt_Dev_Developer | dev | T-010 | ✦ |
-| T-013 | Create role collection: InvMgmt_Dev_Viewer | dev | T-010 | ✦ |
-| T-014 | Create role collection: InvMgmt_Dev_AuditLog_Viewer | dev | T-010 | ✦ |
-| T-015 | Assign IAS group invmgmt-dev-admins → InvMgmt_Dev_Admin | dev | T-011 | ✦ |
-| T-016 | Assign IAS group invmgmt-dev-developers → InvMgmt_Dev_Developer | dev | T-012 | ✦ |
-| T-017 | Assign IAS group invmgmt-dev-viewers → InvMgmt_Dev_Viewer | dev | T-013 | ✦ |
-| T-018 | Assign IAS group invmgmt-dev-audit-viewers → InvMgmt_Dev_AuditLog_Viewer | dev | T-014 | ✦ |
-| T-019 | Create destination: S4HANA_CLOUD | dev | T-001 | — |
-
-Tasks that can be executed in parallel are marked accordingly and additional meta information about each task is provided.
+Tasks that can be executed in parallel are marked accordingly and additional meta information about each task and its dependencies is provided.
 
 Confirm the proposed task list by selecting `Yes`. This will create a new file in `specs/` as `tasks.md`.
 

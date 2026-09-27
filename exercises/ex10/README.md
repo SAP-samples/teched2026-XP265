@@ -35,8 +35,8 @@ If the skill asks you which stages to generate make sure that you generate for t
 
 The skill will ask you how you want to authenticate
 
-- For the Terraform Provider for SAP BTP chose: `Username / password + custom IdP`.
-- For the Terraform Provider for Cloud Foundry chose: `Username / password + custom origin`.
+- For the Terraform Provider for SAP BTP chose: `username/password with custom IdP`.
+- For the Terraform Provider for Cloud Foundry chose: `username/password with custom origin`.
 
 The skill will ask you to confirm the connection to the Terraform registry via the MCP server. Do so as this enables the skill to fetch the latest provider schemas and ensure that the generated Terraform code is compliant with the current provider specifications.
 
@@ -44,7 +44,10 @@ After collecting all required information the skill will ask for confirmation to
 
 When the files get created you will get asked if the agent is allowed to do edits. Confirm by selecting ` Yes, and switch to accept edits ...`.
 
-After the files are generated the skill wants to run `terraform init`. Confirm the execution if asked.
+> [!NOTE]
+> The task list is used to guide the code generation, consequently the agent using the skill will also tick off tasks as they are processed.
+
+After generation of the files is complete, the skill wants to run `terraform init`. Confirm the execution if asked.
 
 After generating all files, the skill will run:
 

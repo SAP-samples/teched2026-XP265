@@ -67,7 +67,7 @@ The skill will check the basic layout of your project folder to ensure it meets 
 
 It will then proceed to ask you the targeted governance questions.
 
-The skill will ask you up to one targeted question per governance category. For this session, use the following answers:
+The skill will ask you up to one targeted question per governance category. For this session, use the following answers (select `Other` or `Type something` if the proposals do not fit):
 
 **Preferred infrastructure provider:**
 
@@ -125,7 +125,7 @@ Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP I
 A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.
 ```
 
-Once all questions have been answered, the skill will summarize the governance rules and ask you to confirm if the captured data is correct. Confirm by selecting `Yes`. This will create a new file is in `memory/` as `governance.md`.
+Once all questions have been answered, the skill will summarize the governance rules and ask you to confirm if the captured data is correct. Be aware that the summary might be opened in a new tab in VS Code. Confirm by selecting `Yes`. This will create a new file is in `memory/` as `governance.md`.
 
 ### 🔬 Look behind the curtains
 

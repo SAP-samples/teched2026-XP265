@@ -30,13 +30,15 @@ It stores data in SAP HANA Cloud. All create, update, and delete operations on i
 
 Application and runtime logs are collected in SAP Cloud Logging Service.
 
+A destination service is also required.
+
 The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code.
 Developers also use the Continuous Integration & Delivery service (application only).
 
 Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
 ```
 
-The command will analyze the input. It will then ask some additonal questions to detail the technical configuration of the scenario:
+The command will analyze the input and validate it against your global account. It will then ask some additonal questions to detail the technical configuration of the scenario:
 
 **CF sizing/memory allocation:**
 

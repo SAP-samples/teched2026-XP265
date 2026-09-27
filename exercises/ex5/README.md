@@ -38,8 +38,7 @@ After validating the settings using the btp CLI, it will check for available pla
 
 The skill will then then ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it. Confirm the default choice for each service/app by stating `default`.
 
-After that it will ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform
-(environment "Other" in the cockpit). Select `BTP` except for the destination service that should be deployed to Cloud Foundry.
+It will also ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform (environment "Other" in the cockpit). Select `BTP` *except for the destination service* that should be deployed to Cloud Foundry.
 
 > [!TIP]
 > The flow considers any rules defined in governance which can lead to less manual decision-making and ensures compliance with organizational policies.
@@ -57,7 +56,7 @@ generateSystemPassword: true
 For the optional parameters of HANA Cloud enter the following statement:
 
 ```text
-Use default or leave empty for all optional parameters.
+Use default or leave empty fo r all optional parameters.
 ```
 
 For **destination / lite** key in the following values:
