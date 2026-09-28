@@ -1,3 +1,6 @@
+ainfvn
+agentic
+auditability
 API
 APAC
 AI
@@ -12,6 +15,7 @@ breakpoint
 BTP
 btp
 BTPEA
+catalogue
 carte
 Chargeback
 chargeback
@@ -51,15 +55,21 @@ ESC
 faq
 FinOps
 finops
+Fiori
 frac
 Github
 github
+GDPR
 GLOBALACCOUNT
 HANA
+hana
 html
 https
 HCL
 HashiCorp
+IaC
+IAS
+init
 IdP
 idp
 json
@@ -75,10 +85,12 @@ Kyma
 kyma
 LATAM
 lifecycle
+LLM
 macOS
 Mgmt
 md
 MoM
+MCP
 namings
 Namings
 NextSteps
@@ -98,6 +110,8 @@ PEM
 Pre
 pre
 preconfigured
+Podman
+podman
 PowerShell
 powershell
 README
@@ -106,6 +120,7 @@ reusable
 ROI
 runtime
 Scalable
+schemas
 Showback
 SKU
 spf
@@ -129,6 +144,7 @@ Terraform's
 Terramate
 Terralith
 tf
+tfvars
 th
 TLS
 TODO
