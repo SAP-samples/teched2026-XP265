@@ -54,6 +54,6 @@
 
 - Metered service warning: enabled
 - Metered services: hana-cloud
-- Cost centre tag: required
+- Cost center tag: required
 - Tag key name: cost-center
 - Tag value: CC-123456

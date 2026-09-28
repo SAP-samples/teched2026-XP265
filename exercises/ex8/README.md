@@ -1,13 +1,13 @@
 # Define the tasks
 
-We have all specification documents covering the account topology, the services, the security configuration and the connectivity setup in place. These documents will now be translated into a actionable task list that serves as input for the code generation.
+We have all specification documents covering the account topology, services, security configuration, and connectivity setup in place. These documents will now be translated into an actionable task list that serves as input for code generation.
 
 > [!TIP]
 > In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
 
 ## 🎯 Intent of the exercise
 
-In this exercise, we instruct the agent to consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify the sequence of tasks before generating the corresponding Terraform code. The goal is to ensure that all dependencies are correctly captured and that tasks that can be executed in parallel are identified.
+In this exercise, the agent consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify the sequence of tasks before generating the corresponding Terraform code. The goal is to ensure that all dependencies are correctly captured and that tasks that can be executed in parallel are identified.
 
 
 ## 🛠️ Execute the tasks command
@@ -44,6 +44,6 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.tas
 
 ## 📋 Summary
 
-The task list translating the specifications into an actionable check list is defined and dependency-ordered. The next exercise will enrich the task list with a mapping to the corresponding Terraform files.
+The task list translating the specifications into an actionable checklist is defined and dependency-ordered. The next exercise will enrich the task list with a mapping to the corresponding Terraform files.
 
 Continue to - [Exercise 9 - Evaluate the design](../ex9/README.md)

@@ -62,7 +62,7 @@ Before a single line of application code can be written, the developer environme
 - All data must remain in the EU
 - Subaccounts must follow a naming pattern
 - The environment should be Cloud Foundry
-- HANA Cloud is a metered service — cost centre tagging is mandatory on all subaccounts
+- HANA Cloud is a metered service — cost center tagging is mandatory on all subaccounts
 - SAP Cloud Identity Services is required as the identity provider — the default SAP ID Service is not permitted
 
 These constraints will be encoded in the very first exercise and enforced automatically by every subsequent step.
@@ -129,7 +129,7 @@ Spec-driven development is a disciplined approach. All spec-kits support the use
 7. Detail the connectivity setup
 8. Define the tasks
 9. Evaluate the design
-10. Generate the Terrarform code
+10. Generate the Terraform code
 11. Deploy the generated Terraform code
 
 
@@ -161,22 +161,22 @@ Each step corresponds to one exercise where you will execute the task and get an
 ## Technical Setup
 
 > [!NOTE]
-> On Windows, use **PowerShell7** (recommended) — **not** Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/sap-iac.*`) and all Terraform commands are platform-independent. This handson session is done on Windows only, hence the following instructions focus on this OS. When doing the exercises on your own on a different OS, make sure to lookup the right commands for your OS.
+> On Windows, use **PowerShell 7** (recommended) — **not** Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/sap-iac.*`) and all Terraform commands are platform-independent. This hands-on session is done on Windows only; therefore, the following instructions focus on this OS. When doing the exercises on your own on a different OS, look up the appropriate commands for your OS.
 
 Before starting with the exercises some technical setup is required to ensure that all tools and services are properly configured.
 
 You need the following components set up before starting the exercises:
 
 - MCP Server for Terraform
-- Configure Claude code to connect to the MCP Server for Terraform
-- Install the Spec-kit CLI
+- Configure Claude Code to connect to the MCP Server for Terraform
+- Install the spec-kit CLI
 - Check your access to your Business AI Platform account via the cockpit and btp CLI
 
 The following sections guide you through the setup process for each of the required components.
 
 ### MCP Server for Terraform
 
-We require the [MCP server for Terraform](https://github.com/hashicorp/terraform-mcp-server) to give the agent access to the information about the Terraform providers available on the Terraform registry. On the system we are using [podman](https://podman.io/) as the container runtime. To install and run the MCP server, open a Powershell window and execute the following commands:
+We require the [MCP server for Terraform](https://github.com/hashicorp/terraform-mcp-server) to give the agent access to the information about the Terraform providers available on the Terraform registry. On the system we are using [podman](https://podman.io/) as the container runtime. To install and run the MCP server, open a PowerShell window and execute the following commands:
 
 1. Start podman:
 
@@ -223,18 +223,18 @@ To ensure that Claude is using the correct model, open a terminal and run the fo
 claude
 ```
 
-Next key in `/model` and validate that the model is `Sonnet 4.6` and the reasing effort is `High` as shown in this screenshot:
+Next, enter `/model` and validate that the model is `Sonnet 4.6` and the reasoning effort is `High`, as shown in this screenshot:
 
 ![Claude Model Verification](./images/6_claude_model_verification.png)
 
 If this is not the case select the right model and/or adjust the reasoning effort accordingly.
 
-### Install the Spec-kit CLI
+### Install the spec-kit CLI
 
-The central ingredient for this exercise is the Spec-kit CLI, which allows you to interact with the spec-driven development framework. You need to install it and ensure it is available in your system's PATH.
+The central ingredient for this exercise is the spec-kit CLI, which allows you to interact with the spec-driven development framework. You need to install it and ensure it is available in your system's PATH.
 
 1. Navigate to the project's GitHub repository [release page](https://github.com/SAP/btp-iac-spec-kit/releases)
-2. Download the latest release of the Spec-kit CLI for Windows (`*_windows_amd64.zip`)
+2. Download the latest release of the spec-kit CLI for Windows (`*_windows_amd64.zip`)
 3. Extract the downloaded ZIP file to the Desktop
 
 Add it to your system's PATH for easier access.
@@ -297,7 +297,7 @@ As we want to deploy resources to the SAP Business AI Platform, you need to have
 #### Cockpit
 
 - Open a browser and navigate to the URL <https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/>
-- Log in via the credential provided by the HandsOn Team during the session
+- Log in with the credentials provided by the hands-on team during the session
 
 Keep the browser window open as you will need the subdomain of the gloabl account in the next exercise.
 

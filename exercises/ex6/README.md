@@ -29,7 +29,7 @@ As we did not provide the full trust configuration details in the scenario, the 
 ainfvn15r.accounts.ondemand.com
 ```
 
-We did not explicitly mention which role collections should be created, therefore the agent will try to close this gap asking us about any role colections that are required.
+We did not explicitly mention which role collections should be created; therefore, the agent will ask which role collections are required.
 Enter the following information when asked about role collections:
 
 ```text
@@ -86,7 +86,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.sec
 - The security-specific requirements are collected in the `specs/trust.md` document.
 - Gaps from the previous steps that needed to be detailed are now captured.
 
-**Key insight:** The spec-driven flow support the administrator and closing gaps concerning the security setup based on the information provided in the previous steps. The propability to miss a setting resulting in failed deployments gets reduced causing less friction in the actual deployment.
+**Key insight:** The spec-driven flow supports administrators by closing gaps in the security setup based on information provided in the previous steps. This reduces the probability of missed settings and failed deployments.
 
 ## 📋 Summary
 

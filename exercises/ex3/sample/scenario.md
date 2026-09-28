@@ -71,6 +71,6 @@ All plans follow the dev-stage governance constraint (free plans where available
 | Dev service plans | `hana` (HANA Cloud), `oauth2` (Audit Log), `dev` (Cloud Logging), `lite` (Destination), `free` (Build Code, CICD) — compliant |
 | `build-workzone-standard` standard plan | No free plan exists for this service — standard plan is the only available option; noted as exception |
 | Custom IdP | SAP Cloud Identity Services (OIDC) — compliant |
-| Cost centre tag | `cost-center: CC-123456` — required on subaccount |
+| Cost center tag | `cost-center: CC-123456` — required on subaccount |
 | Metered service warning | `hana-cloud` — metered, warning enabled per governance |
 | Naming | Subaccount `invmgmt-dev`, CF org `invmgmt-cf-dev`, CF space `dev` — compliant with patterns |

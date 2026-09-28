@@ -1,4 +1,4 @@
-# Generate the Terraformcode
+# Generate the Terraform code
 
 This is the step that the entire spec-driven flow has been building toward. The `/sap-iac.generate` skill reads the annotated task list and generates complete, validated Terraform configuration code.
 
@@ -23,8 +23,8 @@ If the agent asks you which stages to generate make sure that you generate for t
 
 Before generating the Terraform code the information about how you want to authenticate is missing. The agent will ask you how you want to authenticate
 
-- For the Terraform Provider for SAP BTP chose: `username/password with custom IdP`.
-- For the Terraform Provider for Cloud Foundry chose: `username/password with custom origin`.
+- For the Terraform Provider for SAP BTP, choose `username/password with custom IdP`.
+- For the Terraform Provider for Cloud Foundry, choose `username/password with custom origin`.
 
 This will consequently be used in the provider configuration within the generated Terraform files as well as in the definition of variables.
 
@@ -57,7 +57,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.gen
 3. Executes the provider schema lookup from the registry
 4. Writes the Terraform files in the correct folders depending in your project structure respecting the dependencies between resources but also between the main setup of the account and the environment specifics for Cloud Foundry.
 
-**Key insight:** Compareing the `terraform/` output to what you would get from a "vibe-coded" approach, the spec-driven result is governance-compliant, dependency-ordered, consistently structured, validated and reproducable.
+**Key insight:** Compared with the `terraform/` output from a "vibe-coded" approach, the spec-driven result is governance-compliant, dependency-ordered, consistently structured, validated, and reproducible.
 
 ### ✅ Result
 

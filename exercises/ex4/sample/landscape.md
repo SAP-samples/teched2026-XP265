@@ -23,7 +23,7 @@ Flat — no directory groupings. Subaccounts sit directly under the global accou
 | Infrastructure provider | Microsoft Azure |
 | Description | Inventory Management CAP — developer environment |
 | Stage | `dev` |
-| Cost centre tag | `cost-center: CC-123456` |
+| Cost center tag | `cost-center: CC-123456` |
 
 #### Cloud Foundry Environment
 

@@ -2,7 +2,7 @@
 
 In this exercise, you will initialize the project and set up the necessary structure to begin the spec-driven flow in Claude Code.
 
-## 🛠️ Execute the spec kit init command
+## 🛠️ Execute the spec-kit init command
 
 As a first step we must lay the foundation for the project. This is done by executing the `sap-iac init` command of the spec-kit CLI in a terminal. The command will create a project structure and a set of files that will be used in the following steps by the agent.
 

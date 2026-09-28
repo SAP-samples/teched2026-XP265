@@ -32,7 +32,7 @@ The skill reads `specs/scenario.md` and `memory/governance.md`. As we already pr
 | Environment | Cloud Foundry enabled |
 | CF org | Automatically created with the subaccount |
 | CF space | dev |
-| Cost centre tag | CC-123456 (ad defined by governance) |
+| Cost center tag | CC-123456 (as defined by governance) |
 ```
 
 The agent will also derive a reasonable setting for the `beta_enabled` and the `usage` attribute of the subaccount.

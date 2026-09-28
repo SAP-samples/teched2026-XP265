@@ -41,10 +41,10 @@ Authentication uses SAP Cloud Identity Services — the company does not permit 
 ```
 
 > [!TIP]
-> While we defined governance rules for all stages, we focus here only on the development stage for the rest of the handson exercise.
+> While we defined governance rules for all stages, we focus here only on the development stage for the rest of the hands-on exercise.
 
 
-The agent will analyze the input and validate it against your global account. It will then ask additonal questions to detail the technical configuration of the scenario. Answer these questions to provide the necessary details as given here:
+The agent will analyze the input and validate it against your global account. It will then ask additional questions to detail the technical configuration of the scenario. Answer these questions to provide the necessary details as given here:
 
 **CF sizing/memory allocation:**
 

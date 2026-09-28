@@ -4,7 +4,7 @@ The task list tells us *what* to build and in what order. The design step decide
 
 ## 🎯 Intent of the exercise
 
-In this exercise, the agent evaluates the design of the Terraform code structure based on the task list and the users descision on the Terraform code layout.
+In this exercise, the agent evaluates the Terraform code structure based on the task list and the user's decision about the Terraform code layout.
 
 ## 🛠️ Execute the design command
 
@@ -21,7 +21,7 @@ Based on the task list, the agent will ask you about the desired Terraform file 
 - Single configuration — terraform/btp/ and terraform/cf/ with a dev.tfvars file per stage
 ```
 
-Chose the `Single Configuration`.
+Choose `Single Configuration`.
 
 The proposed layout should look like this:
 
@@ -47,10 +47,10 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.des
 
 ### ✅ Result
 
-An enahnced task list is available in `specs/tasks.md` with additional file path annotations indicating where each piece of Terraform code should be placed.
+An enhanced task list is available in `specs/tasks.md` with additional file path annotations indicating where each piece of Terraform code should be placed.
 
 ## 📋 Summary
 
-The design is finalized. Every task in the task list has a target file path. In the next exercise we will instrauct the agent to generate the Terraform code.
+The design is finalized. Every task in the task list has a target file path. In the next exercise, we will instruct the agent to generate the Terraform code.
 
 Continue to - [Exercise 10 - Generate the code](../ex10/README.md)

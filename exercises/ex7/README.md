@@ -40,7 +40,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.con
 1. Identifies the necessary destination configuration based on the scenario and governance information.
 2. Collects the required details from the user to complete the connectivity setup based on different patterns
 
-**Key insight:** The configuration of destinations is cumbersome when it comes to the technical parameter names. The skill uses a pattern based approach to support the user in providing the correct information efficiently.
+**Key insight:** Destination configuration can be cumbersome because of its technical parameter names. The skill uses a pattern-based approach to help users provide the correct information efficiently.
 
 ### ✅ Result
 

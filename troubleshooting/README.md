@@ -7,7 +7,7 @@ In case you run into techical issues during the exercise, here are some common t
 
 ## Podman is not available for container execution
 
-In case `podman` is not available on your system, you can trigger the instalation by:
+If `podman` is not available on your system, you can trigger the installation by:
 
 1. Enter `LMU_XP265` into the windows search bar
 2. Click on the `LMU_XP265` application to open it
@@ -16,7 +16,7 @@ This script will trigger the installation process for `podman` on your system.
 
 ## Podman is not running
 
-As the MCP server is run as a container using `podman`, it requires the `podman` service to be running. if you see errors in Cluade Code stating that the MCP server is not running, execute the following command:
+As the MCP server runs as a container using `podman`, it requires the `podman` service to be running. If you see errors in Claude Code stating that the MCP server is not running, execute the following command:
 
 ```powershell
 podman machine start
@@ -61,7 +61,7 @@ The file opened in VS Code should contain information like this:
 }
 ```
 
-If this is not the case get in touch with the handson team onsite.
+If this is not the case, get in touch with the hands-on team onsite.
 
 ## Login via the btp CLI fails
 
@@ -70,9 +70,9 @@ Make sure that the following points are met:
 - You have specified the `--idp` parameter with the value `ainfvn15r`
 - You have put the username and password into quotes
 
-## The Spec-kit CLI is not found
+## The spec-kit CLI is not found
 
-Make sure that the Spec-kit CLI is installed and available in your system's PATH as described in [Exercise 0 - Install the Spec-kit CLI](../exercises/ex0/README.md#install-the-spec-kit-cli).
+Make sure that the spec-kit CLI is installed and available in your system's PATH as described in [Exercise 0 - Install the spec-kit CLI](../exercises/ex0/README.md#install-the-spec-kit-cli).
 
 ## I see a red error message "Invalid Tool parameters"
 
@@ -83,5 +83,5 @@ This error does not interfere with the execution of the skill and can be ignored
 Depending on your interaction with the agent, it might deviate from the expected sequence of steps. If you get the clear impression that the agent is off-track, do the following:
 
 - Abort the execution by pressing the escape key
-- Clear the context by enterning `/clear`
+- Clear the context by entering `/clear`
 - Redo the previous step by re-executing the relevant command or action

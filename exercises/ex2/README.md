@@ -19,7 +19,7 @@ With this exercise we want to make the spec-kit aware of the governance constrai
 | **Naming** | The naming pattern is given by `invmgmt-<stage>`. The allowed values for `<stage>` are `dev`, `staging`, `prod`. Maximum name length: 60 characters. The directory structure is flat i.e. only subaccounts. |
 | **Service plans** | For the `dev` stage free plans should be used if available. HANA Cloud uses the `hana` plan. Paid plans (e.g., `premium`) are forbidden in `dev`. No restrictions for `staging` and `prod`. If multiple plans are available always use the `standard` plan for all stages. |
 | **Security** | A custom IdP of type OIDC (SAP Cloud Identity Services) is required. The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings. |
-| **Cost controls** | A warning should raised for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`. |
+| **Cost controls** | A warning should be raised for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`. |
 
 Let's see how we can transfer these constraints using the spec-kit.
 
@@ -40,7 +40,7 @@ btp target --global-account '<your-global-account-subdomain>'
 ```
 
 > [!NOTE]
-> Being logged in to the btp CLI allows the agent to fetch live data from your global account to check if the constrainst can be applied at all.
+> Being logged in to the btp CLI allows the agent to fetch live data from your global account to check whether the constraints can be applied.
 
 ### Step 2 - Start the agentic tooling
 
@@ -67,7 +67,7 @@ Execute the following command in the Claude Code terminal:
 
 The agent will check the basic layout of your project folder to ensure it meets the expected structure. You might be asked to confirm the execution of some PowerShell as well as btp CLI commands. Do so to allow the agent to scan the project folder. Once it has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
 
-The agent will then proceed asking you up some targeted questions for the governance categories. Use the following answers (select `Other` or `Type something` if the proposals of Claude Code do not fit):
+The agent will then ask you targeted questions about the governance categories. Use the following answers (select `Other` or `Type something` if the proposals of Claude Code do not fit):
 
 **Preferred infrastructure provider:**
 
