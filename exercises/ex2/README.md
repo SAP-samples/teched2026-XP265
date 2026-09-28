@@ -129,7 +129,7 @@ Once you have answered all questions, the agent will summarize the governance ru
 
 ### 🔬 Look behind the curtains
 
-The technical foundation of this step is skill `.claude/commands/sap-iac.govern.md`. Itis used by the agent to collect your governance requirements.
+The technical foundation of this step is skill `.claude/commands/sap-iac.govern.md`. It is used by the agent to collect your governance requirements.
 
 Open the file and notice how the skill defines a precise governance schema — each category with specific fields.
 

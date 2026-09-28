@@ -299,7 +299,7 @@ As we want to deploy resources to the SAP Business AI Platform, you need to have
 - Open a browser and navigate to the URL <https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/>
 - Log in with the credentials provided by the hands-on team during the session
 
-Keep the browser window open as you will need the subdomain of the gloabl account in the next exercise.
+Keep the browser window open as you will need the subdomain of the global account in the next exercise.
 
 #### btp CLI
 

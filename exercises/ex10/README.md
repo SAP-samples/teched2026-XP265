@@ -53,7 +53,7 @@ After successfully finishing the code generation the agent will provide addition
 The technical foundation of this step is the skill `.claude/commands/sap-iac.generate.md`. Open the file and notice how the skill:
 
 1. Executes a final round of checks against the governance constraints
-2. Injects platform specific prerequisites like subdomain uniqueness and determination of CLoud Foundry landscape label values.
+2. Injects platform specific prerequisites like subdomain uniqueness and determination of Cloud Foundry landscape label values.
 3. Executes the provider schema lookup from the registry
 4. Writes the Terraform files in the correct folders depending in your project structure respecting the dependencies between resources but also between the main setup of the account and the environment specifics for Cloud Foundry.
 

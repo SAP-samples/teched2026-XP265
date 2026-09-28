@@ -58,7 +58,7 @@ After answering the questions the agent will present you the summary including t
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.services.md`. Open the file and notice how the skill:
 
-1. The skill builds the service list **in dependency order** — services that other services depend on are listed first. HANA Cloud entitlement before HANA Cloud instance; XSUAA before the CAP application binding.
+1. The skill builds the service list **in dependency order** — services that other services depend on are listed first e.g., HANA Cloud entitlement before HANA Cloud instance.
 2. For each service, it identifies the **environment tier** from `specs/landscape.md` (in this case `dev`) and validates the plan choice against the governance file's `## Service Plans` section.
 3. The skill asks for each service/app if it should be provisioned or entitled only as well as into which environment it should be provisioned to if no restrictions are already defined in the governance step.
 4. The output `specs/services.md` is structured as a dependency-ordered list, not a flat catalogue. This ordering will be preserved all the way into the generated Terraform code.

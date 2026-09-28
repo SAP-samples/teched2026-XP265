@@ -45,7 +45,7 @@ The Agent will present the final summary and ask for confirmation before writing
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.accounts.md`. Open the file and notice how the skill:
 
-1. Starts with a governance check like region and na validation
+1. Starts with a governance check
 2. Derives of the `beta_enabled` and `usage` attributes based on the governance rules, environment type and naming patterns
 3. Writes the result into `specs/landscape.md`
 
