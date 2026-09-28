@@ -1,5 +1,8 @@
 # Troubleshooting
 
+> [!NOTE]
+> This section is only relevant for onsite attendees of the TechEd session XP265
+
 In case you run into techical issues during the exercise, here are some common troubleshooting hints that can help you resolve them.
 
 ## Podman is not available for container execution
@@ -9,7 +12,7 @@ In case `podman` is not available on your system, you can trigger the instalatio
 1. Enter `LMU_XP265` into the windows search bar
 2. Click on the `LMU_XP265` application to open it
 
-This will trigger the installation process for `podman` on your system.
+This script will trigger the installation process for `podman` on your system.
 
 ## Podman is not running
 
@@ -28,13 +31,13 @@ Error: unable to start "podman-machine-default": already running
 
 ## Claude has no connection to an API
 
-The connection details for the API are stored in the file `.claude/settings.json`. First check if the file exists and contains the correct API connection information. Open a terminal and e
+The connection details for the API are stored in the file `.claude/settings.json`. First check if the file exists and contains the correct API connection information. Open a terminal and enter:
 
 ```powershell
 code .claude/settings.json
 ```
 
-The file should contain information like this:
+The file opened in VS Code should contain information like this:
 
 ```json
 {
@@ -65,7 +68,7 @@ If this is not the case get in touch with the handson team onsite.
 Make sure that the following points are met:
 
 - You have specified the `--idp` parameter with the value `ainfvn15r`
-- You have set the username and password into quotes
+- You have put the username and password into quotes
 
 ## The Spec-kit CLI is not found
 
@@ -77,7 +80,7 @@ This error does not interfere with the execution of the skill and can be ignored
 
 ## The skill execution somehow gets off-track
 
-Depending on your interaction with the agent, it might deviate from the expected sequence of steps. If you get the clear impression that the agent is off-track, you can try the following:
+Depending on your interaction with the agent, it might deviate from the expected sequence of steps. If you get the clear impression that the agent is off-track, do the following:
 
 - Abort the execution by pressing the escape key
 - Clear the context by enterning `/clear`

@@ -1,48 +1,36 @@
 # Detail the security setup
 
-Security configuration is often the most error-prone part of a setup — IdP trust misconfiguration, missing role assignments, and destinations with wrong authentication types are common causes of application failures that are difficult to diagnose. In this exercise, the agent defines the complete security configuration for the inventory management environment.
+Security configuration is often a critical part of a setup comprising IdP trust configuration and role assignments. In this exercise, the agent defines the complete security configuration for the inventory management environment.
 
-The governance rules make this exercise particularly interesting: the default SAP ID Service is **not permitted** as the application IdP. The agent knows this from `memory/governance.md` and will enforce it. SAP Cloud Identity Services must be configured as both the platform IdP and the application IdP.
+The previously defined governance rules will again play an important role as guardrail since we defined that the default SAP ID Service is **not permitted**.
 
 > [!TIP]
 > In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
 
 ## 🎯 Intent of the exercise
 
-### IdP Trust Configuration
-
-| Trust type | Provider | Why |
-|---|---|---|
-| Platform IdP | SAP Cloud Identity Services (IAS) | Administrators logging into the cockpit use corporate credentials |
-| Application IdP | SAP Cloud Identity Services (IAS) | End users accessing the inventory Fiori app use corporate credentials |
-
-> [!NOTE]
-> Configuring SAP Cloud Identity Services as the **platform IdP** is a global account level setting. The subaccount-level trust configuration sets up IAS as the **application IdP** for the `invmgmt-dev` subaccount. Both are captured in the spec.
+In this exercise the goal is to derive the main settings of the Identity Provider (IdP) trust configuration and role assignments for the inventory management environment. The information can be partially derived from the already captured data, but the interesting part is to determine and close the gaps we left until now.
 
 ## 🛠️ Execute the security command
 
 Execute the following command in the Claude Code terminal:
 
-```bash
+```powershell
 /sap-iac.security
 ```
 
-The skill reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`.
+This triggers the agent to first read the specification documents especially `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`.
 
-The skill will perform a governance check: since `Custom IdP: required` is set in the governance file, it will verify that an IAS trust configuration is included. If you had not mentioned SAP Cloud Identity Services in the scenario, the skill would stop here with an error — it cannot produce a compliant security spec without the required IdP trust.
+The agent will then perform a governance check as `Custom IdP: required` is set in the governance file. It will verify that an IAS trust configuration is included.
 
-It might raise some follow-up questions to clarify the trust configuration or role collections. Add the following information:
-
-**URL of SAP Cloud Identity tenant:**
+As we did not provide the full trust configuration details in the scenario, the agent might ask follow-up questions to clarify the setup. Add the following information when asked for the URL of SAP Cloud Identity tenant:
 
 ```text
 ainfvn15r.accounts.ondemand.com
 ```
 
-> [!NOTE]
-> Configuring SAP Cloud Identity Services as the **platform IdP** is a global account level setting. The subaccount-level trust configuration sets up IAS as the **application IdP** for the `invmgmt-dev` subaccount. Both are captured in the spec.
-
-**Definition of Role Collections:**
+We did not explicitly mention which role collections should be created, therefore the agent will try to close this gap asking us about any role colections that are required.
+Enter the following information when asked about role collections:
 
 ```text
 Define the role collections:
@@ -52,11 +40,13 @@ InvMgmt_Dev_Viewer
 InvMgmt_Dev_AuditLog_Viewer
 ```
 
-If asked if roles should be assigned, state that:
+The next logical step is to assign roles. When asked roles should be assigned, state that:
 
 ```text
 Do not assign roles to the role collections
 ```
+
+As a follow-up question the agent will ask about the assignment approach (user- vs. group-based). Provide the following information:
 
 ```text
 I want to define a user group assignment:
@@ -71,7 +61,7 @@ User/group assignment: Group assignment should be done at the IAS group level fo
 | `invmgmt-dev-audit-viewers` | `InvMgmt_Dev_AuditLog_Viewer` | Assigned to compliance/audit team members |
 ```
 
-Finally the skill should ask you about the roles that should be assigned in the cloud Foundry space `dev`. Add the following information andreplace the XXX with your group number:
+As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and replace the `XXX` with your group number:
 
 ```text
 Space: `dev`
@@ -80,32 +70,26 @@ User `xp265-XXX@education.cloud.sap` needs the following roles assigned:
 - `space_manager`
 ```
 
-This should create a new security specification containing the IAS group assignment. Confirm the proposal by selecting `Yes`. This will create a new file in `specs/` as `trust.md`.
+With this the agent has gathered all required information. It will present an overview about the specification document and ask for confirmation. Confirm the proposal by selecting `Yes`. The agent will create a new file `specs/trust.md`.
 
 ### 🔬 Look behind the curtains
 
-Open the `sap-iac.security.md` skill file. Notice:
+The technical foundation of this step is the skill `.claude/commands/sap-iac.security.md`. Open the file and notice how the skill:
 
-1. **Governance enforcement for IdP:** The skill checks whether `Custom IdP: required` is in the governance file. If it is, and no IAS trust is being configured, it stops. This is a hard block, not a warning.
-2. **Role collection scope:** The governance file specifies role collection scope as `application` (not `platform`). The skill will ensure `InventoryViewer`, `InventoryManager`, and `InventoryAdmin` are application-level role collections assigned via IAS groups.
-
-The output `specs/trust.md` is the final piece of the specification puzzle — after this step, the agent has everything it needs to generate Terraform code.
+1. Collects the missing IdP information and derives the origin values required later
+2. Gathers role collection requirements
+3. Fetches the space-level role assignments in case that a Cloud Foundry environment is requested
+4. Writes the result into `specs/trust.md`
 
 ### ✅ Result
 
-After the command completes:
+- The security-specific requirements are collected in the `specs/trust.md` document.
+- Gaps from the previous steps that needed to be detailed are now captured.
 
-- Open `specs/trust.md` — you should see:
-  - IAS trust configuration for both platform and application IdP
-  - Three role collections: `InventoryViewer`, `InventoryManager`, `InventoryAdmin`
-  - IAS user group assignments for each role collection
-- Verify that **no reference to the default SAP ID Service** appears in the trust configuration — the governance rule was enforced.
-- Cross-check what has happened in the `memory/` folder.
-
-**Key insight:** Without spec-driven development, this security configuration would be set up manually in the cockpit — undocumented, unrepeatable, and impossible to review in a pull request. Here it is a structured document that can be version-controlled, reviewed, and reproduced exactly.
+**Key insight:** The spec-driven flow support the administrator and closing gaps concerning the security setup based on the information provided in the previous steps. The propability to miss a setting resulting in failed deployments gets reduced causing less friction in the actual deployment.
 
 ## 📋 Summary
 
-The security configuration is now fully specified.  In the next exercise, we finish the specification tasks by detailing the connectivity setup.
+The security configuration is now fully specified. In the next exercise, we finish the specification tasks by detailing the connectivity setup.
 
 Continue to - [Exercise 7 - Detail the connectivity setup](../ex7/README.md)
