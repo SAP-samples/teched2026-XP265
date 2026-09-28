@@ -26,6 +26,8 @@ Before generating the Terraform code the information about how you want to authe
 - For the Terraform Provider for SAP BTP chose: `username/password with custom IdP`.
 - For the Terraform Provider for Cloud Foundry chose: `username/password with custom origin`.
 
+This will consequently be used in the provider configuration within the generated Terraform files as well as in the definition of variables.
+
 The agent will ask you to confirm the connection to the Terraform registry via the MCP server. Do so as this enables the agent to fetch the latest provider schemas and ensure that the generated Terraform code is compliant with the current provider specifications.
 
 After collecting all required information the agent will ask for confirmation to create the Terraform file directories. Confirm by selecting `Yes, and always allow access to...`.

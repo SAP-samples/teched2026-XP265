@@ -26,13 +26,13 @@ The skill reads `specs/scenario.md` and `memory/governance.md`. As we already pr
 ```powershell
 | Field | Value |
 |---|---|
-| Subaccount name | `invmgmt-dev` |
-| Region | `eu20` |
-| Subdomain | `invmgmt-dev` (must be globally unique — you may be asked to adjust) |
+| Subaccount name | invmgmt-dev |
+| Region | eu20 |
+| Subdomain | invmgmt-dev |
 | Environment | Cloud Foundry enabled |
 | CF org | Automatically created with the subaccount |
-| CF space | `development` |
-| Cost centre tag | Required — you will provide your team's cost centre identifier |
+| CF space | dev |
+| Cost centre tag | CC-123456 (ad defined by governance) |
 ```
 
 The agent will also derive a reasonable setting for the `beta_enabled` and the `usage` attribute of the subaccount.
@@ -55,7 +55,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.acc
 - The whole setup was automatically derived by the agent based on the scenario and governance rules.
 - All requirements were validated against the previously defined governance constraints.
 
-**Key insight:** The agent chose `eu20` not because it is the default, but because it is the only allowed region per the governance file. If you were to repeat this flow for a project with no governance file, the agent would ask which region to use. The governance file removes that ambiguity — it is answered once and enforced everywhere.
+**Key insight:** The agent chose `eu20` not because it is the default, but because it is the preferred region per the governance file. If you were to repeat this flow for a project with no governance file, the agent would ask which region to use. The governance file removes that ambiguity — it is answered once and enforced everywhere.
 
 ## 📋 Summary
 

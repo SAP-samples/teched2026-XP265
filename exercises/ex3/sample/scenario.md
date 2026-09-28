@@ -50,7 +50,7 @@ All plans follow the dev-stage governance constraint (free plans where available
 
 | Name | Type | Target | Purpose |
 |---|---|---|---|
-| `S4HANA_PC` | OAuth2 | S/4HANA Public Cloud | CAP application integration with S/4HANA Public Cloud APIs via OAuth2 authentication |
+| `S4HANA_PC` | BasicAuthentication | S/4HANA Public Cloud | CAP application integration with S/4HANA Public Cloud APIs via OAuth2 authentication |
 
 ## Security
 

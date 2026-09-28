@@ -148,7 +148,7 @@ Service instances are created in the CF space `dev` unless noted as subaccount-l
 ```json
 {
   "data": {
-    "memory": 30,
+    "memory": 32,
     "generateSystemPassword": true,
     "whitelistIPs": []
   }

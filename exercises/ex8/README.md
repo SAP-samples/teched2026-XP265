@@ -18,7 +18,7 @@ Execute the following command in the Claude Code terminal:
 /sap-iac.tasks
 ```
 
-Based on all specification documents and the government constraints, the agent derives a dependency-ordered task list.
+Based on all specification documents and the governance constraints, the agent derives a dependency-ordered task list.
 
 The task sequence should be *similar* to the file in the [sample folder](./sample/tasks.md).
 

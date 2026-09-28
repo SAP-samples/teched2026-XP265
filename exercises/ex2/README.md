@@ -42,7 +42,7 @@ btp target --global-account '<your-global-account-subdomain>'
 > [!NOTE]
 > Being logged in to the btp CLI allows the agent to fetch live data from your global account to check if the constrainst can be applied at all.
 
-### Step 1 - Start the agentic tooling
+### Step 2 - Start the agentic tooling
 
 Navigate into the project folder you created in Exercise 1 (`SAPTechEd2026-XXX`). Execute the following command in the terminal:
 
@@ -54,7 +54,7 @@ Claude will ask you if you trust this folder. Confirm by selecting `Yes`.
 
 In addition, make sure that you are in *manual mode* of Claude Code. You can cycle through the modes via `Shift + Tab`.
 
-### Step 2 - Execute the govern command
+### Step 3 - Execute the govern command
 
 Execute the following command in the Claude Code terminal:
 

@@ -44,7 +44,7 @@ Open the file `SAPTechEd2026-XXX/terraform/btp/main.tf` and comment out the HANA
 
 ### Step 4 - Plan the deployment
 
-Before applying review the plan of the Terraform deployment by executing a `terraform plan` command in the terminal:
+Change to the directory `terraform/btp/`. Before applying review the plan of the Terraform deployment by executing a `terraform plan` command in the terminal:
 
 ```powershell
 terraform plan -out=plan.out
@@ -66,9 +66,9 @@ When finished, the Terraform apply command will output the Cloud Foundry API URL
 
 ### Step 6 - Plan the deployment for Cloud Foundry
 
-As we have the Cloud Foundry environment enabled, we plan the deployment for it. In the terminal, navigate to the root folder of the generated Terraform code for Cloud Foundry at `terraform/cf/`
+As we have the Cloud Foundry environment enabled, we plan the deployment for it. Change the root folder of the generated Terraform code for Cloud Foundry `terraform/cf/`
 
-Add the value for the Cloud Foundry API URL and the Cloud Foundry Org ID in the appropriate variable in the `terraform.tfvars` file before planning the deployment.
+Add the values for the Cloud Foundry API URL and the Cloud Foundry Org ID in the appropriate variable in the `terraform.tfvars` file before planning the deployment.
 
 > [!TIP]
 > If you cleaned or closed the terminal, you can access the Cloud Foundry API URL via the command `terraform output` in the folder of the Terraform configuration `terraform/btp/`.

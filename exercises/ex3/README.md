@@ -40,6 +40,10 @@ Developers also use the Continuous Integration & Delivery service (application o
 Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
 ```
 
+> [!TIP]
+> While we defined governance rules for all stages, we focus here only on the development stage for the rest of the handson exercise.
+
+
 The agent will analyze the input and validate it against your global account. It will then ask additonal questions to detail the technical configuration of the scenario. Answer these questions to provide the necessary details as given here:
 
 **CF sizing/memory allocation:**

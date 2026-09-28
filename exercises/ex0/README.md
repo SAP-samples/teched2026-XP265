@@ -72,7 +72,7 @@ graph TD
     subgraph GA["Global Account"]
         subgraph SA["Subaccount: invmgmt-dev · Region: eu20"]
             subgraph CF["Cloud Foundry Environment"]
-                SPACE["Space: development"]
+                SPACE["Space: dev"]
                 APP["Inventory App"]
                 SPACE --> APP
             end
@@ -81,7 +81,6 @@ graph TD
                 HANA["SAP HANA Cloud"]
                 AUDIT["SAP Audit Log Service"]
                 LOG["SAP Cloud Logging Service"]
-                XSUAA["Auth & Trust Mgmt"]
                 DEST["Destination Service"]
             end
 
@@ -131,8 +130,8 @@ Spec-driven development is a disciplined approach. All spec-kits support the use
 8. Define the tasks
 9. Evaluate the design
 10. Generate the Terrarform code
+11. Deploy the generated Terraform code
 
-After that you deploy the generated Terraform code.
 
 At the end of this session you will have finished all steps depicted in the following diagram:
 
@@ -162,7 +161,7 @@ Each step corresponds to one exercise where you will execute the task and get an
 ## Technical Setup
 
 > [!NOTE]
-> All commands in these exercises work on **macOS, Linux, and Windows**. On Windows, use **PowerShell7** (recommended) — **not** Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/sap-iac.*`) and all Terraform commands are platform-independent.
+> On Windows, use **PowerShell7** (recommended) — **not** Git Bash — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/sap-iac.*`) and all Terraform commands are platform-independent. This handson session is done on Windows only, hence the following instructions focus on this OS. When doing the exercises on your own on a different OS, make sure to lookup the right commands for your OS.
 
 Before starting with the exercises some technical setup is required to ensure that all tools and services are properly configured.
 
@@ -194,7 +193,7 @@ We require the [MCP server for Terraform](https://github.com/hashicorp/terraform
 > [!NOTE]
 > Some error might occur stating the the `TFE client` and the `TFE tools` will not be available. This is okay as we do not connect to a Terraform Enterprise instance.
 
-You can stop the MCP server by pressing `Ctrl+C` in the terminal where it is running.
+Stop the MCP server by pressing `Ctrl+C` in the terminal where it is running. This step was required to initially download the MCP server image. In the next step we will instruct Claude Code to start the MCP server on its own.
 
 ### Wire up Claude Code to the MCP Server
 

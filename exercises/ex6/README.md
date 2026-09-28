@@ -40,13 +40,13 @@ InvMgmt_Dev_Viewer
 InvMgmt_Dev_AuditLog_Viewer
 ```
 
-The next logical step is to assign roles. When asked roles should be assigned, state that:
+The next logical step is to add roles to a role collection. When asked, state that:
 
 ```text
-Do not assign roles to the role collections
+Do not add roles to the role collections
 ```
 
-As a follow-up question the agent will ask about the assignment approach (user- vs. group-based). Provide the following information:
+As a follow-up question the agent will ask about the role collection assignment approach (user- vs. group-based). Provide the following information:
 
 ```text
 I want to define a user group assignment:

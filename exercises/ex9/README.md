@@ -23,13 +23,16 @@ Based on the task list, the agent will ask you about the desired Terraform file 
 
 Chose the `Single Configuration`.
 
-The proposed layout shoudl look like this:
+The proposed layout should look like this:
 
 ```powershell
 terraform/
     btp/   { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
     cf/    { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
 ```
+
+> [!TIP]
+> You will recognize that the setup correctly derives a tfvars file per stage namely a `dev.tfvars` in our case. The setup also adds an example tfvars file called `terraform.tfvars.example` which enables a quick local execution without bothering about the location of the variable values.
 
 Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code. We confirm that and the agent will update the task list accordingly.
 

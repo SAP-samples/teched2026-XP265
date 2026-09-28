@@ -37,7 +37,7 @@ The requirements to follow the exercises in this repository *on your own environ
 
 - A [GitHub](https://github.com/) account to clone the repository of the spec-kit
 - A code editor like [Visual Studio Code](https://code.visualstudio.com/)
-- A subscription to an AI coding assistant like [GitHub Copilot](https://github.com/features/copilot) or [Claude Code](https://claude.com/product/claude-code)
+- A subscription to an AI coding assistant like [Claude Code](https://claude.com/product/claude-code). The exercise in this repository focuses on using Claude Code, but you can use other AI coding assistants if preferred.
 - The [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 - A container runtime like [Docker](https://www.docker.com/get-started) or [Podman](https://podman.io/getting-started/installation)
 - The [Terraform MCP Server](https://github.com/hashicorp/terraform-mcp-server) connected to your AI coding assistant of choice
