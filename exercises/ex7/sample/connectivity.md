@@ -2,15 +2,14 @@
 
 ## Destinations
 
-### InventoryQueryEndpoint
+### S4HANA_PUBLIC_CLOUD
 
 - **Type**: HTTP
-- **Subaccounts**: invmgmt-dev, invmgmt-staging, invmgmt-prod
+- **Subaccount**: invmgmt-dev
 - **ProxyType**: Internet
-- **URL**: https://mydemo-api.s4hana.ondemand.com
+- **URL / Address**: https://mydemo-api.s4hana.ondemand.com
 - **Authentication**: BasicAuthentication
 - **User**: INVENTORY_API_USER
-- **Password**: ⚠ PLACEHOLDER — supply at apply time, do not commit to the repository
-- **Description**: Backend ERP integration for inventory data (SAP S/4HANA Public Cloud)
-- **Additional Properties**:
-  - `TrustAll`: `true`
+- **Credentials**: ⚠ PLACEHOLDER — supply at apply time, do not commit to the repository
+- **Additional properties**:
+  - TrustAll: true

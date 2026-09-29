@@ -85,3 +85,7 @@ Depending on your interaction with the agent, it might deviate from the expected
 - Abort the execution by pressing the escape key
 - Clear the context by entering `/clear`
 - Redo the previous step by re-executing the relevant command or action
+
+## "Compacting Conversation" message
+
+Depending on the flow of the conversation you might see an interuption of the conversation with a message stating "Compacting Conversation". This indicates that the system is condensing previous messages to optimize performance. You can generally ignore this message. The conversation will resume automatically.

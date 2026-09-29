@@ -4,7 +4,7 @@ The Terraform code is generated, formatted, and validated. The final step is to 
 
 ## 🛠️ Deploy to SAP Business AI Platform
 
-Before proceeding, open a new terminal window in the root folder of the generated Terraform code `SAPTechEd2026-XXX/terraform/`.
+Before proceeding, open a new terminal window in the root folder of the generated Terraform code `SAPTechEd2026-0XX/terraform/`.
 
 ### Step 1 - Rename the terraform.tfvars example files
 
@@ -15,15 +15,24 @@ The code generation created `terraform.tfvars` files in the `terraform/btp/` and
 > [!WARNING]
 > Critical: We put our credentials into the `terraform.tfvars` files. This is not a good practice as it exposes sensitive information and should therefore not be done in real-world scenarios. For the sake of this exercise, we will proceed this way, but always consider more secure alternatives in production environments.
 
-- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-XXX/terraform/btp/` and fill in your credentials. Set the value for the custom IdP to `ainfvn15r`.
-- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-XXX/terraform/cf/` and fill in your credentials. Set the value for the custom origin to `ainfvn15r-platform`.
-- For both cases adjust the names for the service instances to e.g., `hana-cloud-teXXX` where `XXX` is your group name.
+#### Terraform provider for SAP BTP
+
+- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-0XX/terraform/btp/` and fill in your credentials. Set the value for the custom IdP to `ainfvn15r`.
+- If the service names contain placeholders replace them with your group name.
+- Set the password for the S/4HANA destination to any value,e.g. `test1234`
+
+#### Terraform provider for Cloud Foundry
+
+- Open the file `terraform.tfvars` in the folder `SAPTechEd2026-0XX/terraform/cf/` and fill in your credentials. Set the value for the custom origin to `ainfvn15r-platform`.
+- If the service names contain placeholders replace them with your group name.
+
+The file contains placeholders for the Cloud Foundry API as well as the Cloud Foundry Org ID. They cannot be filled yet as the Cloud Foundry environment is not yet provisioned. We will add them later once the environment is available.
 
 ### Step 3 - Remove the service instance for SAP HANA Cloud
 
 As the provisioning of HANA Cloud can take a while, we remove the service instance from the Terraform configuration before applying the deployment.
 
-Open the file `SAPTechEd2026-XXX/terraform/btp/main.tf` and comment out the HANA Cloud service instance block. The resulting block should look like this:
+Open the file `SAPTechEd2026-0XX/terraform/btp/main.tf` and comment out the HANA Cloud service instance block. The resulting block should look like this:
 
 ```terraform
 #resource "btp_subaccount_service_instance" "hana_cloud_hana" {
@@ -62,13 +71,13 @@ terraform apply plan.out
 
 Terraform will provision resources in the order defined by the dependency graph in the generated code.
 
-When finished, the Terraform apply command will output the Cloud Foundry API URL as well as the Cloud Foundry Org ID, which you need as input for the Cloud Foundry deployment.
+When finished, the Terraform apply command will output the *Cloud Foundry API URL* as well as the *Cloud Foundry Org ID*. You need these values as input for the Cloud Foundry deployment.
 
 ### Step 6 - Plan the deployment for Cloud Foundry
 
-As we have the Cloud Foundry environment enabled, we plan the deployment for it. Change the root folder of the generated Terraform code for Cloud Foundry `terraform/cf/`
+As we have the Cloud Foundry environment enabled, we plan the deployment for it. Change the root folder of the generated Terraform code for Cloud Foundry `SAPTechEd2026-0XX/terraform/cf/`
 
-Add the values for the Cloud Foundry API URL and the Cloud Foundry Org ID in the appropriate variable in the `terraform.tfvars` file before planning the deployment.
+Add the values for the *Cloud Foundry API URL* and the *Cloud Foundry Org ID* in the appropriate variable in the `cf/terraform.tfvars` file before planning the deployment.
 
 > [!TIP]
 > If you cleaned or closed the terminal, you can access the Cloud Foundry API URL via the command `terraform output` in the folder of the Terraform configuration `terraform/btp/`.

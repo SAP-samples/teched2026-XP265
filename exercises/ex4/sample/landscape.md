@@ -1,45 +1,27 @@
-# BTP Account Landscape — Inventory Management CAP
+# BTP Account Landscape
 
 ## Global Account
 
-| Field | Value |
-|---|---|
-| Subdomain | `terraformintprod` |
-| Display name | terraform-integration-prod |
+- Subdomain: ff074c55-9713-4d23-8c1c-036bd25b5641
 
-## Directory Structure
+## Directories
 
-Flat — no directory groupings. Subaccounts sit directly under the global account.
+None — flat structure per governance.
 
 ## Subaccounts
 
-### `invmgmt-dev`
+### invmgmt-dev
 
-| Field | Value |
-|---|---|
-| Display name | `invmgmt-dev` |
-| Subdomain | `invmgmt-dev` |
-| Region | `eu20` |
-| Infrastructure provider | Microsoft Azure |
-| Description | Inventory Management CAP — developer environment |
-| Stage | `dev` |
-| Cost center tag | `cost-center: CC-123456` |
+- Region: eu20
+- Description: Inventory Management — development environment
+- Subdomain: invmgmt-dev
+- Usage: NOT_USED_FOR_PRODUCTION
+- Beta enabled: true
+- Labels:
+  - cost-center: CC-123456
 
-#### Cloud Foundry Environment
+#### Cloud Foundry environment
 
-| Field | Value |
-|---|---|
-| CF org name | `invmgmt-cf-dev` |
-| CF space | `dev` |
-
-#### Governance Checks
-
-| Rule | Value | Status |
-|---|---|---|
-| Region allowed | `eu20` in `[eu20, eu22]` | compliant |
-| Region preferred | `eu20` (Azure) matches preferred provider Microsoft Azure | compliant |
-| Subaccount name pattern | `invmgmt-dev` matches `invmgmt-{stage}` | compliant |
-| CF org pattern | `invmgmt-cf-dev` matches `invmgmt-cf-{stage}` | compliant |
-| CF space pattern | `dev` matches `{stage}` | compliant |
-| Allowed environment | Cloud Foundry | compliant |
-| Directory structure | flat | compliant |
+- Org name: invmgmt-cf-dev
+- Spaces:
+  - dev

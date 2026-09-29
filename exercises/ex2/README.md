@@ -44,7 +44,7 @@ btp target --global-account '<your-global-account-subdomain>'
 
 ### Step 2 - Start the agentic tooling
 
-Navigate into the project folder you created in Exercise 1 (`SAPTechEd2026-XXX`). Execute the following command in the terminal:
+Navigate into the project folder you created in Exercise 1 (`SAPTechEd2026-0XX`). Execute the following command in the terminal:
 
 ```powershell
 claude
@@ -63,7 +63,8 @@ Execute the following command in the Claude Code terminal:
 ```
 
 > [!NOTE]
-> If Claude Code does not recognize the command, make sure that you started Claude Code **inside the project folder** you created in Exercise 1 (`SAPTechEd2026-XXX`).
+> [!NOTE]
+> If Claude Code does not recognize the command, make sure that you started Claude Code **inside the project folder** you created in Exercise 1 (`SAPTechEd2026-0XX`).
 
 The agent will check the basic layout of your project folder to ensure it meets the expected structure. You might be asked to confirm the execution of some PowerShell as well as btp CLI commands. Do so to allow the agent to scan the project folder. Once it has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
 
@@ -125,7 +126,9 @@ Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP I
 A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.
 ```
 
-Once you have answered all questions, the agent will summarize the governance rules and ask you to confirm if the captured data is correct. Be aware that the summary might be opened in a new tab in VS Code. Confirm by selecting `Yes`. The agent will create a new file in `memory/` called `governance.md`.
+Once you have answered all questions, the agent will summarize the governance rules and ask you to confirm if the captured data is correct. Be aware that the summary might be opened in a new tab in VS Code. Confirm by selecting `Yes`.
+
+The agent will create a new file in `memory/` called `governance.md`.
 
 ### 🔬 Look behind the curtains
 
