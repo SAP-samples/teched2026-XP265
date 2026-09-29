@@ -31,7 +31,9 @@ The destination needs an additional property `TrustAll` set to `true`
 No destination certificates are required
 ```
 
-As in the previous exercises, the agent will present a summary and ask for confirmation before applying the connectivity setup. Confirm by selecting `Yes`. The agent will create a new file `specs/connectivity.md`.
+As in the previous exercises, the agent will present a summary and ask for confirmation before applying the connectivity setup. Confirm by selecting `Yes`.
+
+The agent will create a new file `specs/connectivity.md`.
 
 ### 🔬 Look behind the curtains
 

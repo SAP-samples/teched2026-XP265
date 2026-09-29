@@ -39,7 +39,9 @@ The agent will also derive a reasonable setting for the `beta_enabled` and the `
 
 Accept the proposed setup by keying in `Accept`.
 
-The Agent will present the final summary and ask for confirmation before writing the specification document. Confirm by selecting `Yes`. The agent will create a new file in `specs/landscape.md`.
+The Agent will present the final summary and ask for confirmation before writing the specification document. Confirm by selecting `Yes`.
+
+The agent will create a new file in `specs/landscape.md`.
 
 ### 🔬 Look behind the curtains
 

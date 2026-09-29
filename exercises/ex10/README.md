@@ -23,12 +23,18 @@ If the agent asks you which stages to generate make sure that you generate for t
 
 Before generating the Terraform code the information about how you want to authenticate is missing. The agent will ask you how you want to authenticate
 
-- For the Terraform Provider for SAP BTP, choose `username/password with custom IdP`.
-- For the Terraform Provider for Cloud Foundry, choose `username/password with custom origin`.
+- For the Terraform Provider for *SAP BTP*, choose:
+      ```text
+      username/password with custom IdP
+      ```
+- For the Terraform Provider for *Cloud Foundry*, choose:
+      ```text
+      username/password with custom origin
+      ```
 
-This will consequently be used in the provider configuration within the generated Terraform files as well as in the definition of variables.
+These values will be used in the provider configuration within the generated Terraform files as well as in the definition of variables.
 
-The agent will ask you to confirm the connection to the Terraform registry via the MCP server. Do so as this enables the agent to fetch the latest provider schemas and ensure that the generated Terraform code is compliant with the current provider specifications.
+The agent will ask you to allow the connection to the Terraform registry via the MCP server. Do so as this enables the agent to fetch the latest provider schemas and ensure that the generated Terraform code is compliant with the current provider specifications.
 
 After collecting all required information the agent will ask for confirmation to create the Terraform file directories. Confirm by selecting `Yes, and always allow access to...`.
 

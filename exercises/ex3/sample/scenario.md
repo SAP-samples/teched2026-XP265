@@ -1,76 +1,65 @@
-# BTP Infrastructure Scenario — Inventory Management CAP (dev)
+# Scenario: Inventory Management CAP Application — dev
+
+## Overview
+
+A developer environment on Cloud Foundry for a CAP-based Inventory Management application.
+Scope: `dev` stage only.
+
+## Subaccount structure
+
+- One dedicated subaccount per stage: `invmgmt-dev`
+- Region: `eu20` (Microsoft Azure, EU — GDPR)
+- One Cloud Foundry org: `invmgmt-cf-dev`
+- One Cloud Foundry space: `dev`
 
 ## Application
 
-| Field | Value |
-|---|---|
-| Name | Inventory Management CAP |
-| Description | CAP-based inventory management application with SAP Fiori UI |
-| Stage | dev |
+- Name: `inventory-management`
+- Runtime: Cloud Foundry
+- Framework: SAP Cloud Application Programming Model (CAP)
+- Stage: dev
+- Memory: 1024 MB, 1 instance
 
-## Account Structure
+### Cloud Foundry applications
+- name: inventory-management
+  stage: dev
+  memory_mb: 1024
 
-- **Topology**: one dedicated subaccount per stage (flat directory structure per governance)
-- **Subaccount name**: `invmgmt-dev`
-- **Region**: `eu20` (Microsoft Azure, EU — preferred per governance)
-- **Global account**: `terraformintprod`
+## BTP services
 
-## Cloud Foundry Environment
-
-| Field | Value |
-|---|---|
-| CF org name | `invmgmt-cf-dev` |
-| CF space name | `dev` |
-| App memory | 1 GB |
-| App instances | 1 |
-
-## Services
-
-All plans follow the dev-stage governance constraint (free plans where available; no paid plans).
-
-| Service | Plan | Notes |
-|---|---|---|
-| `hana-cloud` | `hana` | SAP HANA Cloud — persistence for CAP application. Plan `hana` permitted for dev per governance. |
-| `auditlog` | `oauth2` | SAP Audit Log Service — compliance logging for CUD operations on inventory records. `oauth2` plan for programmatic write access. |
-| `cloud-logging` | `dev` | SAP Cloud Logging Service — application and runtime log collection. `dev` plan is the free/dev-tier plan. |
-| `destination` | `lite` | BTP Destination Service — required for the S/4HANA Public Cloud destination. `lite` is the free elastic plan. |
-| `identity` | `application` | SAP Cloud Identity Services — custom OIDC IdP. Default SAP ID Service not permitted per governance and scenario requirement. |
+| Service | Offering | Plan | Type | Purpose |
+|---|---|---|---|---|
+| SAP HANA Cloud | `hana-cloud` | `hana` | service instance | Persistent data store for inventory records |
+| SAP Audit Log Service | `auditlog` | `standard` | service instance | Compliance logging for CUD operations on inventory records |
+| SAP Cloud Logging Service | `cloud-logging` | `standard` | service instance | Application and runtime log collection |
+| Destination Service | `destination` | `lite` | service instance | Destination configuration for outbound connectivity |
+| SAP Cloud Identity Services | `identity` | `application` | service instance | OIDC-based authentication; replaces default SAP ID Service |
+| Cloud Foundry Runtime | `cloudfoundry` | `standard` | environment | CF org and space for CAP app deployment |
 
 ## Subscriptions
 
-| Application | Plan | Notes |
-|---|---|---|
-| `build-workzone-standard` | `standard` | SAP Build Work Zone — Fiori launchpad hosting. No free plan available; standard is the base plan. |
-| `build-code` | `free` | SAP Build Code — developer tooling (SAP Business Application Studio). Free plan available. |
-| `cicd-app` | `free` | SAP Continuous Integration & Delivery — CI/CD pipelines. Free plan available. |
-
-> **Note**: `build-code` and `cicd-app` are available in `eu20` but not `eu22`. The governance-preferred region `eu20` satisfies this constraint without any conflict.
+| Application | Offering | Plan | Purpose |
+|---|---|---|---|
+| SAP Build Work Zone | `build-workzone-standard` | `standard` | Fiori launchpad for UI delivery |
+| SAP Build Code | `build-code` | `free` | Developer tooling (free plan available in dev) |
+| CI/CD Service | `cicd-app` | `free` | Continuous integration and delivery (application subscription; free plan used in dev) |
 
 ## Destinations
 
-| Name | Type | Target | Purpose |
+| Name | Target system | Auth type | Purpose |
 |---|---|---|---|
-| `S4HANA_PC` | BasicAuthentication | S/4HANA Public Cloud | CAP application integration with S/4HANA Public Cloud APIs via OAuth2 authentication |
+| `S4HANA_PUBLIC_CLOUD` | SAP S/4HANA Public Cloud | Basic Authentication | Integration with S/4HANA Public Cloud APIs |
 
 ## Security
 
-| Field | Value |
-|---|---|
-| Custom IdP | Required |
-| IdP type | OIDC |
-| IdP provider | SAP Cloud Identity Services (`identity` / `application` plan) |
-| Default SAP ID Service | Not permitted as application IdP |
+- Authentication: SAP Cloud Identity Services (OIDC)
+- Default SAP ID Service must not be used as application IdP
+- Custom IdP trust to be configured on the subaccount
 
-## Governance Compliance
+## Governance alignment
 
-| Check | Status |
-|---|---|
-| Runtime | Cloud Foundry only — compliant |
-| Region | `eu20` (Azure, EU) — compliant |
-| Data residency | EU only — compliant |
-| Dev service plans | `hana` (HANA Cloud), `oauth2` (Audit Log), `dev` (Cloud Logging), `lite` (Destination), `free` (Build Code, CICD) — compliant |
-| `build-workzone-standard` standard plan | No free plan exists for this service — standard plan is the only available option; noted as exception |
-| Custom IdP | SAP Cloud Identity Services (OIDC) — compliant |
-| Cost center tag | `cost-center: CC-123456` — required on subaccount |
-| Metered service warning | `hana-cloud` — metered, warning enabled per governance |
-| Naming | Subaccount `invmgmt-dev`, CF org `invmgmt-cf-dev`, CF space `dev` — compliant with patterns |
+- Region `eu20`: allowed, Microsoft Azure, EU data residency — GDPR compliant
+- Plans: `hana`, `standard`, `lite`, `free` — all permitted in dev; no forbidden plans used
+- `build-code/free` and `cicd-app/free`: free plans preferred in dev per governance
+- Cost centre tag `cost-center: CC-123456` must be applied to the subaccount
+- HANA Cloud is a metered service — cost warning applies

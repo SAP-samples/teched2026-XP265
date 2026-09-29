@@ -22,9 +22,9 @@ Based on all specification documents and the governance constraints, the agent d
 
 The task sequence should be *similar* to the file in the [sample folder](./sample/tasks.md).
 
-Tasks that can be executed in parallel are marked accordingly and additional meta information about each task and its dependencies is provided.
+Tasks that can be executed in parallel are marked accordingly and additional meta information about each task and its dependencies is provided. Confirm the proposed task list by selecting `Yes`.
 
-Confirm the proposed task list by selecting `Yes`. The agent will create a new file `specs/tasks.md`.
+The agent will create a new file `specs/tasks.md`.
 
 ### 🔬 Look behind the curtains
 

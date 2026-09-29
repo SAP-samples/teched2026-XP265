@@ -49,28 +49,28 @@ Do not add roles to the role collections
 As a follow-up question the agent will ask about the role collection assignment approach (user- vs. group-based). Provide the following information:
 
 ```text
-I want to define a user group assignment:
-
-User/group assignment: Group assignment should be done at the IAS group level following the pattern
+I want to define a group assignment. This group assignment should be done at the IAS group level following the pattern
 
 | IAS Group | Role Collection | Notes |
 |---|---|---|
-| `invmgmt-dev-admins` | `InvMgmt_Dev_Admin` | Assigned to senior devs / infra owners managing the dev environment |
-| `invmgmt-dev-developers` | `InvMgmt_Dev_Developer` | Assigned to all active developers on the project |
-| `invmgmt-dev-viewers` | `InvMgmt_Dev_Viewer` | Assigned to stakeholders or testers with read-only needs |
-| `invmgmt-dev-audit-viewers` | `InvMgmt_Dev_AuditLog_Viewer` | Assigned to compliance/audit team members |
+| invmgmt-dev-admins | InvMgmt_Dev_Admin | Assigned to senior devs / infra owners managing the dev environment |
+| invmgmt-dev-developers | InvMgmt_Dev_Developer | Assigned to all active developers on the project |
+| invmgmt-dev-viewers | InvMgmt_Dev_Viewer | Assigned to stakeholders or testers with read-only needs |
+| invmgmt-dev-audit-viewers | InvMgmt_Dev_AuditLog_Viewer | Assigned to compliance/audit team members |
 ```
 
-As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and replace the `XXX` with your group number:
+As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and replace the `0XX` with your group number:
 
 ```text
-Space: `dev`
-User `xp265-XXX@education.cloud.sap` needs the following roles assigned:
-- `space_developer`
-- `space_manager`
+Space: dev
+User "xp265-0XX@education.cloud.sap" needs the following roles assigned:
+- space_developer
+- space_manager
 ```
 
-With this the agent has gathered all required information. It will present an overview about the specification document and ask for confirmation. Confirm the proposal by selecting `Yes`. The agent will create a new file `specs/trust.md`.
+With this the agent has gathered all required information. It will present an overview about the specification document and ask for confirmation. Confirm the proposal by selecting `Yes`.
+
+The agent will create a new file `specs/trust.md`.
 
 ### 🔬 Look behind the curtains
 

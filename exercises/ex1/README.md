@@ -6,10 +6,10 @@ In this exercise, you will initialize the project and set up the necessary struc
 
 As a first step we must lay the foundation for the project. This is done by executing the `sap-iac init` command of the spec-kit CLI in a terminal. The command will create a project structure and a set of files that will be used in the following steps by the agent.
 
-Open a terminal and execute the following command (replace the `XXX` with your group name):
+Open a terminal and execute the following command (replace the `XX` with your group name):
 
 ```powershell
-sap-iac init SAPTechEd2026-XXX
+sap-iac init SAPTechEd2026-0XX
 ```
 
 You will be asked:
@@ -17,10 +17,10 @@ You will be asked:
 - To select the agentic tooling you want to use. Select `claude` as we will use **Claude Code** for this session.
 - To specify the global account subdomain. Provide the **subdomain** of your global account from the cockpit.
 
-The command will create a folder with the name `SAPTechEd2026-XXX`. Navigate into the folder using the command:
+The command will create a folder with the name `SAPTechEd2026-0XX`. Navigate into the folder using the command:
 
 ```powershell
-cd SAPTechEd2026-XXX
+cd SAPTechEd2026-0XX
 ```
 
 Let us inspect the project structure.Open the content of the folder in Visual Studio Code (VS Code) by executing the following command in the terminal:

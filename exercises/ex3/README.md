@@ -66,7 +66,9 @@ Each stage gets its own dedicated subaccount.
 
 After you have answered the follow-up questions the agent will validate the availability of the entitlements on the global account.
 
-When successful it will present an overview of the scenario description to you. The agent will ask for confirmation before finalizing the scenario and writing the specification document. Confirm by selecting `Yes`. The agent will create a new file in `specs/scenario.md`.
+When successful it will present an overview of the scenario description to you. The agent will ask for confirmation before finalizing the scenario and writing the specification document. Confirm by selecting `Yes`.
+
+The agent will create a new file in `specs/scenario.md`.
 
 ### 🔬 Look behind the curtains
 
