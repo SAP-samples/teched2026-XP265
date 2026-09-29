@@ -2,6 +2,9 @@
 
 The task list tells us *what* to build and in what order. The design step decides *where* each piece of Terraform code should be put when the code is finally generated. This depends on our choice how to structure the code in general.
 
+> [!TIP]
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
+
 ## 🎯 Intent of the exercise
 
 In this exercise, the agent evaluates the Terraform code structure based on the task list and the user's decision about the Terraform code layout.
