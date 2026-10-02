@@ -233,7 +233,7 @@ If this is not the case select the right model and/or adjust the reasoning effor
 
 The central ingredient for this exercise is the spec-kit CLI, which allows you to interact with the spec-driven development framework. You need to install it and ensure it is available in your system's PATH.
 
-1. Navigate to the project's GitHub repository [release page](https://github.com/SAP/btp-iac-spec-kit/releases)
+1. Navigate to the project's GitHub repository [release page](https://github.com/SAP/iac-spec-kit-for-sap-business-ai-platform/releases)
 2. Download the latest release of the spec-kit CLI for Windows (`*_windows_amd64.zip`)
 3. Extract the downloaded ZIP file to the Desktop
 
