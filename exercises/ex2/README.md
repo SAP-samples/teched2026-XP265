@@ -63,7 +63,6 @@ Execute the following command in the Claude Code terminal:
 ```
 
 > [!NOTE]
-> [!NOTE]
 > If Claude Code does not recognize the command, make sure that you started Claude Code **inside the project folder** you created in Exercise 1 (`SAPTechEd2026-0XX`).
 
 The agent will check the basic layout of your project folder to ensure it meets the expected structure. You might be asked to confirm the execution of some PowerShell as well as btp CLI commands. Do so to allow the agent to scan the project folder. Once it has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
