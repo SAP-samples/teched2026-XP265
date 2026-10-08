@@ -1,6 +1,6 @@
 # Evaluate the design
 
-The task list tells us *what* to build and in what order. The design step decides *where* each piece of Terraform code should be put when the code is finally generated. This depends on our choice how to structure the code in general.
+The task list tells us *what* to build and in what order. The design step decides *where* each piece of Terraform code should be put when the code is finally generated. This depends on our choice how to structure the Terraform code.
 
 > [!TIP]
 > In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
@@ -43,16 +43,16 @@ terraform/
 
 Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code. Confirm the proposal.
 
-The agent will update the task list accordingly.
+The agent will update the task list with the corresponding Terraform file paths.
 
 ### 🔬 Look behind the curtains
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.design.md`. Open the file and notice how the skill:
 
-1. Introduces the different design and layout options for the Terraform code based on a standard layout
+1. Introduces the different design and layout options for the Terraform code based on standard layouts
 2. Annotates the tasks in `specs/tasks.md` with the corresponding Terraform file paths based on the chosen layout
 
-**Key insight:** The final ingredient for the code generation is the annotated task list, which tells the agent exactly where to place each piece of Terraform code.
+**Key insight:** The final ingredient required for the code generation is the annotated task list. The agent now has all the information it needs to generate the Terraform code.
 
 ### ✅ Result
 
@@ -60,6 +60,6 @@ An enhanced task list is available in `specs/tasks.md` with additional file path
 
 ## 📋 Summary
 
-The design is finalized. Every task in the task list has a target file path. In the next exercise, we will instruct the agent to generate the Terraform code.
+The task list is now fully annotated with the target file paths. In the next exercise, we will instruct the agent to generate the Terraform code.
 
 Continue to - [Exercise 10 - Generate the code](../ex10/README.md)

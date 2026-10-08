@@ -44,7 +44,7 @@ The agent will ask you to allow the connection to the Terraform registry via the
 
 After collecting all required information the agent will ask for confirmation to create the Terraform file directories. Confirm by selecting `Yes, and always allow access to...`.
 
-When the agent created the files you will get asked if the agent is allowed to do edits. Confirm by selecting `Yes, and switch to accept edits ...`.
+When the agent created the files it will ask you if edits are allowed. Confirm by selecting `Yes, and switch to accept edits ...`.
 
 > [!NOTE]
 > The task list is used to guide the code generation, consequently the agent using the skill will also tick off tasks as they are processed.
@@ -65,20 +65,19 @@ After successfully finishing the code generation the agent will provide addition
 The technical foundation of this step is the skill `.claude/commands/sap-iac.generate.md`. Open the file and notice how the skill:
 
 1. Executes a final round of checks against the governance constraints
-2. Injects platform specific prerequisites like subdomain uniqueness and determination of Cloud Foundry landscape label values.
-3. Executes the provider schema lookup from the registry
-4. Writes the Terraform files in the correct folders depending in your project structure respecting the dependencies between resources but also between the main setup of the account and the environment specifics for Cloud Foundry.
+2. Executes the provider schema lookup from the registry
+2. Writes the Terraform files in the correct folders depending in your project structure respecting the dependencies between resources but also between the main setup of the account and the environment specifics for Cloud Foundry.
+4. Injects platform specific prerequisites like subdomain uniqueness and determination of Cloud Foundry landscape label values.
 
-**Key insight:** Compared with the `terraform/` output from a "vibe-coded" approach, the spec-driven result is governance-compliant, dependency-ordered, consistently structured, validated, and reproducible.
+**Key insight:** The spec-driven approach results in a governance-compliant, consistently structured, validated, and **reproducible** code generation of Terraform configuration.
 
 ### ✅ Result
 
 - The Terraform code is generated, formatted, and validated.
 - The structure reflects your specification including the required dependency order.
 
-
 ## 📋 Summary
 
-The Terraform code is generated, formatted, and validated. In the next exercise we will deploy the generated code to the global account.
+The Terraform code is generated and validated. In the next exercise we will deploy the generated code to the global account.
 
 Continue to - [Exercise 11 - Deploy the generated code](../ex11/README.md)

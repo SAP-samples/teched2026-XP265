@@ -2,62 +2,53 @@
 
 ## Motivation
 
-Building cloud infrastructure manually — clicking through the cockpit, copying Terraform snippets from the internet — works once. But the second time a colleague needs to recreate the same environment, or the third time a compliance auditor asks *why did you choose this service plan*, the gaps become expensive.
+Building cloud infrastructure manually by clicking through the cockpit, copying Terraform snippets from the internet works. But the second time a colleague needs to recreate the same environment, or the third time a compliance auditor asks *why did you choose this service plan*, the issues of this approach become apparent.
 
-When AI coding tools arrived, the natural reaction was to replace the clicking with prompts. The typical flow is: write a prompt → LLM generates code → iterate the result with edits until it lands on something usable.
+When AI coding tools arrived, the natural reaction was to replace the manual creation of infrastructure configuration with prompts. The typical flow is: write a prompt → LLM generates code → iterate the result with edits until it lands on something usable.
 
-This is great for quick prototyping, but in this flow 100 tries may yield 100 different implementations, and there is no clear record of *why* the model made the decisions it did.
+This is great for quick prototyping, but there is a huge downside in a productive environment: in this flow 100 tries may yield 100 different implementations, and there is usually no clear record of *why* the model made the decisions it did.
 
-Looking at typical Infrastructure as Code (IaC) projects that are much more complex this flow is a bad fit as:
+Looking at typical Infrastructure as Code (IaC) projects several more issues arise with this flow:
 
 - multiple people are involved in creating and maintaining the IaC code
-- a stable setup is required as IaC is the foundation for app development
+- a stable setup is required as IaC is the foundation for successful app development
 - infrastructure management always requires auditability and traceability
 
-The question therefore is: What is the alternative?
+The question therefore is: Do we have a sustainable alternative bringing together benefits of IaC and AI-driven development?
 
-A disciplined alternative is the so called **Spec-driven Development**.
+The answer is that the alternative is the so called **Spec-driven Development**. The approach is built on the idea that instead of prompting *what to build*, you prompt *what the system should do* (or in IaC terms what the infrastructure should look like) which targets its **behavior and constraints** instead of the code.
 
-The approach is built on the idea that instead of prompting *what to build*, you prompt *what the system should do* (or in IaC terms what the infrastructure should look like) which targets its **behavior and constraints**.
-
-Basically this approach produces a **specification** (the "contract"), which drives:
-
-1. A **requirements document** (the authoritative hierarchy for the project)
-2. A **design document** with concrete implementation to-dos
-3. Only then: **code generation** is executed by the LLM/agent
-
-At each stage you can review, approve, or refine before advancing — nothing is implemented until the specification is agreed on.
+This approach produces a **specification** (or several specification documents), which drives and guardrails the **code generation** executed by the LLM/agent. At each stage of the spec-driven development flow you can review, approve, or refine before advancing. In addition every step is documented as markdown file(s).
 
 This approach comes with the following benefits:
 
-- it reduces ambiguity for coding agents, which means fewer back-and-forth correction loops
-- the spec becomes the **primary artifact** that drives all downstream work: implementation, tests, documentation, verification
-- governance rules are encoded once and enforced automatically — the agent will stop and warn you if your service choices violate them
+- it reduces ambiguity for coding agents, which means fewer correction loops
+- the spec becomes the **primary artifact** that drives all downstream activities mainly the code generation
+- governance rules are encoded once and enforced automatically
 
-However, the shift from coding to specifying is the hardest skill: instead of writing/reviewing code it's now **effectively conveying what you want to build** to an agent.
+However, the shift from coding to specifying is challenging. Instead of writing/reviewing code it's now **effectively describing what you want to build** to an agent.
 
 > [!NOTE]
-> While one might get the impression that spec-driven is a return back to waterfall, it is not. The spec-driven approach is iterative and agile, but it is a more disciplined approach compared to a vibe coding approach. You can at any point revisit the steps and refine the specification.
+> While one might get the impression that spec-driven is a return back to waterfall, it is not. The spec-driven approach is iterative and agile, but it is a more disciplined approach compared to vibe coding. You can at any point revisit the steps and refine the specification.
 
 ## The Scenario
 
-Your team is building an **Inventory Management application** using SAP Cloud Application Programming Model (CAP). The app tracks stock levels, purchase orders, and goods movements across a manufacturing company's warehouses.
+Your team is building an **Inventory Management application** using SAP Cloud Application Programming Model (CAP). As a prerequisite, the developer environment on SAP Business AI Platform must be provisioned. This task is what you will build in this session together with an agent.
 
-Before a single line of application code can be written, the developer environment on SAP Business AI Platform must exist and be correctly configured. This is what you will build today together with an agent.
+The application has the following **requirements** mapping to the corresponding platform resources:
 
-**What the environment needs:**
-
-| Component | Purpose |
+| Requirement | Service |
 |---|---|
-| Cloud Foundry space | Runtime where the CAP application is deployed and tested |
-| SAP HANA Cloud | Persistent database for inventory data (products, warehouses, stock levels) |
-| SAP Audit Log Service | Compliance requirement — every create/update/delete on inventory records must be logged |
-| SAP Cloud Logging Service | Centralized log aggregation for developers to trace issues |
-| SAP Build Work Zone | Fiori launchpad — the entry point for end users accessing the inventory UI |
-| SAP Build Code | Integrated development environment with CAP tooling and CI/CD |
-| SAP Cloud Identity Services | Enterprise IdP — the company requires all applications to use their corporate identity provider, not the default SAP ID Service |
+| Cloud Foundry runtime for deploying and testing the CAP app | Cloud Foundry Environment |
+| Persistent database for inventory data | SAP HANA Cloud |
+| Compliance audit trail for all inventory changes | SAP Audit Log Service |
+| Centralized application and runtime logs | SAP Cloud Logging Service |
+| Fiori Launchpad for the inventory UI | SAP Build Work Zone, standard edition |
+| Development tools and CI/CD pipeline | SAP Build Code |
+| Enterprise authentication (no default SAP ID Service) | SAP Cloud Identity Services |
 
-**Governance constraints the company has:**
+
+In addition, the company has the following **Governance constraints:**
 
 - All data must remain in the EU
 - Subaccounts must follow a naming pattern
@@ -65,7 +56,6 @@ Before a single line of application code can be written, the developer environme
 - HANA Cloud is a metered service — cost center tagging is mandatory on all subaccounts
 - SAP Cloud Identity Services is required as the identity provider — the default SAP ID Service is not permitted
 
-These constraints will be encoded in the very first exercise and enforced automatically by every subsequent step.
 
 ```mermaid
 graph TD
@@ -132,30 +122,6 @@ Spec-driven development is a disciplined approach. All spec-kits support the use
 10. Generate the Terraform code
 11. Deploy the generated Terraform code
 
-
-At the end of this session you will have finished all steps depicted in the following diagram:
-
-```mermaid
-flowchart LR
-    E1["Ex 1\nInitialize\nproject"]
-    E2["Ex 2\n/sap-iac.govern\nGovernance"]
-    E3["Ex 3\n/sap-iac.scenario\nScenario"]
-    E4["Ex 4\n/sap-iac.accounts\nAccounts"]
-    E5["Ex 5\n/sap-iac.services\nServices"]
-    E6["Ex 6\n/sap-iac.security\nSecurity"]
-    E7["Ex 7\n/sap-iac.connectivity\nConnectivity"]
-    E8["Ex 8\n/sap-iac.tasks\nTasks"]
-    E9["Ex 9\n/sap-iac.design\nDesign"]
-    E10["Ex 10\n/sap-iac.generate\nGenerate"]
-    E11["Ex 11\nterraform apply\nDeploy"]
-
-    E1 --> E2 --> E3 --> E4 --> E5 --> E6 --> E7 --> E8 --> E9 --> E10 --> E11
-
-    style E2 fill:#fff0cc,stroke:#e8a000
-    style E9 fill:#e6f2ff,stroke:#0070b1
-    style E10 fill:#e6ffe6,stroke:#5a9e3a
-```
-
 Each step corresponds to one exercise where you will execute the task and get an explanation of the intention and the technical foundation.
 
 ## Technical Setup
@@ -167,10 +133,10 @@ Before starting with the exercises some technical setup is required to ensure th
 
 You need the following components set up before starting the exercises:
 
-- MCP Server for Terraform
-- Configure Claude Code to connect to the MCP Server for Terraform
-- Install the spec-kit CLI
-- Check your access to your Business AI Platform account via the cockpit and btp CLI
+1. MCP Server for Terraform
+2. Configure Claude Code to connect to the MCP Server for Terraform
+3. Install the spec-kit CLI
+4. Check your access to your Business AI Platform account via the cockpit and btp CLI
 
 The following sections guide you through the setup process for each of the required components.
 
@@ -225,42 +191,26 @@ claude
 
 Next, enter `/model` and validate that the model is `Sonnet 4.6` and the reasoning effort is `High`, as shown in this screenshot:
 
-![Claude Model Verification](./images/6_claude_model_verification.png)
+![Claude Model Verification](./images/1_claude_model_verification.png)
 
 If this is not the case select the right model and/or adjust the reasoning effort accordingly.
 
 ### Install the spec-kit CLI
 
-The central ingredient for this exercise is the spec-kit CLI, which allows you to interact with the spec-driven development framework. You need to install it and ensure it is available in your system's PATH.
+> [!NOTE]
+> If you are doing the hands-on on your own, take a look at the [documentation](https://sap.github.io/iac-spec-kit-for-sap-business-ai-platform/setup/) for the installation of the spec-kit CLI on the different platforms.
 
-1. Navigate to the project's GitHub repository [release page](https://github.com/SAP/iac-spec-kit-for-sap-business-ai-platform/releases)
-2. Download the latest release of the spec-kit CLI for Windows (`*_windows_amd64.zip`)
-3. Extract the downloaded ZIP file to the Desktop
+The central tool for this exercise is the spec-kit CLI. You need to install it manually:
 
-Add it to your system's PATH for easier access.
-For the later you must add the extracted binary to your system's PATH.
+1. Open a terminal window.
+2. Run the following command to download and install the spec-kit CLI:
 
-1. Right click on the Windows Logo and click "System"
+      ```powershell
+      iwr -useb https://raw.githubusercontent.com/SAP/iac-spec-kit-for-sap-business-ai-platform/refs/heads/main/sap-iac-install.ps1 | iex
+      ```
 
-      ![Windows System Settings](./images/1_system_settings.png)
-
-2. Click on "Advanced system settings"
-
-      ![Advanced System Settings](./images/2_advanced_system_settings.png)
-
-3. Click on "Environment Variables ..."
-
-      ![Environment Variables](./images/3_environment_variables.png)
-
-4. Click on the Path Variable and then click "Edit"
-
-      ![Edit Path Variable](./images/4_edit_path_variable.png)
-
-5. Click "New" and add the path to the extracted spec-kit CLI binary
-
-      ![Add New Path](./images/5_add_new_path.png)
-
-6. Click "OK" a few times to close all the dialog boxes
+> [!NOTE]
+> The CLI will be made available as a winget package to support the standard installation process on Windows. However, the package review process takes a bit, so we will use a **workaround** in this session
 
 
 Verify that the spec-kit CLI is correctly installed and accessible from your terminal by opening a new terminal and running:
@@ -290,9 +240,9 @@ Flags:
 Use "sap-iac [command] --help" for more information about a command.
 ```
 
-### Validate your access
+### Validate your access to the platform
 
-As we want to deploy resources to the SAP Business AI Platform, you need to have access to the platform. We validate this both via the cockpit and the btp CLI.
+As we want to deploy resources to the SAP Business AI Platform, you need to have access to the platform. Validate this both via the cockpit and the btp CLI.
 
 #### Cockpit
 
@@ -318,8 +268,8 @@ You should see a success message indicating that you have successfully logged in
 
 ## 📋 Summary
 
-You now understand the motivation for spec-driven development, the inventory management scenario and its constraints we use in this exercise.
+You now understand the motivation for spec-driven development, the hands-on scenario and its constraints.
 
-In addition, you have installed the prerequisites for the exercise and validated your access to the SAP Business AI Platform. Now the real fun can start!
+In addition, you have installed the prerequisites for the exercises and validated your access to the SAP Business AI Platform. Now the real fun can start!
 
 Continue to - [Exercise 1 - Initialize the project](../ex1/README.md)

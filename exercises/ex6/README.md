@@ -1,7 +1,6 @@
 # Detail the security setup
 
 Security configuration is often a critical part of a setup comprising IdP trust configuration and role assignments. In this exercise, the agent defines the complete security configuration for the inventory management environment.
-
 The previously defined governance rules will again play an important role as guardrail since we defined that the default SAP ID Service is **not permitted**.
 
 > [!TIP]
@@ -86,7 +85,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.sec
 - The security-specific requirements are collected in the `specs/trust.md` document.
 - Gaps from the previous steps that needed to be detailed are now captured.
 
-**Key insight:** The spec-driven flow supports administrators by closing gaps in the security setup based on information provided in the previous steps. This reduces the probability of missed settings and failed deployments.
+**Key insight:** The guided flow of the spec-driven development approach helps is to close gaps due to missing information in our intent description especially in critical areas like the security setup.
 
 ## 📋 Summary
 
