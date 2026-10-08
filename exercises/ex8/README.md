@@ -7,7 +7,7 @@ We have all specification documents covering the account topology, service setup
 
 ## 🎯 Intent of the exercise
 
-In this exercise, the agent consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify thetasks before generating the corresponding Terraform code. The goal is to ensure that all tasks as well as their dependencies are correctly captured.
+In this exercise, the agent consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify the tasks before generating the corresponding Terraform code. The goal is to ensure that all tasks as well as their dependencies are correctly captured.
 
 
 ## 🛠️ Execute the tasks command

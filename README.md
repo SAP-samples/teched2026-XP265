@@ -61,7 +61,7 @@ The exercises are designed to be completed in order, as each exercise builds upo
 - [Exercise 3 - Define the scenario](exercises/ex3/README.md) - specify the main intent of the project
 - [Exercise 4 - Detail the account setup](exercises/ex4/README.md) - detail the account landscape
 - [Exercise 5 - Detail the service setup](exercises/ex5/README.md) - detail the service setup (environment, entitle-only etc.)
-- [Exercise 6 - Detail the security setup](exercises/ex6/README.md) - detail the security setup around role colelctions and trust
+- [Exercise 6 - Detail the security setup](exercises/ex6/README.md) - detail the security setup around role collections and trust
 - [Exercise 7 - Detail the connectivity setup](exercises/ex7/README.md) - detail the connectivity setup namely destinations
 - [Exercise 8 - Define the tasks](exercises/ex8/README.md) - create the todo list for the agent
 - [Exercise 9 - Evaluate the design](exercises/ex9/README.md) - specify the terraform design
