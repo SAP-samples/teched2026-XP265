@@ -2,3 +2,5 @@ https?://localhost.*
 https://developers.sap.com/*
 https://www.sap.com/events/teched.html
 https://www.sap.com/products/technology-platform/pricing.html
+https://mydemo-api.s4hana.ondemand.com/
+https://api.reuse.software/info/github.com/SAP-samples/teched2026-XP265
