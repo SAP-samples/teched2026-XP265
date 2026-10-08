@@ -68,10 +68,12 @@ https
 HCL
 HashiCorp
 IaC
+iac
 IAS
 init
 IdP
 idp
+io
 json
 JSON
 js
@@ -83,6 +85,7 @@ kubeconfig
 kymaruntime
 Kyma
 kyma
+Jira
 LATAM
 lifecycle
 LLM

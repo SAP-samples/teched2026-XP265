@@ -1,6 +1,6 @@
 # Deploy the generated Terraform code
 
-The Terraform code is generated, formatted, and validated. The final step is to deploy it to your account provisioning the `invmgmt-dev` subaccount with all the services the inventory management team needs to start building.
+The final step in our hands-on journey is to deploy the configuration to the global account to enable the dev team to start building.
 
 ## 🛠️ Deploy to SAP Business AI Platform
 
@@ -13,7 +13,7 @@ The code generation created `terraform.tfvars` files in the `terraform/btp/` and
 ### Step 2 - Add your credentials into the terraform.tfvars files
 
 > [!WARNING]
-> Critical: We put our credentials into the `terraform.tfvars` files. This is not a good practice as it exposes sensitive information and should therefore not be done in real-world scenarios. For the sake of this exercise, we will proceed this way, but always consider more secure alternatives in production environments.
+> We put our credentials into the `terraform.tfvars` files. This is not a good practice as it exposes sensitive information and should therefore not be done in real-world scenarios. For the sake of this exercise, we will proceed this way, but always consider more secure alternatives in production environments.
 
 #### Terraform provider for SAP BTP
 
@@ -59,7 +59,7 @@ Change to the directory `terraform/btp/`. Before applying review the plan of the
 terraform plan -out=plan.out
 ```
 
-Scan the plan output and validate that it aligns with your expectations before proceeding to apply the deployment.
+Scan the plan output and check that it aligns with your expectations before proceeding to apply the deployment.
 
 ### Step 5 - Apply the deployment
 
@@ -69,9 +69,7 @@ Deploy the Terraform configuration to the global account. Execute the following 
 terraform apply plan.out
 ```
 
-Terraform will provision resources in the order defined by the dependency graph in the generated code.
-
-When finished, the Terraform apply command will output the *Cloud Foundry API URL* as well as the *Cloud Foundry Org ID*. You need these values as input for the Cloud Foundry deployment.
+Terraform will provision the resources on the platform. When finished, the Terraform apply command will output the *Cloud Foundry API URL* as well as the *Cloud Foundry Org ID*. You need these values as input for the Cloud Foundry deployment.
 
 ### Step 6 - Plan the deployment for Cloud Foundry
 
@@ -88,7 +86,7 @@ As before we review the plan of the Cloud Foundry deployment. Execute the follow
 terraform plan -out=cf-plan.out
 ```
 
-Scan the plan output and validate that it aligns with your expectations before proceeding to apply the deployment.
+Scan the plan output and check that it aligns with your expectations before proceeding to apply the deployment.
 
 ### Step 7 - Apply the deployment for Cloud Foundry
 
@@ -98,25 +96,24 @@ Deploy the Terraform configuration to Cloud Foundry. Execute the following comma
 terraform apply cf-plan.out
 ```
 
-Terraform will provision resources in the order defined by the dependency graph in the generated code.
+Terraform will provision the resources in the Cloud Foundry environment.
 
 ### ✅ Result
 
-After the deployment succeeds:
+After the deployment succeeds log in to the [Cockpit](https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/) and verify that:
 
-- Log in to the [Cockpit](https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/) and verify that:
-  - The `invmgmt-dev` subaccount exists in the `eu20` region
-  - The Cloud Foundry environment is enabled with a `dev` space
-  - All services are created and the subscriptions are active
-  - The IAS trust configuration is visible under *Security → Trust Configuration*
-  - The three role collections are listed under *Security → Role Collections*
-  - The Cloud Foundry space `dev` contains the destination service instance
+- The `invmgmt-dev` subaccount exists in the `eu20` region
+- The Cloud Foundry environment is enabled with a `dev` space
+- All services are created and the subscriptions are active
+- The IAS trust configuration is visible under *Security → Trust Configuration*
+- The three role collections are listed under *Security → Role Collections*
+- The Cloud Foundry space `dev` contains the destination service instance
 
 
 ## 📋 Summary
 
-🎉 Congratulations — you have completed the full spec-driven development flow for IaC!
+🎉 Congratulations — you have completed the full spec-driven development flow with Terraform!
 
-You encoded governance rules and started with a plain-language description of an inventory management application that you refined through the spec-driven process. Finally you generated deployment-ready Terraform code that follows the specifications.
+You encoded governance rules and started with a plain-language description of an inventory management application. You refined the requirements through the spec-driven process. Finally you generated Terraform code that follows the specifications and deployed it to the SAP Business AI Platform.
 
-The specification in `specs/` documents every decision that you made and serves as foundation for future development and maintenance of your infrastructure, ensuring that your team can continue to build and evolve the system with confidence.
+The specification documents in the folder `specs/` document every decision that you made and serves as foundation for future development and maintenance of your infrastructure, ensuring that your team can continue to build and evolve the system from here.

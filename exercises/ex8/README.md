@@ -1,13 +1,13 @@
 # Define the tasks
 
-We have all specification documents covering the account topology, services, security configuration, and connectivity setup in place. These documents will now be translated into an actionable task list that serves as input for code generation.
+We have all specification documents covering the account topology, service setup, security configuration, and connectivity configuration in place. These documents will now be translated into a task list that serves as input for code generation.
 
 > [!TIP]
 > In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
 
 ## 🎯 Intent of the exercise
 
-In this exercise, the agent consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify the sequence of tasks before generating the corresponding Terraform code. The goal is to ensure that all dependencies are correctly captured and that tasks that can be executed in parallel are identified.
+In this exercise, the agent consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify the tasks before generating the corresponding Terraform code. The goal is to ensure that all tasks as well as their dependencies are correctly captured.
 
 
 ## 🛠️ Execute the tasks command
@@ -18,11 +18,11 @@ Execute the following command in the Claude Code terminal:
 /sap-iac.tasks
 ```
 
-Based on all specification documents and the governance constraints, the agent derives a dependency-ordered task list.
+Based on all specification documents and the governance constraints, the agent derives a task list including metadata and dependencies between tasks.
 
-The task sequence should be *similar* to the file in the [sample folder](./sample/tasks.md).
+The result should look *similar* to the file in the [sample folder](./sample/tasks.md).
 
-Tasks that can be executed in parallel are marked accordingly and additional meta information about each task and its dependencies is provided. Confirm the proposed task list by selecting `Yes`.
+Confirm the proposed task list by selecting `Yes`.
 
 The agent will create a new file `specs/tasks.md`.
 
@@ -30,12 +30,10 @@ The agent will create a new file `specs/tasks.md`.
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.tasks.md`. Open the file and notice how the skill:
 
-1. Reads all four spec files and identifies the resources defined in each
-2. Builds a dependency graph — for example, service instances cannot be created before the necessary entitlements are in place.
-3. Identifies tasks that can run in parallel
-4. Assigns a task ID to each item so that the design step ([Exercise 9](../ex9/README.md)) can annotate each task with the Terraform file it will be written to
+1. Reads all specification documents and identifies the resources defined in each
+2. Builds a dependency graph and identifies a task sequence based on dependencies
 
-**Key insight:** The task list acts as the bridge between specification and implementation. It transforms the specification documents into a list of tasks required to be executed when generating the code.
+**Key insight:** The task list acts as the bridge between specification and implementation, basically a ordered todo list that steers the code generation process.
 
 ### ✅ Result
 
@@ -44,6 +42,6 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.tas
 
 ## 📋 Summary
 
-The task list translating the specifications into an actionable checklist is defined and dependency-ordered. The next exercise will enrich the task list with a mapping to the corresponding Terraform files.
+The task list translating the specifications into a checklist is defined and dependency-ordered. The next exercise will enrich the task list with a mapping to the corresponding Terraform files.
 
 Continue to - [Exercise 9 - Evaluate the design](../ex9/README.md)

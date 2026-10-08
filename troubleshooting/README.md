@@ -1,9 +1,9 @@
 # Troubleshooting
 
 > [!NOTE]
-> This section is only relevant for onsite attendees of the TechEd session XP265
+> This section is only relevant for onsite attendees of the TechEd session XP265. In any case the on-site team is here to support you
 
-In case you run into techical issues during the exercise, here are some common troubleshooting hints that can help you resolve them.
+In case you run into technical issues during the exercise, here are some common troubleshooting hints that can help you resolve them.
 
 ## Podman is not available for container execution
 
@@ -16,7 +16,7 @@ This script will trigger the installation process for `podman` on your system.
 
 ## Podman is not running
 
-As the MCP server runs as a container using `podman`, it requires the `podman` service to be running. If you see errors in Claude Code stating that the MCP server is not running, execute the following command:
+As the MCP server runs as a container using `podman`, it requires the `podman` service to be up and running. If you see errors in Claude Code stating that the MCP server is not running or available, execute the following command:
 
 ```powershell
 podman machine start
@@ -28,6 +28,8 @@ If podman was not running this command will start the tool, in case that podman 
 Starting machine "podman-machine-default"
 Error: unable to start "podman-machine-default": already running
 ```
+
+If the error still occurs after starting the podman machine, get in touch with the hands-on team onsite.
 
 ## Claude has no connection to an API
 
@@ -65,10 +67,10 @@ If this is not the case, get in touch with the hands-on team onsite.
 
 ## Login via the btp CLI fails
 
-Make sure that the following points are met:
+Make sure that the following prerequisites are met:
 
 - You have specified the `--idp` parameter with the value `ainfvn15r`
-- You have put the username and password into quotes
+- You have put the username and password into **quotes**
 
 ## The spec-kit CLI is not found
 
@@ -84,7 +86,7 @@ Depending on your interaction with the agent, it might deviate from the expected
 
 - Abort the execution by pressing the escape key
 - Clear the context by entering `/clear`
-- Redo the previous step by re-executing the relevant command or action
+- Redo the previous step by re-executing the relevant command
 
 ## "Compacting Conversation" message
 
