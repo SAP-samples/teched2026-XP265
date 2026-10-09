@@ -21,7 +21,6 @@ Execute the following command in the Claude Code terminal:
 
 The agent reads `specs/scenario.md` and `memory/governance.md`. As you already provided all information necessary for the account setup, it will present you the summary including the passed governance checks. The result should look similar to this:
 
-```powershell
 | Field | Value |
 |---|---|
 | Subaccount name | invmgmt-dev |
@@ -31,7 +30,6 @@ The agent reads `specs/scenario.md` and `memory/governance.md`. As you already p
 | CF org | Automatically created with the subaccount |
 | CF space | dev |
 | Cost center tag | CC-123456 (as defined by governance) |
-```
 
 The agent will also derive a setting for the `beta_enabled` and the `usage` attribute of the subaccount.
 

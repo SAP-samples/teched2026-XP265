@@ -25,6 +25,9 @@ Let's see how we can transfer these constraints using our spec-driven developmen
 
 ## 🛠️ Execute the govern command
 
+> [!TIP]
+> The easiest way to walk through the exercises is to open an embeded terminal within VS Code. To do so use the key combination `Ctrl + Shift + P` and then select `Terminal: Create New Terminal in Editor Area`.
+
 ### Step 1 - btp CLI login
 
 Navigate to the terminal from the previous exercise and execute the following command to log in to the btp CLI:
@@ -67,7 +70,7 @@ Execute the following command in the Claude Code terminal:
 
 The agent will check the basic layout of your project folder to ensure it meets the expected structure. You might be asked to confirm the execution of some PowerShell as well as btp CLI commands. Do so to allow the agent to scan the project folder. Once the agent has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
 
-The agent will then ask you targeted questions about the governance requirements. Use the following answers (select `Other` or `Type something` if the proposals of Claude Code do not fit):
+The agent will then ask you targeted questions about the governance requirements. Use the following answers. Select `Other` or `Type something` if the proposals of Claude Code do not fully cover your intent:
 
 **Preferred infrastructure provider:**
 
@@ -125,7 +128,10 @@ Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP I
 A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.
 ```
 
-Once you have answered all questions, the agent will summarize the governance rules and ask you to confirm if the captured data is correct. Be aware that the summary might be opened as a document in a new tab in VS Code. Confirm by selecting `Yes`.
+Once you have answered all questions, the agent will summarize the governance rules and ask you to confirm if the captured data is correct. Be aware that the summary might be opened as a document in a new tab in VS Code. Review it but do not close the tab. Confirm by selecting `Yes`.
+
+> [!NOTE]
+> In case you closed the tab with the summary, Claude will interrupt the flow. Type `Continue and write the document` in the Claude Code terminal to resume the process.
 
 The agent will create a new file in `memory/` called `governance.md`.
 

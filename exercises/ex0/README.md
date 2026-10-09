@@ -195,6 +195,8 @@ Next, enter `/model` and validate that the model is `Sonnet 4.6` and the reasoni
 
 If this is not the case select the right model and/or adjust the reasoning effort accordingly.
 
+Leave Claude for now by entering `/exit` in the terminal.
+
 ### Install the spec-kit CLI
 
 > [!NOTE]
@@ -244,6 +246,9 @@ Use "sap-iac [command] --help" for more information about a command.
 
 As we want to deploy resources to the SAP Business AI Platform, you need to have access to the platform. Validate this both via the cockpit and the btp CLI.
 
+Your username is in the format `XP265-<0XX>`, where `0XX` should be replaced with your group number. The email of the user is `xp265-<0XX>@education.cloud.sap`
+Your Password is the one provided by the hands-on team during the session.
+
 #### Cockpit
 
 - Open a browser and navigate to the URL <https://emea.cockpit.btp.cloud.sap/cockpit/?idp=ainfvn15r.accounts.ondemand.com#/>
@@ -253,10 +258,10 @@ Keep the browser window open as you will need the subdomain of the global accoun
 
 #### btp CLI
 
-Verify your access via the btp CLI by running:
+Verify your access via the btp CLI by running, replace the `0XX` in the username with your group number::
 
 ```powershell
-btp login --idp ainfvn15r --user 'XP265-<your-group-number' --password '<your-password>'
+btp login --idp ainfvn15r --user 'XP265-<0XX>' --password '<your-password>'
 ```
 
 > [!NOTE]

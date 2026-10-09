@@ -19,10 +19,8 @@ Execute the following command in the Claude Code terminal:
 
 Based on the task list, the agent will ask you about the desired Terraform file layout with the two options:
 
-```powershell
 - Per-stage directories — terraform/dev/btp/ and terraform/dev/cf/ (one directory per stage)
 - Single configuration — terraform/btp/ and terraform/cf/ with a dev.tfvars file per stage
-```
 
 Choose:
 

@@ -24,9 +24,6 @@ The agent reads `specs/tasks.md` including the file path annotations.
 
 If the agent asks you which stages to generate make sure that you generate for the `dev` stage only.
 
-> [!NOTE]
-> If the agent tries to do access the Terraform registry via webfetches or curl requests, make sure that the MCP server is running and accessible (see [Getting Started - MCP Server for Terraform](../ex0/README.md#mcp-server-for-terraform) and [Getting Started - Wire up Claude Code to the MCP Server](../ex0/README.md#wire-up-claude-code-to-the-mcp-server)).
-
 Before generating the Terraform code the information about how you want to authenticate is missing. The agent will ask you how you want to authenticate
 
 - For the Terraform Provider for *SAP BTP*, choose:
@@ -42,11 +39,14 @@ These values will be used in the provider configuration within the generated Ter
 
 The agent will ask you to allow the connection to the Terraform registry via the MCP server. Do so as this enables the agent to fetch the latest provider schemas and ensure that the generated Terraform code is compliant with the current provider specifications.
 
+> [!NOTE]
+> If the agent tries to do access the Terraform registry via webfetches or curl requests, make sure that the MCP server is running and accessible (see [Getting Started - MCP Server for Terraform](../ex0/README.md#mcp-server-for-terraform) and [Getting Started - Wire up Claude Code to the MCP Server](../ex0/README.md#wire-up-claude-code-to-the-mcp-server)).
+
 After collecting all required information the agent will ask for confirmation to create the Terraform file directories. Confirm by selecting `Yes, and always allow access to...`.
 
 When the agent created the files it will ask you if edits are allowed. Confirm by selecting `Yes, and switch to accept edits ...`.
 
-> [!NOTE]
+> [!TIP]
 > The task list is used to guide the code generation, consequently the agent using the skill will also tick off tasks as they are processed.
 
 After the generation of the files is complete, the agent wants to run `terraform init`. Confirm the execution if asked.

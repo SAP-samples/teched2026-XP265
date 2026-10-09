@@ -28,6 +28,12 @@ As we did not provide the full trust configuration details in the scenario, the 
 ainfvn15r.accounts.ondemand.com
 ```
 
+Claude will then ask you to provide an explicit origin for this IdP trust configuration or if this field should be left empty. Provide the following information when asked:
+
+```text
+Do not add an explicit origin, leave the field empty.
+```
+
 We did not explicitly mention which role collections should be created; therefore, the agent will ask which role collections are required.
 Enter the following information when asked about role collections:
 

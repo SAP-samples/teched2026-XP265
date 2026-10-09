@@ -26,6 +26,7 @@ The URL is https://mydemo-api.s4hana.ondemand.com
 The ProxyType is Internet
 The authentication is BasicAuthentication
 The user is INVENTORY_API_USER
+The password should be supplied via a sesntive variable
 The scope is subaccount
 The destination needs an additional property `TrustAll` set to `true`
 No destination certificates are required

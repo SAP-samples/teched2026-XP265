@@ -23,7 +23,9 @@ After successful validation it will check for available plans and categories of 
 
 ### Ambiguities in the scenario
 
-However, we left some ambiguity in the scenario when it comes to the question if a service/application should be entitled only and in case of services in which environment the service instance should be created. As this information cannot be inferred automatically, we need to provide explicit guidance.
+However, we left some ambiguity in the scenario when it comes to the question if a service/application should be entitled only and in case of services in which environment the service instance should be created. As this information cannot be inferred automatically, we need to provide explicit guidance. In addition, we need to specify any service parameters that are required for the setup.
+
+Read the following sections carefully before starting to answer Claude's querstions to ensure that you provide the right information as the questions on the topics.
 
 > [!TIP]
 > The flow considers any rules defined in governance. If we would have defined this information already there, less manual decision-making (and probably less chances to make errors) would have been required.
@@ -38,9 +40,9 @@ Confirm the default choice for each service/app by stating `default`.
 
 It will also ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform (environment "Other" in the cockpit).
 
-Select `BTP` *except for the destination service* that should be deployed to Cloud Foundry.
+Select `BTP` **except for the destination service**. This service should be deployed to Cloud Foundry.
 
-### Provide service parameters
+#### Provide service parameters
 
 As some services require parameters, the skill will ask you to provide the necessary values.
 
