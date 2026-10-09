@@ -92,7 +92,7 @@ Scan the plan output and check that it aligns with your expectations before proc
 Deploy the Terraform configuration to the global account. Execute the following command:
 
 ```powershell
-terraform apply plan.out
+terraform apply 'plan.out'
 ```
 
 Terraform will provision the resources on the platform. When finished, the Terraform apply command will output the *Cloud Foundry API URL* as well as the *Cloud Foundry Org ID*. You need these values as input for the Cloud Foundry deployment.
@@ -125,7 +125,7 @@ Scan the plan output and check that it aligns with your expectations before proc
 Deploy the Terraform configuration to Cloud Foundry. Execute the following command:
 
 ```powershell
-terraform apply cf-plan.out
+terraform apply 'cf-plan.out'
 ```
 
 Terraform will provision the resources in the Cloud Foundry environment.
