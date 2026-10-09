@@ -20,43 +20,69 @@ The code generation created `terraform.tfvars` files in the `terraform/btp/` and
 - Open the file `terraform.tfvars` in the folder `SAPTechEd2026-0XX/terraform/btp/` and fill in your credentials. Set the value for the custom IdP to `ainfvn15r`.
 - If the service names contain placeholders replace them with your group name.
 - Set the password for the S/4HANA destination to any value,e.g. `test1234`
+- Save your changes
 
 #### Terraform provider for Cloud Foundry
 
 - Open the file `terraform.tfvars` in the folder `SAPTechEd2026-0XX/terraform/cf/` and fill in your credentials. Set the value for the custom origin to `ainfvn15r-platform`.
-- If the service names contain placeholders replace them with your group name.
+- If the service names contain placeholders replace them with your group name in lower case e.g. `xp265-002`.
+- Save your changes
 
 The file contains placeholders for the Cloud Foundry API as well as the Cloud Foundry Org ID. They cannot be filled yet as the Cloud Foundry environment is not yet provisioned. We will add them later once the environment is available.
 
 ### Step 3 - Remove the service instance for SAP HANA Cloud
 
-As the provisioning of HANA Cloud can take a while, we remove the service instance from the Terraform configuration before applying the deployment.
+As the provisioning of HANA Cloud can take a while, we remove the related service instances from the Terraform configuration before applying the deployment.
 
-Open the file `SAPTechEd2026-0XX/terraform/btp/main.tf` and comment out the HANA Cloud service instance block. The resulting block should look like this:
+1. Open the file `SAPTechEd2026-0XX/terraform/btp/main.tf`
+2. Comment out the HANA Cloud service instance block. The resulting block should look like this:
 
-```terraform
-#resource "btp_subaccount_service_instance" "hana_cloud_hana" {
-#  subaccount_id         = btp_subaccount.dev.id
-#  service_offering_name = "hana-cloud"
-#  serviceplan_name      = "hana"
-#  name                  = "hana-cloud-hana"
-#  parameters = jsonencode({
-#    data = {
-#      memory                 = 32
-#      edition                = "cloud"
-#      generateSystemPassword = true
-#    }
-#  })
-#  depends_on = [btp_subaccount_entitlement.hana_cloud_hana]
-#}
-```
+      ```terraform
+      #resource "btp_subaccount_service_instance" "hana_cloud_hana" {
+      #  subaccount_id         = btp_subaccount.dev.id
+      #  service_offering_name = "hana-cloud"
+      #  serviceplan_name      = "hana"
+      #  name                  = "hana-cloud-hana"
+      #  parameters = jsonencode({
+      #    data = {
+      #      memory                 = 32
+      #      edition                = "cloud"
+      #      generateSystemPassword = true
+      #    }
+      #  })
+      #  depends_on = [btp_subaccount_entitlement.hana_cloud_hana]
+      #}
+      ```
+
+3. Comment out the HANA HDI service instance block as shown below:
+
+      ```terraform
+      #resource "btp_subaccount_service_instance" "hana_hdi" {
+      #  subaccount_id         = btp_subaccount.invmgmt_dev.id
+      #  service_offering_name = "hana"
+      #  serviceplan_name      = "hdi-shared"
+      #  name                  = var.btp_subaccount_service_instance_hana_hdi_name
+      #
+      #  depends_on = [
+      #    btp_subaccount_entitlement.hana_hdi_shared,
+      #    btp_subaccount_service_instance.hana,
+      #  ]
+      #}
+      ```
+4. Save your changes
 
 ### Step 4 - Plan the deployment
 
-Change to the directory `terraform/btp/`. Before applying review the plan of the Terraform deployment by executing a `terraform plan` command in the terminal:
+Change to the directory `terraform/btp/`. Initialize the Terraform configuration by executing the following command:
 
 ```powershell
-terraform plan -out=plan.out
+terraform init
+```
+
+Before applying review the plan of the Terraform deployment by executing a `terraform plan` command in the terminal:
+
+```powershell
+terraform plan -out='plan.out'
 ```
 
 Scan the plan output and check that it aligns with your expectations before proceeding to apply the deployment.
@@ -66,7 +92,7 @@ Scan the plan output and check that it aligns with your expectations before proc
 Deploy the Terraform configuration to the global account. Execute the following command:
 
 ```powershell
-terraform apply plan.out
+terraform apply 'plan.out'
 ```
 
 Terraform will provision the resources on the platform. When finished, the Terraform apply command will output the *Cloud Foundry API URL* as well as the *Cloud Foundry Org ID*. You need these values as input for the Cloud Foundry deployment.
@@ -75,15 +101,21 @@ Terraform will provision the resources on the platform. When finished, the Terra
 
 As we have the Cloud Foundry environment enabled, we plan the deployment for it. Change the root folder of the generated Terraform code for Cloud Foundry `SAPTechEd2026-0XX/terraform/cf/`
 
-Add the values for the *Cloud Foundry API URL* and the *Cloud Foundry Org ID* in the appropriate variable in the `cf/terraform.tfvars` file before planning the deployment.
+Add the values for the *Cloud Foundry API URL* and the *Cloud Foundry Org ID* in the appropriate variable in the `cf/terraform.tfvars` file before planning the deployment. Save your changes before proceeding.
 
 > [!TIP]
 > If you cleaned or closed the terminal, you can access the Cloud Foundry API URL via the command `terraform output` in the folder of the Terraform configuration `terraform/btp/`.
 
+Now initialize the Terraform configuration by executing the following command:
+
+```powershell
+terraform init
+```
+
 As before we review the plan of the Cloud Foundry deployment. Execute the following command in the terminal:
 
 ```powershell
-terraform plan -out=cf-plan.out
+terraform plan -out='cf-plan.out'
 ```
 
 Scan the plan output and check that it aligns with your expectations before proceeding to apply the deployment.
@@ -93,7 +125,7 @@ Scan the plan output and check that it aligns with your expectations before proc
 Deploy the Terraform configuration to Cloud Foundry. Execute the following command:
 
 ```powershell
-terraform apply cf-plan.out
+terraform apply 'cf-plan.out'
 ```
 
 Terraform will provision the resources in the Cloud Foundry environment.

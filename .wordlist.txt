@@ -52,6 +52,7 @@ dropdown
 EMEA
 emea
 ESC
+eu
 faq
 FinOps
 finops
@@ -63,10 +64,11 @@ GDPR
 GLOBALACCOUNT
 HANA
 hana
+HashiCorp
 html
 https
 HCL
-HashiCorp
+HDI
 IaC
 iac
 IAS
@@ -74,6 +76,7 @@ init
 IdP
 idp
 io
+invmgmt
 json
 JSON
 js

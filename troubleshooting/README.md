@@ -91,3 +91,7 @@ Depending on your interaction with the agent, it might deviate from the expected
 ## "Compacting Conversation" message
 
 Depending on the flow of the conversation you might see an interuption of the conversation with a message stating "Compacting Conversation". This indicates that the system is condensing previous messages to optimize performance. You can generally ignore this message. The conversation will resume automatically.
+
+## Keyboard Layout changed
+
+In case you accidentally changed your keyboard layout (from English to German or vice versa), you can switch it back to the desired layout via the key combination `Windows Key + Spacebar`.
