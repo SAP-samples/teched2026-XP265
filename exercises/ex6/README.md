@@ -64,7 +64,7 @@ I want to define a group assignment. This group assignment should be done at the
 | invmgmt-dev-audit-viewers | InvMgmt_Dev_AuditLog_Viewer | Assigned to compliance/audit team members |
 ```
 
-As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and replace the `0XX` with your group number:
+As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and **replace the `0XX`** with your group number:
 
 ```text
 Space: dev
