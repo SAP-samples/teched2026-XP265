@@ -20,11 +20,13 @@ The code generation created `terraform.tfvars` files in the `terraform/btp/` and
 - Open the file `terraform.tfvars` in the folder `SAPTechEd2026-0XX/terraform/btp/` and fill in your credentials. Set the value for the custom IdP to `ainfvn15r`.
 - If the service names contain placeholders replace them with your group name.
 - Set the password for the S/4HANA destination to any value,e.g. `test1234`
+- Save your changes
 
 #### Terraform provider for Cloud Foundry
 
 - Open the file `terraform.tfvars` in the folder `SAPTechEd2026-0XX/terraform/cf/` and fill in your credentials. Set the value for the custom origin to `ainfvn15r-platform`.
 - If the service names contain placeholders replace them with your group name in lower case e.g. `xp265-002`.
+- Save your changes
 
 The file contains placeholders for the Cloud Foundry API as well as the Cloud Foundry Org ID. They cannot be filled yet as the Cloud Foundry environment is not yet provisioned. We will add them later once the environment is available.
 
@@ -67,6 +69,7 @@ As the provisioning of HANA Cloud can take a while, we remove the related servic
       #  ]
       #}
       ```
+4. Save your changes
 
 ### Step 4 - Plan the deployment
 
@@ -98,7 +101,7 @@ Terraform will provision the resources on the platform. When finished, the Terra
 
 As we have the Cloud Foundry environment enabled, we plan the deployment for it. Change the root folder of the generated Terraform code for Cloud Foundry `SAPTechEd2026-0XX/terraform/cf/`
 
-Add the values for the *Cloud Foundry API URL* and the *Cloud Foundry Org ID* in the appropriate variable in the `cf/terraform.tfvars` file before planning the deployment.
+Add the values for the *Cloud Foundry API URL* and the *Cloud Foundry Org ID* in the appropriate variable in the `cf/terraform.tfvars` file before planning the deployment. Save your changes before proceeding.
 
 > [!TIP]
 > If you cleaned or closed the terminal, you can access the Cloud Foundry API URL via the command `terraform output` in the folder of the Terraform configuration `terraform/btp/`.

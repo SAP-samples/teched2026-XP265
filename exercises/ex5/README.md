@@ -25,7 +25,7 @@ After successful validation it will check for available plans and categories of 
 
 However, we left some ambiguity in the scenario when it comes to the question if a service/application should be entitled only and in case of services in which environment the service instance should be created. As this information cannot be inferred automatically, we need to provide explicit guidance. In addition, we need to specify any service parameters that are required for the setup.
 
-Read the following sections carefully before starting to answer Claude's querstions to ensure that you provide the right information as the questions on the topics.
+Read the following sections carefully before starting to answer Claude's questions to ensure that you provide the right information as the questions on the topics.
 
 > [!TIP]
 > The flow considers any rules defined in governance. If we would have defined this information already there, less manual decision-making (and probably less chances to make errors) would have been required.
