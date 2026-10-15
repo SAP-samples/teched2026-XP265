@@ -88,7 +88,7 @@ The agent has now gathered all required information. It will present an overview
 
 👉 Confirm the proposal by selecting `Yes`.
 
-The agent will create a new file `specs/trust.md`.
+🤖 The agent will create a new file `specs/trust.md`.
 
 <details>
 

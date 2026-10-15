@@ -74,7 +74,7 @@ After answering the questions the agent will present you the summary including t
 
 👉 Confirm by selecting `Yes`.
 
-The agent will create a new file in `specs/services.md`.
+🤖 The agent will create a new file in `specs/services.md`.
 
 <details>
 

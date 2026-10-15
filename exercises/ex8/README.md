@@ -36,7 +36,7 @@ As in the previous exercises, the agent will present a summary and ask for confi
 
 👉 Confirm by selecting `Yes`.
 
-The agent will create a new file `specs/connectivity.md`.
+🤖 The agent will create a new file `specs/connectivity.md`.
 
 <details>
 

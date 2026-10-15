@@ -39,7 +39,7 @@ The Agent will present the final summary and ask for confirmation before writing
 
 👉 Confirm by selecting `Yes`.
 
-The agent will create a new file in `specs/landscape.md`.
+🤖 The agent will create a new file in `specs/landscape.md`.
 
 <details>
 

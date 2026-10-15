@@ -39,9 +39,11 @@ terraform/
 > [!TIP]
 > You will recognize that the setup correctly derives a tfvars file per stage namely a `dev.tfvars` in our case. The setup also adds an example tfvars file called `terraform.tfvars.example` which enables a quick local execution without bothering about the location of the variable values.
 
-Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code. Confirm the proposal.
+Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code.
 
-The agent will update the task list with the corresponding Terraform file paths.
+👉 Confirm the proposal.
+
+🤖 The agent will update the task list with the corresponding Terraform file paths.
 
 <details>
 

@@ -136,13 +136,17 @@ No restrictions for `staging` and `prod`.
 👉 **Security:**
 
 ```text
-Custom IdP required. Type: OIDC (SAP Cloud Identity Services). The default SAP ID Service is not permitted as application IdP. There are no defaults with regards to role collections and user group mappings.
+Custom IdP required. Type: OIDC (SAP Cloud Identity Services).
+The default SAP ID Service is not permitted as application IdP.
+There are no defaults with regards to role collections and user group mappings.
 ```
 
 👉 **Cost controls:**
 
 ```text
-A warning should be enabled for HANA Cloud as a metered service. A cost center label should be mandatory on the subaccounts. The label key is `cost-center`, the label value is `CC-123456`.
+A warning should be enabled for HANA Cloud as a metered service.
+A cost center label should be mandatory on the subaccounts.
+The label key is `cost-center`, the label value is `CC-123456`.
 ```
 
 Once you have answered all questions, the agent will summarize the governance rules and ask you to confirm if the captured data is correct. Be aware that the summary might be opened as a document in a new tab in VS Code. Review it but do not close the tab.
@@ -153,7 +157,7 @@ Once you have answered all questions, the agent will summarize the governance ru
 > If you closed the tab with the summary, Claude will interrupt the flow. <br>
 > 👉 Type `Continue and write the document` in the Claude Code terminal to resume the process.
 
-The agent will create a new file in `memory/` called `governance.md`.
+🤖 The agent will create a new file in `memory/` called `governance.md`.
 
 <details>
 

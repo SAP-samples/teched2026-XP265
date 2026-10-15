@@ -26,7 +26,7 @@ Now we trigger the Terraform code generation.
 
 The agent reads `specs/tasks.md` including the file path annotations.
 
-If the agent asks you which stages to generate make sure that you generate for the `dev` stage only.
+👉 If the agent asks you which stages to generate make sure that you generate for the `dev` stage only.
 
 Before generating the Terraform code the information about how you want to authenticate is missing.
 
