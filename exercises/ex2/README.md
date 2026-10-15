@@ -55,9 +55,14 @@ claude
 
 Claude will ask you if you trust this folder. Confirm by selecting `Yes`.
 
-In addition, make sure that you are in *manual mode* of Claude Code. You can cycle through the modes via the key combination `Shift + Tab`.
+In addition, **make sure** that you are in **manual mode** of Claude Code. You can cycle through the modes via the key combination `Shift + Tab`.
 
 ### Step 3 - Execute the govern command
+
+> [!NOTE]
+> LLMs are probabilistic, so the agent's output may look a little different each time. Questions might appear as free text or as a list, and their order within a section can vary. *No need to worry* — just read each question carefully and enter or select the answer based on the values provided in the exercises.
+
+<br>
 
 Execute the following command in the Claude Code terminal:
 

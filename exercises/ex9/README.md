@@ -45,7 +45,7 @@ The agent will update the task list with the corresponding Terraform file paths.
 
 <details>
 
-<sumamry><b>🔬 Look behind the curtains</b><summary>
+<summary><b>🔬 Look behind the curtains</b></summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.design.md`. Open the file and notice how the skill:
 
