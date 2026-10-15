@@ -24,7 +24,7 @@ The result should look *similar* to the file in the [sample folder](./sample/tas
 
 👉 Confirm the proposed task list by selecting `Yes`.
 
-The agent will create a new file `specs/tasks.md`.
+🤖 The agent will create a new file `specs/tasks.md`.
 
 <details>
 

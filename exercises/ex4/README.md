@@ -26,16 +26,20 @@ The agent will first check if there is an existing scenario defined in the proje
 ```text
 In this scenario we focus on the development stage only. I need a developer environment on Cloud Foundry for our Inventory Management CAP application.
 
-It stores data in SAP HANA Cloud. All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance.
+It stores data in SAP HANA Cloud.
+
+All create, update, and delete operations on inventory records must be logged to SAP Audit Log Service for compliance.
 
 Application and runtime logs are collected in SAP Cloud Logging Service.
 
 A destination service is also required.
 
-The UI is built with SAP Fiori and deployed via SAP Build Work Zone. Developers use SAP Build Code.
+The UI is built with SAP Fiori and deployed via SAP Build Work Zone.
+
+Developers use SAP Build Code.
 Developers also use the Continuous Integration & Delivery service (application only).
 
-Authentication uses SAP Cloud Identity Services — the company does not permit the default SAP ID Service for this application.
+Authentication uses SAP Cloud Identity Services. The company does not permit the default SAP ID Service for this application.
 ```
 
 > [!TIP]
@@ -72,7 +76,7 @@ When successful it will present an overview of the scenario description to you. 
 
 👉 Confirm by selecting `Yes`.
 
-The agent will create a new file in `specs/scenario.md`.
+🤖 The agent will create a new file in `specs/scenario.md`.
 
 <details>
 
