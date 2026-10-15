@@ -70,7 +70,9 @@ After answering the questions the agent will present you the summary including t
 
 The agent will create a new file in `specs/services.md`.
 
-### 🔬 Look behind the curtains
+<details>
+
+<summary><b>🔬 Look behind the curtains</b></summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.services.md`. Open the file and notice how the skill:
 
@@ -78,6 +80,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.ser
 2. For each service, it identifies the stage from `specs/landscape.md` (in this case `dev`) and validates the plan choice against the governance file.
 3. The skill asks for each service/app if it should be provisioned or entitled only as well as into which environment it should be provisioned to if no restrictions are already defined in the governance step.
 4. The output `specs/services.md` contains a dependency-order that will be preserved for the Terraform code generation.
+</summary>
 
 ### ✅ Result
 

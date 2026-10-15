@@ -39,7 +39,9 @@ The Agent will present the final summary and ask for confirmation before writing
 
 The agent will create a new file in `specs/landscape.md`.
 
-### 🔬 Look behind the curtains
+<details>
+
+<summary><b>🔬 Look behind the curtains</b></summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.accounts.md`. Open the file and notice how the skill:
 
@@ -47,6 +49,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.acc
 2. Derives the account setup based on the governance rules and the scenario
 2. Derives of the `beta_enabled` and `usage` attributes
 3. Writes the result into `specs/landscape.md`
+</details>
 
 ### ✅ Result
 

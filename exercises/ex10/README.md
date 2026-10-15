@@ -60,7 +60,9 @@ terraform validate
 
 After successfully finishing the code generation the agent will provide additional information how to proceed with the generated code.
 
-### 🔬 Look behind the curtains
+<details>
+
+<sumamry><b>🔬 Look behind the curtains</b><summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.generate.md`. Open the file and notice how the skill:
 
@@ -68,6 +70,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.gen
 2. Executes the provider schema lookup from the registry
 2. Writes the Terraform files in the correct folders depending in your project structure respecting the dependencies between resources but also between the main setup of the account and the environment specifics for Cloud Foundry.
 4. Injects platform specific prerequisites like subdomain uniqueness and determination of Cloud Foundry landscape label values.
+</details>
 
 **Key insight:** The spec-driven approach results in a governance-compliant, consistently structured, validated, and **reproducible** code generation of Terraform configuration.
 
