@@ -51,6 +51,7 @@ We also recommend installing:
 
 </details>
 <br>
+
 > [!CAUTION]
 > If executing the exercises in your own environment, be aware that the steps that include the usage of agentic AI tools like Claude Code or GitHub Copilot will use tokens and consequently incur costs. Please make sure you are aware of the costs and have the necessary budget before executing the steps. SAP does not cover any costs for executing the steps in your own environment.
 
@@ -75,7 +76,7 @@ The exercises are designed to be completed in order, as each exercise builds upo
 
 You find a troubleshooting guide as FAQ in the [troubleshooting section](troubleshooting/README.md). This guide can help you resolve common issues encountered during the exercises.
 
-## Where to find the spec-kit?
+## Where to find more information about the spec-kit?
 
 The Infrastructure-as-Code Specification Toolkit for SAP Business AI Platform is available as open source (Apache-2.0 license) on Github at <https://github.com/SAP/iac-spec-kit-for-sap-business-ai-platform>.
 The documentation for the spec-kit CLI, including setup instructions and usage guidelines, is available at <https://sap.github.io/iac-spec-kit-for-sap-business-ai-platform/>.

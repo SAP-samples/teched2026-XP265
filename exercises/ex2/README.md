@@ -150,7 +150,7 @@ The agent will create a new file in `memory/` called `governance.md`.
 
 <details>
 
-<summary><b>Curious? 🔬 Look behind the curtains</b></summary>
+<summary><b>🔬 Look behind the curtains</b></summary>
 
 The technical foundation of this step is skill `.claude/commands/sap-iac.govern.md`. It is used by the agent to collect your governance requirements.
 

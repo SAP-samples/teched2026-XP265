@@ -48,9 +48,7 @@ This approach comes with the following benefits:
 
 However, the shift from coding to specifying is challenging. Instead of writing/reviewing code it's now **effectively describing what you want to build** to an agent.
 
-> [NOTE]
->
-> While one might get the impression that spec-driven is a return back to waterfall, it is not. The spec-driven approach is iterative and agile, but it is a more disciplined approach compared to vibe coding. You can at any point revisit the steps and refine the specification.
+While one might get the impression that spec-driven is a return back to waterfall, it is not. The spec-driven approach is iterative and agile, but it is a more disciplined approach compared to vibe coding. You can at any point revisit the steps and refine the specification.
 </details>
 
 </br>
@@ -151,18 +149,6 @@ Each step corresponds to one exercise where you will execute the task and get an
 
 ## Technical Setup
 
-<details>
-<summary>On Windows, use <b>PowerShell</b></summary>
-
-— <b>NOT Git Bash</b> — to ensure environment variable syntax matches the instructions in Exercise 10. The Claude Code slash commands (`/sap-iac.*`) and all Terraform commands are platform-independent. This hands-on session is done on Windows only; therefore, the following instructions focus on this OS. When doing the exercises on your own on a different OS, look up the appropriate commands for your OS.
-
-<br>
-
-![Powershell Screenshot 1](./images/0a_powershell.png)
-![Powershell Screenshot 2](./images/0b_powershell.png)
-
-</details>
-<br>
 Before starting with the exercises some technical setup is required to ensure that all tools and services are properly configured.
 
 You need the following components set up before starting the exercises:
@@ -173,6 +159,19 @@ You need the following components set up before starting the exercises:
 4. Check your access to your Business AI Platform account via the cockpit and btp CLI
 
 The following sections guide you through the setup process for each of the required components.
+
+It is important to use **PowerShell** as the environment variable syntax targets this shell. Do not use Git Bash or `cmd`. 
+
+You start PowerShell via:
+
+![Powershell Screenshot 1](./images/0a_powershell.png)
+
+You will also see the version you are using on the tab of the terminal:
+
+![Powershell Screenshot 2](./images/0b_powershell.png)
+
+
+The Claude Code slash commands (`/sap-iac.*`) and all Terraform commands are platform-independent. 
 
 ### MCP Server for Terraform
 
@@ -249,12 +248,7 @@ The central tool for this exercise is the spec-kit CLI. You need to install it m
       iwr -useb https://raw.githubusercontent.com/SAP/iac-spec-kit-for-sap-business-ai-platform/refs/heads/main/sap-iac-install.ps1 | iex
       ```
 
-<details>
-<summary>Easy installation with winget will be available soon</summary>
-The CLI will be made available as a winget package to support the standard installation process on Windows. However, the package review process takes a bit, so we will use a **workaround** in this session
-</details>
-</br>
-
+Easy installation via winget will be available soon!
 
 Verify that the spec-kit CLI is correctly installed and accessible from your terminal by opening a new terminal and running:
 
