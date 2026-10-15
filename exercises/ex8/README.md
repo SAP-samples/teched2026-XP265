@@ -28,7 +28,7 @@ The agent will create a new file `specs/tasks.md`.
 
 <details>
 
-<sumamry><b>🔬 Look behind the curtains</b><summary>
+<summary><b>🔬 Look behind the curtains</b></summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.tasks.md`. Open the file and notice how the skill:
 
