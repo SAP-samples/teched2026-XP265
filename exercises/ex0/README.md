@@ -12,7 +12,7 @@ When AI tools arrived, the natural reflex was to prompt for code directly:
 While great for quick prototypes, **100 tries can yield 100 different outcomes** with **zero record** of **why** decisions were made.
 
 > [!IMPORTANT]
-> **The Problem in Production**  
+> **The Problem in Production**
 > - multiple people are involved in creating and maintaining the IaC code
 > - a stable setup is required as IaC is the foundation for successful app development
 > - infrastructure management always requires auditability and traceability
@@ -143,4 +143,4 @@ Spec-driven development is a disciplined approach. All spec-kits support the use
 
 Each step corresponds to one exercise where you will execute the task and get an explanation of the intention and the technical foundation.
 
-👉 Continue to - [Technical Setup](../ex0b/README.md)
+👉 Continue to - [Exercise 1 - Technical Setup](../ex1/README.md)

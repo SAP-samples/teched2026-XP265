@@ -1,50 +1,62 @@
-# Define the tasks
+# Detail the connectivity setup
 
-We have all specification documents covering the account topology, service setup, security configuration, and connectivity configuration in place. These documents will now be translated into a task list that serves as input for code generation.
+The last missing piece for our scenario is the connectivity setup, namely the destination configuration in the subaccount. We already mentioned the destinations in our scenario, but now we will add the missing parts.
 
 > [!TIP]
 > In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
 
 ## 🎯 Intent of the exercise
 
-In this exercise, the agent consolidates all previously defined specifications into a single, dependency-ordered task list. This allows you to review and verify the tasks before generating the corresponding Terraform code. The goal is to ensure that all tasks as well as their dependencies are correctly captured.
-
+In this exercise we will add the details for the required destination to the S/4HANA backend system. As we do not have a real S/4HANA system setup, we will "simulate" the connectivity by configuring the destinations with a dummy URL.
 
 ## 🛠️ Execute the tasks command
 
 👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
-/sap-iac.tasks
+/sap-iac.connectivity
 ```
 
-Based on all specification documents and the governance constraints, the agent derives a task list including metadata and dependencies between tasks.
+Based on the information from the scenario the agent can identify the pattern for the connectivity setup. Based on that pattern, it will ask you for the necessary details to complete the configuration.
 
-The result should look *similar* to the file in the [sample folder](./sample/tasks.md).
+👉 Copy the following text to the terminal when prompted by the skill about the destination configuration:
 
-Confirm the proposed task list by selecting `Yes`.
+```text
+The URL is https://mydemo-api.s4hana.ondemand.com
+The ProxyType is Internet
+The authentication is BasicAuthentication
+The user is INVENTORY_API_USER
+The password should be supplied via a sesntive variable
+The scope is subaccount
+The destination needs an additional property `TrustAll` set to `true`
+No destination certificates are required
+```
 
-The agent will create a new file `specs/tasks.md`.
+As in the previous exercises, the agent will present a summary and ask for confirmation before applying the connectivity setup.
+
+👉 Confirm by selecting `Yes`.
+
+The agent will create a new file `specs/connectivity.md`.
 
 <details>
 
 <summary><b>🔬 Look behind the curtains</b></summary>
 
-The technical foundation of this step is the skill `.claude/commands/sap-iac.tasks.md`. Open the file and notice how the skill:
+The technical foundation of this step is the skill `.claude/commands/sap-iac.connectivity.md`. Open the file and notice how the skill:
 
-1. Reads all specification documents and identifies the resources defined in each
-2. Builds a dependency graph and identifies a task sequence based on dependencies
+1. Identifies the necessary destination configuration based on the scenario and governance information.
+2. Collects the required details from the user to complete the connectivity setup based on different patterns
+
 </details>
 
-**Key insight:** The task list acts as the bridge between specification and implementation, basically a ordered todo list that steers the code generation process.
+**Key insight:** Destination configuration can be quite cumbersome because of its technical parameter names. The skill uses a pattern-based approach to help users provide the correct information efficiently.
 
 ### ✅ Result
 
-- The task list is available in `specs/tasks.md`.
-- The list reflects the required tasks described in all previous steps in a consistent and dependency-ordered manner.
+The destination specific data is collected in `specs/connectivity.md`.
 
 ## 📋 Summary
 
-The task list translating the specifications into a checklist is defined and dependency-ordered. The next exercise will enrich the task list with a mapping to the corresponding Terraform files.
+The connectivity configuration is now fully specified. All specification documents are in place to form the complete picture of the `invmgmt-dev` environment. The next exercise translates the specification documents into tasks for the agent.
 
-👉 Continue to - [Exercise 9 - Evaluate the design](../ex9/README.md)
+👉 Continue to - [Exercise 9 - Define the tasks](../ex9/README.md)

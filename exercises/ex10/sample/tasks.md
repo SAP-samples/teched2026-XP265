@@ -12,10 +12,13 @@
 
 - [ ] T-001 `[dev]` Create subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount`, `subaccount = invmgmt-dev`, `subdomain = invmgmt-dev`, `region = eu20`, `usage = NOT_USED_FOR_PRODUCTION`, `beta_enabled = true`
+  - File: `terraform/btp/main.tf`
 - [ ] T-002 `[dev]` Create Cloud Foundry environment in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_environment_instance`, `environment_type = cloudfoundry`, `subaccount = invmgmt-dev`, `name = invmgmt-cf-dev`
+  - File: `terraform/btp/main.tf`
 - [ ] T-003 `[dev]` Create Cloud Foundry space "dev" in org "invmgmt-cf-dev"
   - Task metadata: `resource_type = cloudfoundry_space`, `name = dev`, `subaccount = invmgmt-dev`
+  - File: `terraform/cf/main.tf`
 
 ## Entitlements
 
@@ -34,24 +37,34 @@
 
 - [ ] T-004 `[dev]` Assign entitlement hana-cloud/hana in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = hana-cloud`, `service_plan_name = hana`
+  - File: `terraform/btp/main.tf`
 - [ ] T-005 `[dev]` Assign entitlement auditlog/standard in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = auditlog`, `service_plan_name = standard`, `quota_required = true`
+  - File: `terraform/btp/main.tf`
 - [ ] T-006 `[dev]` Assign entitlement cloud-logging/standard in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = cloud-logging`, `service_plan_name = standard`, `quota_required = true`
+  - File: `terraform/btp/main.tf`
 - [ ] T-007 `[dev]` Assign entitlement destination/lite in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = destination`, `service_plan_name = lite`
+  - File: `terraform/btp/main.tf`
 - [ ] T-008 `[dev]` Assign entitlement identity/application in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = identity`, `service_plan_name = application`
+  - File: `terraform/btp/main.tf`
 - [ ] T-009 `[dev]` Assign entitlement cloudfoundry/standard in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = cloudfoundry`, `service_plan_name = standard`
+  - File: `terraform/btp/main.tf`
 - [ ] T-010 `[dev]` Assign entitlement build-workzone-standard/standard in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = build-workzone-standard`, `service_plan_name = standard`
+  - File: `terraform/btp/main.tf`
 - [ ] T-011 `[dev]` Assign entitlement build-code/free in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = build-code`, `service_plan_name = free`
+  - File: `terraform/btp/main.tf`
 - [ ] T-012 `[dev]` Assign entitlement cicd-app/free in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = cicd-app`, `service_plan_name = free`, `quota_required = true`
+  - File: `terraform/btp/main.tf`
 - [ ] T-013 `[dev]` Assign Cloud Foundry runtime memory entitlement in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_entitlement`, `subaccount = invmgmt-dev`, `service_offering_name = APPLICATION_RUNTIME`, `service_plan_name = MEMORY`, `amount = 1`
+  - File: `terraform/btp/main.tf`
 
 ## Services
 
@@ -70,26 +83,36 @@
 
 - [ ] T-014 `[dev]` Create service instance identity/application in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_service_instance`, `subaccount = invmgmt-dev`, `service_offering_name = identity`, `service_plan_name = application`, `name = identity-invmgmt-dev`, `location = btp`
+  - File: `terraform/btp/main.tf`
 - [ ] T-015 `[dev]` Create service instance auditlog/standard in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_service_instance`, `subaccount = invmgmt-dev`, `service_offering_name = auditlog`, `service_plan_name = standard`, `name = auditlog-invmgmt-dev`, `location = btp`, `quota_required = true`
+  - File: `terraform/btp/main.tf`
 - [ ] T-016 `[dev]` Create service instance cloud-logging/standard in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_service_instance`, `subaccount = invmgmt-dev`, `service_offering_name = cloud-logging`, `service_plan_name = standard`, `name = cloud-logging-invmgmt-dev`, `location = btp`, `quota_required = true`
+  - File: `terraform/btp/main.tf`
 - [ ] T-017 `[dev]` Create service instance hana-cloud/hana in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_service_instance`, `subaccount = invmgmt-dev`, `service_offering_name = hana-cloud`, `service_plan_name = hana`, `name = hana-cloud-invmgmt-dev`, `location = btp`
   - Task metadata parameters: `data = { memory = 32, edition = "cloud", generateSystemPassword = true }`
+  - File: `terraform/btp/main.tf`
 - [ ] T-018 `[dev]` Create service instance build-workzone-standard/standard in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_service_instance`, `subaccount = invmgmt-dev`, `service_offering_name = build-workzone-standard`, `service_plan_name = standard`, `name = build-workzone-invmgmt-dev`, `location = btp`
+  - File: `terraform/btp/main.tf`
 - [ ] T-019 `[dev]` Create CF space role (space_developer) for xp265-XXX@education.cloud.sap in space "dev"
   - Task metadata: `resource_type = cloudfoundry_space_role`, `space_name = dev`, `username = xp265-XXX@education.cloud.sap`, `role_type = space_developer`, `origin = ainfvn15r-platform`
+  - File: `terraform/cf/main.tf`
 - [ ] T-020 `[dev]` Create CF space role (space_manager) for xp265-XXX@education.cloud.sap in space "dev"
   - Task metadata: `resource_type = cloudfoundry_space_role`, `space_name = dev`, `username = xp265-XXX@education.cloud.sap`, `role_type = space_manager`, `origin = ainfvn15r-platform`
+  - File: `terraform/cf/main.tf`
 - [ ] T-021 `[dev]` Create CF service instance destination/lite in space "dev"
   - Task metadata: `resource_type = cloudfoundry_service_instance`, `subaccount = invmgmt-dev`, `service_offering_name = destination`, `service_plan_name = lite`, `name = destination-invmgmt-dev`, `location = cf`, `cf_space = dev`
   - Task metadata parameters: `HTML5Runtime_enabled = true`
+  - File: `terraform/cf/main.tf`
 - [ ] T-022 `[dev]` Subscribe to build-code/free in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_subscription`, `subaccount = invmgmt-dev`, `service_offering_name = build-code`, `service_plan_name = free`, `name = build-code-invmgmt-dev`
+  - File: `terraform/btp/main.tf`
 - [ ] T-023 `[dev]` Subscribe to cicd-app/free in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_subscription`, `subaccount = invmgmt-dev`, `service_offering_name = cicd-app`, `service_plan_name = free`, `name = cicd-app-invmgmt-dev`, `quota_required = true`
+  - File: `terraform/btp/main.tf`
 
 ## Security
 
@@ -107,22 +130,31 @@
 
 - [ ] T-024 `[dev]` Configure custom IdP trust in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_trust_configuration`, `subaccount = invmgmt-dev`, `identity_provider = ainfvn15r.accounts.ondemand.com`
+  - File: `terraform/btp/main.tf`
 - [ ] T-025 `[dev]` Create role collection "InvMgmt_Dev_Admin" in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_role_collection_base`, `collection_name = InvMgmt_Dev_Admin`, `subaccount = invmgmt-dev`
+  - File: `terraform/btp/main.tf`
 - [ ] T-026 `[dev]` Create role collection "InvMgmt_Dev_Developer" in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_role_collection_base`, `collection_name = InvMgmt_Dev_Developer`, `subaccount = invmgmt-dev`
+  - File: `terraform/btp/main.tf`
 - [ ] T-027 `[dev]` Create role collection "InvMgmt_Dev_Viewer" in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_role_collection_base`, `collection_name = InvMgmt_Dev_Viewer`, `subaccount = invmgmt-dev`
+  - File: `terraform/btp/main.tf`
 - [ ] T-028 `[dev]` Create role collection "InvMgmt_Dev_AuditLog_Viewer" in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_role_collection_base`, `collection_name = InvMgmt_Dev_AuditLog_Viewer`, `subaccount = invmgmt-dev`
+  - File: `terraform/btp/main.tf`
 - [ ] T-029 `[dev]` Assign group "invmgmt-dev-admins" to role collection "InvMgmt_Dev_Admin"
   - Task metadata: `resource_type = btp_subaccount_role_collection_assignment`, `subaccount = invmgmt-dev`, `role_collection_name = InvMgmt_Dev_Admin`, `group_name = invmgmt-dev-admins`, `origin = ainfvn15r-platform`
+  - File: `terraform/btp/main.tf`
 - [ ] T-030 `[dev]` Assign group "invmgmt-dev-developers" to role collection "InvMgmt_Dev_Developer"
   - Task metadata: `resource_type = btp_subaccount_role_collection_assignment`, `subaccount = invmgmt-dev`, `role_collection_name = InvMgmt_Dev_Developer`, `group_name = invmgmt-dev-developers`, `origin = ainfvn15r-platform`
+  - File: `terraform/btp/main.tf`
 - [ ] T-031 `[dev]` Assign group "invmgmt-dev-viewers" to role collection "InvMgmt_Dev_Viewer"
   - Task metadata: `resource_type = btp_subaccount_role_collection_assignment`, `subaccount = invmgmt-dev`, `role_collection_name = InvMgmt_Dev_Viewer`, `group_name = invmgmt-dev-viewers`, `origin = ainfvn15r-platform`
+  - File: `terraform/btp/main.tf`
 - [ ] T-032 `[dev]` Assign group "invmgmt-dev-audit-viewers" to role collection "InvMgmt_Dev_AuditLog_Viewer"
   - Task metadata: `resource_type = btp_subaccount_role_collection_assignment`, `subaccount = invmgmt-dev`, `role_collection_name = InvMgmt_Dev_AuditLog_Viewer`, `group_name = invmgmt-dev-audit-viewers`, `origin = ainfvn15r-platform`
+  - File: `terraform/btp/main.tf`
 
 ## Connectivity
 
@@ -132,3 +164,4 @@
 
 - [ ] T-033 `[dev]` Create destination "S4HANA_PUBLIC_CLOUD" in subaccount "invmgmt-dev"
   - Task metadata: `resource_type = btp_subaccount_destination_generic`, `subaccount = invmgmt-dev`, `name = S4HANA_PUBLIC_CLOUD`, `type = HTTP`, `proxy_type = Internet`, `url = https://mydemo-api.s4hana.ondemand.com`, `authentication = BasicAuthentication`, `user = INVENTORY_API_USER`, `password = PLACEHOLDER`, `additional_properties = { TrustAll = "true" }`
+  - File: `terraform/btp/main.tf`

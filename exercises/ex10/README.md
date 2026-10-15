@@ -1,86 +1,66 @@
-# Generate the Terraform code
+# Evaluate the design
 
-This is the step that the entire spec-driven flow has been building toward. The `/sap-iac.generate` skill reads the annotated task list and generates complete, validated Terraform configuration code.
+The task list tells us *what* to build and in what order. The design step decides *where* each piece of Terraform code should be put when the code is finally generated. This depends on our choice how to structure the Terraform code.
+
+> [!TIP]
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
 
 ## 🎯 Intent of the exercise
 
-In this step the agent will synthesize the captured information from all previous exercises and specifically the annotated task list to generate a complete Terraform configuration that is ready for deployment.
+In this exercise, the agent evaluates the Terraform code structure based on the task list and the user's decision about the Terraform code layout.
 
-## 🛠️ Execute the generate command
+## 🛠️ Execute the design command
 
-👉 Before we start the code generation, we first clean the context of Claude as we accumulated a lot of information during the previous exercises. Execute the following command in the Claude Code terminal:
-
-```powershell
-/clear
-```
-
-👉 Now we trigger the Terraform code generation. Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
-/sap-iac.generate
+/sap-iac.design
 ```
 
-The agent reads `specs/tasks.md` including the file path annotations.
+Based on the task list, the agent will ask you about the desired Terraform file layout with the two options:
 
-If the agent asks you which stages to generate make sure that you generate for the `dev` stage only.
+- Per-stage directories — `terraform/dev/btp/` and `terraform/dev/cf/` (one directory per stage)
+- Single configuration — `terraform/btp/` and `terraform/cf/` with a dev.tfvars file per stage
 
-Before generating the Terraform code the information about how you want to authenticate is missing. The agent will ask you how you want to authenticate
+👉 Choose:
 
-- For the Terraform Provider for *SAP BTP*, choose:
-      ```text
-      username/password with custom IdP
-      ```
-- For the Terraform Provider for *Cloud Foundry*, choose:
-      ```text
-      username/password with custom origin
-      ```
+```text
+Single Configuration
+```
 
-These values will be used in the provider configuration within the generated Terraform files as well as in the definition of variables.
+The proposed layout should look similar to this (visual representation might vary):
 
-The agent will ask you to allow the connection to the Terraform registry via the MCP server. Do so as this enables the agent to fetch the latest provider schemas and ensure that the generated Terraform code is compliant with the current provider specifications.
-
-> [!NOTE]
-> If the agent tries to do access the Terraform registry via webfetches or curl requests, make sure that the MCP server is running and accessible (see [Getting Started - MCP Server for Terraform](../ex0/README.md#mcp-server-for-terraform) and [Getting Started - Wire up Claude Code to the MCP Server](../ex0/README.md#wire-up-claude-code-to-the-mcp-server)).
-
-After collecting all required information the agent will ask for confirmation to create the Terraform file directories. Confirm by selecting `Yes, and always allow access to...`.
-
-When the agent created the files it will ask you if edits are allowed. Confirm by selecting `Yes, and switch to accept edits ...`.
+```powershell
+terraform/
+    btp/   { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
+    cf/    { main.tf  variables.tf  outputs.tf  providers.tf  backend.tf  dev.tfvars  terraform.tfvars.example }
+```
 
 > [!TIP]
-> The task list is used to guide the code generation, consequently the agent using the skill will also tick off tasks as they are processed.
+> You will recognize that the setup correctly derives a tfvars file per stage namely a `dev.tfvars` in our case. The setup also adds an example tfvars file called `terraform.tfvars.example` which enables a quick local execution without bothering about the location of the variable values.
 
-After the generation of the files is complete, the agent wants to run `terraform init`. Confirm the execution if asked.
+Next the agent will ask to annotate the tasks in accordance to the proposed layout i.e. where to put each piece of Terraform code. Confirm the proposal.
 
-After that, the agent will also run to end up with a formatted and validated Terraform configuration:
-
-```powershell
-terraform fmt
-terraform validate
-```
-
-After successfully finishing the code generation the agent will provide additional information how to proceed with the generated code.
+The agent will update the task list with the corresponding Terraform file paths.
 
 <details>
 
 <summary><b>🔬 Look behind the curtains</b></summary>
 
-The technical foundation of this step is the skill `.claude/commands/sap-iac.generate.md`. Open the file and notice how the skill:
+The technical foundation of this step is the skill `.claude/commands/sap-iac.design.md`. Open the file and notice how the skill:
 
-1. Executes a final round of checks against the governance constraints
-2. Executes the provider schema lookup from the registry
-2. Writes the Terraform files in the correct folders depending in your project structure respecting the dependencies between resources but also between the main setup of the account and the environment specifics for Cloud Foundry.
-4. Injects platform specific prerequisites like subdomain uniqueness and determination of Cloud Foundry landscape label values.
+1. Introduces the different design and layout options for the Terraform code based on standard layouts
+2. Annotates the tasks in `specs/tasks.md` with the corresponding Terraform file paths based on the chosen layout
 </details>
 
-**Key insight:** The spec-driven approach results in a governance-compliant, consistently structured, validated, and **reproducible** code generation of Terraform configuration.
+**Key insight:** The final ingredient required for the code generation is the annotated task list. The agent now has all the information it needs to generate the Terraform code.
 
 ### ✅ Result
 
-- The Terraform code is generated, formatted, and validated.
-- The structure reflects your specification including the required dependency order.
+An enhanced task list is available in `specs/tasks.md` with additional file path annotations indicating where each piece of Terraform code should be placed.
 
 ## 📋 Summary
 
-The Terraform code is generated and validated. In the next exercise we will deploy the generated code to the global account.
+The task list is now fully annotated with the target file paths. In the next exercise, we will instruct the agent to generate the Terraform code.
 
-👉 Continue to - [Exercise 11 - Deploy the generated code](../ex11/README.md)
+👉 Continue to - [Exercise 11 - Generate the code](../ex11/README.md)
