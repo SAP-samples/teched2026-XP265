@@ -6,27 +6,7 @@ This repository contains the material for the SAP TechEd 2026 session "XP265 - D
 
 ## Overview
 
-This session introduces attendees to the concept of *spec-driven development* and how to use it for Infrastructure as Code (IaC) with Terraform. Attendees will experience an end-to-end flow from installing the relevant tooling, defining and refining the specification as well as generating and deploying the generated Terraform code to the SAP Business AI Platform.
-
-## The Scenario
-
-You are the responsible platform engineer for a development team building an **Inventory Management application** using SAP Cloud Application Programming Model (CAP). Before the development can start, you must provision the required environment on SAP Business AI Platform in accordance to your organization's governance rules and best practices.
-
-The application has the following requirements mapping to the corresponding platform resources:
-
-| Requirement | Service |
-|---|---|
-| Cloud Foundry runtime for deploying and testing the CAP app | Cloud Foundry Environment |
-| Persistent database for inventory data | SAP HANA Cloud |
-| Compliance audit trail for all inventory changes | SAP Audit Log Service |
-| Centralized application and runtime logs | SAP Cloud Logging Service |
-| Fiori Launchpad for the inventory UI | SAP Build Work Zone, standard edition |
-| Development tools and CI/CD pipeline | SAP Build Code |
-| Enterprise authentication (no default SAP ID Service) | SAP Cloud Identity Services |
-
-As part of the governance rules for the platform, data must stay in the EU region, subaccounts must follow a naming convention, HANA Cloud costs must be tracked, and SAP Cloud Identity Services is mandatory as the identity provider.
-
-Rather than hand-crafting Terraform from scratch or prompting an LLM to generate it from a single (or probably multiple) vague sentences, you will follow a **spec-driven development** flow. This will result in specification documents that the AI agent validates at each step before generating Terraform code.
+This session introduces attendees to the concept of *spec-driven development* and how to use it for Infrastructure as Code (IaC) with Terraform on the SAP Business AI Platform. Attendees will experience an *end-to-end* flow from installing the relevant tooling, defining and refining the specification as well as generating and finally deploying the generated Terraform code to the platform.
 
 ## Requirements
 
@@ -59,28 +39,28 @@ We also recommend installing:
 
 The exercises are designed to be completed in order, as each exercise builds upon the previous one. The exercises are structured as follows:
 
-- [Motivation](exercises/ex0a/README.md) - the initial technical setup
-- [Technical Setup](exercises/ex0b/README.md) - the initial technical setup
-- [Exercise 1 - Initialize the project](exercises/ex1/README.md) - set up the initial project structure for spec-driven development
-- [Exercise 2 - Define the governance constraints](exercises/ex2/README.md) - define the guardrails for the project
-- [Exercise 3 - Define the scenario](exercises/ex3/README.md) - specify the main intent of the project
-- [Exercise 4 - Detail the account setup](exercises/ex4/README.md) - detail the account landscape
-- [Exercise 5 - Detail the service setup](exercises/ex5/README.md) - detail the service setup (environment, entitle-only etc.)
-- [Exercise 6 - Detail the security setup](exercises/ex6/README.md) - detail the security setup around role collections and trust
-- [Exercise 7 - Detail the connectivity setup](exercises/ex7/README.md) - detail the connectivity setup namely destinations
-- [Exercise 8 - Define the tasks](exercises/ex8/README.md) - create the todo list for the agent
-- [Exercise 9 - Evaluate the design](exercises/ex9/README.md) - specify the terraform design
-- [Exercise 10 - Generate the Terraform code](exercises/ex10/README.md) - generate the terraform code based on the specification documents
-- [Exercise 11 - Deploy the generated Terraform code](exercises/ex11/README.md) - bring the Terraform code to life on the platform
+- [Introduction](exercises/ex0/README.md) - Introduction to the scenario
+- [Exercise 1 - Technical Setup](exercises/ex1/README.md) - The initial technical setup
+- [Exercise 2 - Initialize the project](exercises/ex2/README.md) - Set up the project structure for spec-driven development
+- [Exercise 3 - Define the governance constraints](exercises/ex3/README.md) - Define the guardrails for the project
+- [Exercise 4 - Define the scenario](exercises/ex4/README.md) - Specify the main intent of the project
+- [Exercise 5 - Detail the account setup](exercises/ex5/README.md) - Detail the account landscape
+- [Exercise 6 - Detail the service setup](exercises/ex6/README.md) - Detail the service setup (environment, entitle-only etc.)
+- [Exercise 7 - Detail the security setup](exercises/ex7/README.md) - Detail the security setup around role collections and trust
+- [Exercise 8 - Detail the connectivity setup](exercises/ex8/README.md) - Detail the connectivity setup namely destinations
+- [Exercise 9 - Define the tasks](exercises/ex9/README.md) - Create the todo list for the agent
+- [Exercise 10 - Evaluate the design](exercises/ex10/README.md) - Specify the terraform design
+- [Exercise 11 - Generate the Terraform code](exercises/ex11/README.md) - Generate the terraform code based on the specification documents
+- [Exercise 12 - Deploy the generated Terraform code](exercises/ex12/README.md) - Bring the Terraform code to life on the platform
 
 ## Troubleshooting
 
-You find a troubleshooting guide as FAQ in the [troubleshooting section](troubleshooting/README.md). This guide can help you resolve common issues encountered during the exercises.
+You find a troubleshooting guide as FAQ in the [troubleshooting section](troubleshooting/README.md). This guide can help you resolve common issues encountered during the exercises during the on-site session.
 
 ## Where to find more information about the spec-kit?
 
 The Infrastructure-as-Code Specification Toolkit for SAP Business AI Platform is available as open source (Apache-2.0 license) on Github at <https://github.com/SAP/iac-spec-kit-for-sap-business-ai-platform>.
-The documentation for the spec-kit CLI, including setup instructions and usage guidelines, is available at <https://sap.github.io/iac-spec-kit-for-sap-business-ai-platform/>.
+The documentation for the spec-kit, including setup instructions and usage guidelines, is available at <https://sap.github.io/iac-spec-kit-for-sap-business-ai-platform/>.
 
 ## Contributing
 

@@ -1,98 +1,68 @@
-# Detail the service setup
+# Detail the account setup
 
-With the account topology defined, the agent resolves the full set of services required for the scenario comprising entitlements, subscriptions, and service instances.
+As the scenario is defined, the agent needs to translate them into a concrete account topology.
 
 > [!TIP]
 > In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do **not** copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
 
 ## 🎯 Intent of the exercise
 
-Based on the input we provided in the previous exercises the agent will derive the full set of services required for the scenario. We will review the list and provide detailed information as we left some ambiguity in the scenario that needs to be sorted out by us.
+Based on the scenario definition and the governance rules the agent using the `/sap-iac.accounts` skill will determine the appropriate account setup automatically.
 
-## 🛠️ Execute the services command
+In addition, it will make a proposal for the `beta_enabled` and `usage` attributes based on the governance rules and the environment.
+
+## 🛠️ Execute the accounts command
 
 👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
-/sap-iac.services
+/sap-iac.accounts
 ```
 
-The agent reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. The scenario description already contains all the signals to derive the required services. The skill will validate the settings using the btp CLI. You might be prompted to accept these calls of the btp CLI.
+The agent reads `specs/scenario.md` and `memory/governance.md`. As you already provided all information necessary for the account setup, it will present you the summary including the passed governance checks. The result should look similar to this:
 
-After successful validation it will check for available plans and categories of the services. If adjustments concerning the selections are required, it will ask you to confirm them. Confirm the proposals.
+| Field | Value |
+|---|---|
+| Subaccount name | invmgmt-dev |
+| Region | eu20 |
+| Subdomain | invmgmt-dev |
+| Environment | Cloud Foundry enabled |
+| CF org | Automatically created with the subaccount |
+| CF space | dev |
+| Cost center tag | CC-123456 (as defined by governance) |
 
-### Ambiguities in the scenario
+The agent will also derive a setting for the `beta_enabled` and the `usage` attribute of the subaccount.
 
-However, we left some ambiguity in the scenario when it comes to the question if a service/application should be entitled only and in case of services in which environment the service instance should be created. As this information cannot be inferred automatically, we need to provide explicit guidance. In addition, we need to specify any service parameters that are required for the setup.
+👉 Accept the proposed setup by keying in `Accept`.
 
-Read the following sections carefully before starting to answer Claude's questions to ensure that you provide the right information as the questions on the topics.
+The Agent will present the final summary and ask for confirmation before writing the specification document.
 
-> [!TIP]
-> The flow considers any rules defined in governance. If we would have defined this information already there, less manual decision-making (and probably less chances to make errors) would have been required.
+👉 Confirm by selecting `Yes`.
 
-#### Choice of entitlement vs. instance creation/app subscription
-
-The agent will ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it.
-
-Confirm the default choice for each service/app by stating `default`.
-
-#### Choice of deployment target for services
-
-👉 It will also ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform (environment "Other" in the cockpit).
-
-Select `BTP` **except for the destination service**. This service should be deployed to Cloud Foundry.
-
-#### Provide service parameters
-
-As some services require parameters, the skill will ask you to provide the necessary values.
-
-For **hana-cloud/hana** key in the following values:
-
-```text
-memory: 32
-edition: cloud
-generateSystemPassword: true
-```
-
-For handling optional parameters of HANA Cloud enter the following statement:
-
-```text
-Use default or leave empty for all optional parameters.
-```
-
-For **destination/lite** key in the following values:
-
-```text
-HTML5Runtime_enabled true
-```
-
-👉 After answering the questions the agent will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`.
-
-The agent will create a new file in `specs/services.md`.
+The agent will create a new file in `specs/landscape.md`.
 
 <details>
 
 <summary><b>🔬 Look behind the curtains</b></summary>
 
-The technical foundation of this step is the skill `.claude/commands/sap-iac.services.md`. Open the file and notice how the skill:
+The technical foundation of this step is the skill `.claude/commands/sap-iac.accounts.md`. Open the file and notice how the skill:
 
-1. The skill builds the service list.
-2. For each service, it identifies the stage from `specs/landscape.md` (in this case `dev`) and validates the plan choice against the governance file.
-3. The skill asks for each service/app if it should be provisioned or entitled only as well as into which environment it should be provisioned to if no restrictions are already defined in the governance step.
-4. The output `specs/services.md` contains a dependency-order that will be preserved for the Terraform code generation.
+1. Starts with a governance check
+2. Derives the account setup based on the governance rules and the scenario
+2. Derives of the `beta_enabled` and `usage` attributes
+3. Writes the result into `specs/landscape.md`
 </details>
 
 ### ✅ Result
 
-After the command completes:
+- The topology of your account setup is captured in `specs/landscape.md`
+- The whole setup was automatically derived by the agent based on the scenario and governance rules.
+- All requirements were validated against the previously defined governance constraints.
 
-- The service-specific requirements are collected in the `specs/services.md` document.
-- A consistent description of what services get deployed in which environment and which services/apps are entitlement-only.
-
-**Key insight:** Even a experienced administrator benefits from the spec-driven approach, as it ensures that all service/app specific information is captured including required parameters.
+**Key insight:** The agent chose `eu20` not because it is the default, but because it is the preferred region per the governance file. If you were to repeat this flow for a project with no governance file, the agent would ask which region to use. The governance file removes that ambiguity as you defined this information once as guardrail.
 
 ## 📋 Summary
 
-All services and subscriptions are specified. The next exercise defines the security configuration namely the trust with SAP Cloud Identity Services and the role collections for inventory users.
+The account topology is defined and governance-validated. The next exercise resolves which services, entitlements, and subscriptions are needed and can be used based on the governance rules.
 
-👉 Continue to - [Exercise 6 - Detail the security setup](../ex6/README.md)
+👉 Continue to - [Exercise 6 - Detail the service setup](../ex6/README.md)

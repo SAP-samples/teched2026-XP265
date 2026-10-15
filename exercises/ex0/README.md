@@ -1,6 +1,6 @@
 # Motivation
 
-**Managing infrastructure manually** by clicking through a UI Cockpit or copy-pasting infrastructure **doesnt work** especially:-
+**Managing infrastructure manually** by clicking through a UI Cockpit or copy-pasting infrastructure **doesn't work** especially:-
 - A colleague needs to rebuild your exact environment.
 - When compliance audits ask **why a specific service plan was chosen**
 
@@ -12,7 +12,7 @@ When AI tools arrived, the natural reflex was to prompt for code directly:
 While great for quick prototypes, **100 tries can yield 100 different outcomes** with **zero record** of **why** decisions were made.
 
 > [!IMPORTANT]
-> **The Problem in Production**  
+> **The Problem in Production**
 > - multiple people are involved in creating and maintaining the IaC code
 > - a stable setup is required as IaC is the foundation for successful app development
 > - infrastructure management always requires auditability and traceability
@@ -26,7 +26,7 @@ The question therefore is: Do we have a sustainable alternative bringing togethe
 Instead of prompting *what to build*, you **prompt** on **what the system should do**
 
 You define specifications:
-- The behaviour of the system
+- The behavior of the system
 - Constraints (Guardrails)
 
 
@@ -143,4 +143,4 @@ Spec-driven development is a disciplined approach. All spec-kits support the use
 
 Each step corresponds to one exercise where you will execute the task and get an explanation of the intention and the technical foundation.
 
-👉 Continue to - [Technical Setup](../ex0b/README.md)
+👉 Continue to - [Exercise 1 - Technical Setup](../ex1/README.md)

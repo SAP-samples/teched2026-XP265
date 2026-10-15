@@ -1,103 +1,104 @@
-# Detail the security setup
+# Detail the service setup
 
-Security configuration is often a critical part of a setup comprising IdP trust configuration and role assignments. In this exercise, the agent defines the complete security configuration for the inventory management environment.
-The previously defined governance rules will again play an important role as guardrail since we defined that the default SAP ID Service is **not permitted**.
+With the account topology defined, the agent resolves the full set of services required for the scenario comprising entitlements, subscriptions, and service instances.
 
 > [!TIP]
-> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do not copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
+> In case you get stuck in one step and want to continue, you find a sample markdown document in the `sample` folder  that you can use as a **cross reference**. Do **not** copy it as it might not be perfectly fitting to the previous specifications that have been created by you.
 
 ## 🎯 Intent of the exercise
 
-In this exercise the goal is to derive the main settings of the Identity Provider (IdP) trust configuration and role assignments for the inventory management environment. The information can be partially derived from the already captured data, but the interesting part is to determine and close the gaps we left until now.
+Based on the input we provided in the previous exercises the agent will derive the full set of services required for the scenario. We will review the list and provide detailed information as we left some ambiguity in the scenario that needs to be sorted out by us.
 
-## 🛠️ Execute the security command
+## 🛠️ Execute the services command
 
 👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
-/sap-iac.security
+/sap-iac.services
 ```
 
-This triggers the agent to first read the specification documents especially `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`.
+The agent reads `specs/scenario.md`, `specs/landscape.md`, and `memory/governance.md`. The scenario description already contains all the signals to derive the required services. The skill will validate the settings using the btp CLI.
 
-The agent will then perform a governance check as `Custom IdP: required` is set in the governance file. It will verify that an IAS trust configuration is included.
+You might be prompted to accept these calls of the btp CLI.
 
-👉 As we did not provide the full trust configuration details in the scenario, the agent might ask follow-up questions to clarify the setup. Add the following information when asked for the URL of SAP Cloud Identity tenant:
+👉 Accept them.
+
+After successful validation it will check for available plans and categories of the services. If adjustments concerning the selections are required, it will ask you to confirm them. Confirm the proposals.
+
+### Ambiguities in the scenario
+
+However, we left some ambiguity in the scenario when it comes to the question if a service/application should be entitled only and in case of services in which environment the service instance should be created. As this information cannot be inferred automatically, we need to provide explicit guidance. In addition, we need to specify any service parameters that are required for the setup.
+
+Read the following sections carefully before starting to answer Claude's questions to ensure that you provide the right information as the questions on the topics.
+
+> [!TIP]
+> The flow considers any rules defined in governance. If we would have defined this information already there, less manual decision-making (and probably less chances to make errors) would have been required.
+
+#### Choice of entitlement vs. instance creation/app subscription
+
+The agent will ask you for each service/app whether you want to create a service instance/app subscription or if you only want to entitle it.
+
+👉 Confirm the default choice for each service/app by stating `default`.
+
+#### Choice of deployment target for services
+
+It will also ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform (environment "Other" in the cockpit).
+
+👉 Select `BTP` **except for the destination service**. This service should be deployed to Cloud Foundry.
+
+#### Provide service parameters
+
+As some services require parameters, the skill will ask you to provide the necessary values.
+
+👉 For **hana-cloud/hana** key in the following values:
 
 ```text
-ainfvn15r.accounts.ondemand.com
+memory: 32
+edition: cloud
+generateSystemPassword: true
 ```
 
-👉 Claude will then ask you to provide an explicit origin for this IdP trust configuration or if this field should be left empty. Provide the following information when asked:
+👉 For handling optional parameters of HANA Cloud enter the following statement:
 
 ```text
-Do not add an explicit origin, leave the field empty.
+Use default or leave empty for all optional parameters.
 ```
 
-We did not explicitly mention which role collections should be created; therefore, the agent will ask which role collections are required.
-👉 Enter the following information when asked about role collections:
+👉 For **destination/lite** key in the following values:
 
 ```text
-Define the role collections:
-InvMgmt_Dev_Admin
-InvMgmt_Dev_Developer
-InvMgmt_Dev_Viewer
-InvMgmt_Dev_AuditLog_Viewer
+HTML5Runtime_enabled true
 ```
 
-👉 The next logical step is to add roles to a role collection. When asked, state that:
+After answering the questions the agent will present you the summary including the passed governance checks for confirmation before proceeding.
 
-```text
-Do not add roles to the role collections
-```
+👉 Confirm by selecting `Yes`.
 
-👉 As a follow-up question the agent will ask about the role collection assignment approach (user- vs. group-based). Provide the following information:
-
-```text
-I want to define a group assignment. This group assignment should be done at the IAS group level following the pattern
-
-| IAS Group | Role Collection | Notes |
-|---|---|---|
-| invmgmt-dev-admins | InvMgmt_Dev_Admin | Assigned to senior devs / infra owners managing the dev environment |
-| invmgmt-dev-developers | InvMgmt_Dev_Developer | Assigned to all active developers on the project |
-| invmgmt-dev-viewers | InvMgmt_Dev_Viewer | Assigned to stakeholders or testers with read-only needs |
-| invmgmt-dev-audit-viewers | InvMgmt_Dev_AuditLog_Viewer | Assigned to compliance/audit team members |
-```
-
-👉 As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and **replace the `0XX`** with your group number:
-
-```text
-Space: dev
-User "xp265-0XX@education.cloud.sap" needs the following roles assigned:
-- space_developer
-- space_manager
-```
-
-With this the agent has gathered all required information. It will present an overview about the specification document and ask for confirmation. Confirm the proposal by selecting `Yes`.
-
-The agent will create a new file `specs/trust.md`.
+The agent will create a new file in `specs/services.md`.
 
 <details>
 
 <summary><b>🔬 Look behind the curtains</b></summary>
 
-The technical foundation of this step is the skill `.claude/commands/sap-iac.security.md`. Open the file and notice how the skill:
+The technical foundation of this step is the skill `.claude/commands/sap-iac.services.md`. Open the file and notice how the skill:
 
-1. Collects the missing IdP information and derives the origin values required later
-2. Gathers role collection requirements
-3. Fetches the space-level role assignments in case that a Cloud Foundry environment is requested
-4. Writes the result into `specs/trust.md`
+1. The skill builds the service list.
+2. For each service, it identifies the stage from `specs/landscape.md` (in this case `dev`) and validates the plan choice against the governance file.
+3. The skill asks for each service/app if it should be provisioned or entitled only as well as into which environment it should be provisioned to if no restrictions are already defined in the governance step.
+4. The output `specs/services.md` contains a dependency-order that will be preserved for the Terraform code generation.
 </details>
 
 ### ✅ Result
 
-- The security-specific requirements are collected in the `specs/trust.md` document.
-- Gaps from the previous steps that needed to be detailed are now captured.
+After the command completes:
 
-**Key insight:** The guided flow of the spec-driven development approach helps is to close gaps due to missing information in our intent description especially in critical areas like the security setup.
+- The service-specific requirements are collected in the `specs/services.md` document.
+- A consistent description of what services get deployed in which environment and which services/apps are entitlement-only.
+
+**Key insight:** Even a experienced administrator benefits from the spec-driven approach, as it ensures that all service/app specific information is captured including required parameters.
 
 ## 📋 Summary
 
-The security configuration is now fully specified. In the next exercise, we finish the specification tasks by detailing the connectivity setup.
+All services and subscriptions are specified. The next exercise defines the security configuration namely the trust with SAP Cloud Identity Services and the role collections for inventory users.
 
-👉 Continue to - [Exercise 7 - Detail the connectivity setup](../ex7/README.md)
+👉 Continue to - [Exercise 7 - Detail the security setup](../ex7/README.md)
