@@ -12,7 +12,7 @@ In this exercise the goal is to derive the main settings of the Identity Provide
 
 ## 🛠️ Execute the security command
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.security
@@ -22,20 +22,20 @@ This triggers the agent to first read the specification documents especially `sp
 
 The agent will then perform a governance check as `Custom IdP: required` is set in the governance file. It will verify that an IAS trust configuration is included.
 
-As we did not provide the full trust configuration details in the scenario, the agent might ask follow-up questions to clarify the setup. Add the following information when asked for the URL of SAP Cloud Identity tenant:
+👉 As we did not provide the full trust configuration details in the scenario, the agent might ask follow-up questions to clarify the setup. Add the following information when asked for the URL of SAP Cloud Identity tenant:
 
 ```text
 ainfvn15r.accounts.ondemand.com
 ```
 
-Claude will then ask you to provide an explicit origin for this IdP trust configuration or if this field should be left empty. Provide the following information when asked:
+👉 Claude will then ask you to provide an explicit origin for this IdP trust configuration or if this field should be left empty. Provide the following information when asked:
 
 ```text
 Do not add an explicit origin, leave the field empty.
 ```
 
 We did not explicitly mention which role collections should be created; therefore, the agent will ask which role collections are required.
-Enter the following information when asked about role collections:
+👉 Enter the following information when asked about role collections:
 
 ```text
 Define the role collections:
@@ -45,13 +45,13 @@ InvMgmt_Dev_Viewer
 InvMgmt_Dev_AuditLog_Viewer
 ```
 
-The next logical step is to add roles to a role collection. When asked, state that:
+👉 The next logical step is to add roles to a role collection. When asked, state that:
 
 ```text
 Do not add roles to the role collections
 ```
 
-As a follow-up question the agent will ask about the role collection assignment approach (user- vs. group-based). Provide the following information:
+👉 As a follow-up question the agent will ask about the role collection assignment approach (user- vs. group-based). Provide the following information:
 
 ```text
 I want to define a group assignment. This group assignment should be done at the IAS group level following the pattern
@@ -64,7 +64,7 @@ I want to define a group assignment. This group assignment should be done at the
 | invmgmt-dev-audit-viewers | InvMgmt_Dev_AuditLog_Viewer | Assigned to compliance/audit team members |
 ```
 
-As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and **replace the `0XX`** with your group number:
+👉 As we have defined a Cloud Foundry environment including a space, the agent also needs to know how the roles should be assigned within that space. Add the following information and **replace the `0XX`** with your group number:
 
 ```text
 Space: dev
@@ -100,4 +100,4 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.sec
 
 The security configuration is now fully specified. In the next exercise, we finish the specification tasks by detailing the connectivity setup.
 
-Continue to - [Exercise 7 - Detail the connectivity setup](../ex7/README.md)
+👉 Continue to - [Exercise 7 - Detail the connectivity setup](../ex7/README.md)

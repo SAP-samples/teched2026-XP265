@@ -30,13 +30,13 @@ Let's see how we can transfer these constraints using our spec-driven developmen
 
 ### Step 1 - btp CLI login
 
-Navigate to the terminal from the previous exercise and execute the following command to log in to the btp CLI:
+👉 Navigate to the terminal from the previous exercise and execute the following command to log in to the btp CLI:
 
 ```powershell
 btp login --idp ainfvn15r --user 'XP265-<Group Number>' --password '<your-password>'
 ```
 
-Target the global account subdomain you want to use (copy the value from the SAP BTP cockpit):
+👉 Target the global account subdomain you want to use (copy the value from the SAP BTP cockpit):
 
 ```powershell
 btp target --global-account '<your-global-account-subdomain>'
@@ -47,7 +47,7 @@ btp target --global-account '<your-global-account-subdomain>'
 
 ### Step 2 - Start the agentic tooling
 
-Make sure that in your terminal you are in the project folder you created in Exercise 1 (`SAPTechEd2026-0XX`). Execute the following command in the terminal:
+👉 Make sure that in your terminal you are in the project folder you created in Exercise 1 (`SAPTechEd2026-0XX`). Execute the following command in the terminal:
 
 ```powershell
 claude
@@ -64,7 +64,7 @@ In addition, **make sure** that you are in **manual mode** of Claude Code. You c
 
 <br>
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.govern
@@ -171,4 +171,4 @@ The agent writes its output to `memory/governance.md`. This file is **not a spec
 
 The governance guardrails are in place.In the next exercise you will describe the inventory management application in plain language and the agent will translate that into structured infrastructure requirements.
 
-Continue to - [Exercise 3 - Define the scenario](../ex3/README.md)
+👉 Continue to - [Exercise 3 - Define the scenario](../ex3/README.md)

@@ -8,13 +8,13 @@ In this step the agent will synthesize the captured information from all previou
 
 ## 🛠️ Execute the generate command
 
-Before we start the code generation, we first clean the context of Claude as we accumulated a lot of information during the previous exercises. Execute the following command in the Claude Code terminal:
+👉 Before we start the code generation, we first clean the context of Claude as we accumulated a lot of information during the previous exercises. Execute the following command in the Claude Code terminal:
 
 ```powershell
 /clear
 ```
 
-Now we trigger the Terraform code generation. Execute the following command in the Claude Code terminal:
+👉 Now we trigger the Terraform code generation. Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.generate
@@ -83,4 +83,4 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.gen
 
 The Terraform code is generated and validated. In the next exercise we will deploy the generated code to the global account.
 
-Continue to - [Exercise 11 - Deploy the generated code](../ex11/README.md)
+👉 Continue to - [Exercise 11 - Deploy the generated code](../ex11/README.md)

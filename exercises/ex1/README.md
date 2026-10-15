@@ -6,7 +6,7 @@ In this exercise, you will initialize the project and set up the necessary struc
 
 As a first step we must initialize the spec-driven development project. This is done by executing the `sap-iac init` command of the spec-kit CLI in a terminal. The command will create a project structure and a set of files that will be used in the following steps by the agent.
 
-Open a terminal and execute the following command (replace the `XX` with your group name):
+👉 Open a terminal and execute the following command (replace the `XX` with your group name):
 
 ```powershell
 sap-iac init SAPTechEd2026-0XX
@@ -19,13 +19,13 @@ You will be asked:
 
 ![BTP Cockpit](./images/1_cockpit_ga_guidance.png)
 
-The command will create a folder with the name `SAPTechEd2026-0XX`. Navigate into the folder using the command (replace the `XX` with your group name):
+👉 The command will create a folder with the name `SAPTechEd2026-0XX`. Navigate into the folder using the command (replace the `XX` with your group name):
 
 ```powershell
 cd SAPTechEd2026-0XX
 ```
 
-Let us inspect the project structure. Open the content of the folder in Visual Studio Code (VS Code) by executing the following command in the terminal:
+👉 Let us inspect the project structure. Open the content of the folder in Visual Studio Code (VS Code) by executing the following command in the terminal:
 
 ```powershell
 code .
@@ -76,4 +76,4 @@ Keep the terminal open as you will need it for the subsequent exercises.
 
 Now you are ready to start with the spec-driven development process. First you define the governance constraints that will act as guardrails for all subsequent steps.
 
-Continue to - [Exercise 2 - Define the governance constraints](../ex2/README.md)
+👉 Continue to - [Exercise 2 - Define the governance constraints](../ex2/README.md)

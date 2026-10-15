@@ -59,7 +59,8 @@ We also recommend installing:
 
 The exercises are designed to be completed in order, as each exercise builds upon the previous one. The exercises are structured as follows:
 
-- [Getting Started](exercises/ex0/README.md) - the initial technical setup
+- [Motivation](exercises/ex0a/README.md) - the initial technical setup
+- [Technical Setup](exercises/ex0b/README.md) - the initial technical setup
 - [Exercise 1 - Initialize the project](exercises/ex1/README.md) - set up the initial project structure for spec-driven development
 - [Exercise 2 - Define the governance constraints](exercises/ex2/README.md) - define the guardrails for the project
 - [Exercise 3 - Define the scenario](exercises/ex3/README.md) - specify the main intent of the project
