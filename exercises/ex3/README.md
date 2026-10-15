@@ -43,6 +43,10 @@ Authentication uses SAP Cloud Identity Services — the company does not permit 
 
 The agent will analyze the input and validate it against your global account. It will then ask additional questions to detail the technical configuration of the scenario. Answer these questions as given here:
 
+> [!INFO]
+> It may be possible that the order in which the questions are asked may vary, this can be expected from LLM based agents which are probabilistic in nature. Nonetheless copy the relavent answer for the query asked by the agent from answers provided below.
+
+
 **CF sizing/memory allocation:**
 
 ```text
@@ -67,7 +71,9 @@ When successful it will present an overview of the scenario description to you. 
 
 The agent will create a new file in `specs/scenario.md`.
 
-### 🔬 Look behind the curtains
+<details>
+
+<summary><b> 🔬 Look behind the curtains</b></summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.scenario.md`. Open the file and notice how the skill:
 
@@ -76,6 +82,8 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.sce
 3. Asks follow-up questions to detail the scenario requirements for the runtime, integration points and stage setup.
 4. Validates the requirements against the available entitlements on the global account.
 5. Writes the result to `specs/scenario.md`.
+</details>
+<br>
 
 ### ✅ Result
 

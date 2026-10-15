@@ -17,6 +17,8 @@ You will be asked:
 - To select the agentic tooling you want to use. Select `claude` as we will use **Claude Code** for this session.
 - To specify the global account subdomain. Provide the **subdomain** of your global account retrieved from the SAP BTP cockpit you logged in in the previous exercise.
 
+![BTP Cockpit](./images/1_cockpit_ga_guidance.png)
+
 The command will create a folder with the name `SAPTechEd2026-0XX`. Navigate into the folder using the command (replace the `XX` with your group name):
 
 ```powershell

@@ -77,7 +77,9 @@ With this the agent has gathered all required information. It will present an ov
 
 The agent will create a new file `specs/trust.md`.
 
-### 🔬 Look behind the curtains
+<details>
+
+<sumamry><b>🔬 Look behind the curtains</b><summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.security.md`. Open the file and notice how the skill:
 
@@ -85,6 +87,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.sec
 2. Gathers role collection requirements
 3. Fetches the space-level role assignments in case that a Cloud Foundry environment is requested
 4. Writes the result into `specs/trust.md`
+</details>
 
 ### ✅ Result
 

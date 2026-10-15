@@ -36,12 +36,16 @@ As in the previous exercises, the agent will present a summary and ask for confi
 
 The agent will create a new file `specs/connectivity.md`.
 
-### 🔬 Look behind the curtains
+<details>
+
+<sumamry><b>🔬 Look behind the curtains</b><summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.connectivity.md`. Open the file and notice how the skill:
 
 1. Identifies the necessary destination configuration based on the scenario and governance information.
 2. Collects the required details from the user to complete the connectivity setup based on different patterns
+
+</details>
 
 **Key insight:** Destination configuration can be quite cumbersome because of its technical parameter names. The skill uses a pattern-based approach to help users provide the correct information efficiently.
 

@@ -33,7 +33,8 @@ Rather than hand-crafting Terraform from scratch or prompting an LLM to generate
 > [!NOTE]
 > For TechEd attendees the requirements to run the exercises will be provided with a pre-configured environment. As an attendee of the TechEd onsite session, you can skip this section.
 
-The requirements to follow the exercises in this repository **on your own environment** are:
+<details>
+<summary>Expand for prerequisites to follow this exercise <b>on your own environment</b></summary>
 
 - A [GitHub](https://github.com/) account to clone the repository of the spec-kit
 - A code editor like [Visual Studio Code](https://code.visualstudio.com/)
@@ -48,6 +49,8 @@ We also recommend installing:
 
 - The [Terraform extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
 
+</details>
+<br>
 > [!CAUTION]
 > If executing the exercises in your own environment, be aware that the steps that include the usage of agentic AI tools like Claude Code or GitHub Copilot will use tokens and consequently incur costs. Please make sure you are aware of the costs and have the necessary budget before executing the steps. SAP does not cover any costs for executing the steps in your own environment.
 

@@ -43,12 +43,15 @@ Next the agent will ask to annotate the tasks in accordance to the proposed layo
 
 The agent will update the task list with the corresponding Terraform file paths.
 
-### 🔬 Look behind the curtains
+<details>
+
+<sumamry><b>🔬 Look behind the curtains</b><summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.design.md`. Open the file and notice how the skill:
 
 1. Introduces the different design and layout options for the Terraform code based on standard layouts
 2. Annotates the tasks in `specs/tasks.md` with the corresponding Terraform file paths based on the chosen layout
+</details>
 
 **Key insight:** The final ingredient required for the code generation is the annotated task list. The agent now has all the information it needs to generate the Terraform code.
 

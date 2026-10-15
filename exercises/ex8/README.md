@@ -26,12 +26,15 @@ Confirm the proposed task list by selecting `Yes`.
 
 The agent will create a new file `specs/tasks.md`.
 
-### 🔬 Look behind the curtains
+<details>
+
+<sumamry><b>🔬 Look behind the curtains</b><summary>
 
 The technical foundation of this step is the skill `.claude/commands/sap-iac.tasks.md`. Open the file and notice how the skill:
 
 1. Reads all specification documents and identifies the resources defined in each
 2. Builds a dependency graph and identifies a task sequence based on dependencies
+</details>
 
 **Key insight:** The task list acts as the bridge between specification and implementation, basically a ordered todo list that steers the code generation process.
 

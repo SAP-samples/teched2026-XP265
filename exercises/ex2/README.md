@@ -67,10 +67,18 @@ Execute the following command in the Claude Code terminal:
 
 > [!NOTE]
 > If Claude Code does not recognize the command, make sure that you started Claude Code **inside the project folder** you created in Exercise 1 (`SAPTechEd2026-0XX`).
+> ![Govern](./images/sap-iac-govern.png)
+<br>
 
-The agent will check the basic layout of your project folder to ensure it meets the expected structure. You might be asked to confirm the execution of some PowerShell as well as btp CLI commands. Do so to allow the agent to scan the project folder. Once the agent has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
+The agent will check the basic layout of your project folder to ensure it meets the expected structure. 
 
-The agent will then ask you targeted questions about the governance requirements. Use the following answers. Select `Other` or `Type something` if the proposals of Claude Code do not fully cover your intent:
+> [!NOTE]
+> You might be asked to confirm the execution of some PowerShell as well as btp CLI commands. <br>
+> <b>ALLOW</b> the agent to scan the project folder and run btp CLI commands.<br> Once the agent has done this, it will target the btp CLI to your global account. Confirm by selecting `Yes`.
+
+- The agent will then ask you targeted questions about the governance requirements. 
+- Use/Copy the following answers. 
+- Select `Other` or `Type something` if the proposals of Claude Code do not fully cover your intent:
 
 **Preferred infrastructure provider:**
 
@@ -135,13 +143,17 @@ Once you have answered all questions, the agent will summarize the governance ru
 
 The agent will create a new file in `memory/` called `governance.md`.
 
-### 🔬 Look behind the curtains
+<details>
+
+<summary><b>Curious? 🔬 Look behind the curtains</b></summary>
 
 The technical foundation of this step is skill `.claude/commands/sap-iac.govern.md`. It is used by the agent to collect your governance requirements.
 
 Open the file and notice how the skill defines a governance schema. This structure is reflected in the `memory/governance.md` file that contains the captured governance rules as markdown.
 
 The agent writes its output to `memory/governance.md`. This file is **not a spec** but a contract. From this point forward every agent execution in the spec-kit flow  will open `memory/governance.md` before doing anything and validate its decisions against it. If a later step tries to use a forbidden region or a excluded service plan, the agent will stop with an error message pointing to the violated rule.
+</details>
+<br>
 
 ### ✅ Result
 
