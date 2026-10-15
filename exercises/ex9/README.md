@@ -11,16 +11,16 @@ In this exercise, the agent evaluates the Terraform code structure based on the 
 
 ## 🛠️ Execute the design command
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.design
 ```
 
-Based on the task list, the agent will ask you about the desired Terraform file layout with the two options:
+👉 Based on the task list, the agent will ask you about the desired Terraform file layout with the two options:
 
-- Per-stage directories — terraform/dev/btp/ and terraform/dev/cf/ (one directory per stage)
-- Single configuration — terraform/btp/ and terraform/cf/ with a dev.tfvars file per stage
+- Per-stage directories — `terraform/dev/btp/` and `terraform/dev/cf/` (one directory per stage)
+- Single configuration — `terraform/btp/` and `terraform/cf/` with a dev.tfvars file per stage
 
 Choose:
 
@@ -63,4 +63,4 @@ An enhanced task list is available in `specs/tasks.md` with additional file path
 
 The task list is now fully annotated with the target file paths. In the next exercise, we will instruct the agent to generate the Terraform code.
 
-Continue to - [Exercise 10 - Generate the code](../ex10/README.md)
+👉 Continue to - [Exercise 10 - Generate the code](../ex10/README.md)

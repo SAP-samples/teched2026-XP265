@@ -73,13 +73,13 @@ As the provisioning of HANA Cloud can take a while, we remove the related servic
 
 ### Step 4 - Plan the deployment
 
-Change to the directory `terraform/btp/`. Initialize the Terraform configuration by executing the following command:
+👉 Change to the directory `terraform/btp/`. Initialize the Terraform configuration by executing the following command:
 
 ```powershell
 terraform init
 ```
 
-Before applying review the plan of the Terraform deployment by executing a `terraform plan` command in the terminal:
+👉 Before applying review the plan of the Terraform deployment by executing a `terraform plan` command in the terminal:
 
 ```powershell
 terraform plan -out='plan.out'
@@ -89,7 +89,7 @@ Scan the plan output and check that it aligns with your expectations before proc
 
 ### Step 5 - Apply the deployment
 
-Deploy the Terraform configuration to the global account. Execute the following command:
+👉 Deploy the Terraform configuration to the global account. Execute the following command:
 
 ```powershell
 terraform apply 'plan.out'
@@ -106,13 +106,13 @@ Add the values for the *Cloud Foundry API URL* and the *Cloud Foundry Org ID* in
 > [!TIP]
 > If you cleaned or closed the terminal, you can access the Cloud Foundry API URL via the command `terraform output` in the folder of the Terraform configuration `terraform/btp/`.
 
-Now initialize the Terraform configuration by executing the following command:
+👉 Now initialize the Terraform configuration by executing the following command:
 
 ```powershell
 terraform init
 ```
 
-As before we review the plan of the Cloud Foundry deployment. Execute the following command in the terminal:
+👉 As before we review the plan of the Cloud Foundry deployment. Execute the following command in the terminal:
 
 ```powershell
 terraform plan -out='cf-plan.out'
@@ -122,7 +122,7 @@ Scan the plan output and check that it aligns with your expectations before proc
 
 ### Step 7 - Apply the deployment for Cloud Foundry
 
-Deploy the Terraform configuration to Cloud Foundry. Execute the following command:
+👉 Deploy the Terraform configuration to Cloud Foundry. Execute the following command:
 
 ```powershell
 terraform apply 'cf-plan.out'

@@ -13,7 +13,7 @@ In addition, it will make a proposal for the `beta_enabled` and `usage` attribut
 
 ## 🛠️ Execute the accounts command
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.accounts
@@ -63,4 +63,4 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.acc
 
 The account topology is defined and governance-validated. The next exercise resolves which services, entitlements, and subscriptions are needed and can be used based on the governance rules.
 
-Continue to - [Exercise 5 - Detail the service setup](../ex5/README.md)
+👉 Continue to - [Exercise 5 - Detail the service setup](../ex5/README.md)

@@ -11,7 +11,7 @@ In this exercise we will add the details for the required destination to the S/4
 
 ## 🛠️ Execute the tasks command
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.connectivity
@@ -19,7 +19,7 @@ Execute the following command in the Claude Code terminal:
 
 Based on the information from the scenario the agent can identify the pattern for the connectivity setup. Based on that pattern, it will ask you for the necessary details to complete the configuration.
 
-Copy the following text to the terminal when prompted by the skill about the destination configuration:
+👉 Copy the following text to the terminal when prompted by the skill about the destination configuration:
 
 ```text
 The URL is https://mydemo-api.s4hana.ondemand.com
@@ -57,4 +57,4 @@ The destination specific data is collected in `specs/connectivity.md`.
 
 The connectivity configuration is now fully specified. All specification documents are in place to form the complete picture of the `invmgmt-dev` environment. The next exercise translates the specification documents into tasks for the agent.
 
-Continue to - [Exercise 8 - Define the tasks](../ex8/README.md)
+👉 Continue to - [Exercise 8 - Define the tasks](../ex8/README.md)

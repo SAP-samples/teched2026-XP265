@@ -12,7 +12,7 @@ In this exercise, the agent consolidates all previously defined specifications i
 
 ## 🛠️ Execute the tasks command
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.tasks
@@ -47,4 +47,4 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.tas
 
 The task list translating the specifications into a checklist is defined and dependency-ordered. The next exercise will enrich the task list with a mapping to the corresponding Terraform files.
 
-Continue to - [Exercise 9 - Evaluate the design](../ex9/README.md)
+👉 Continue to - [Exercise 9 - Evaluate the design](../ex9/README.md)

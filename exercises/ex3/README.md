@@ -13,7 +13,7 @@ Your goal is to sketch the developer environment for the **Inventory Management 
 
 ## 🛠️ Execute the scenario command
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.scenario
@@ -21,7 +21,7 @@ Execute the following command in the Claude Code terminal:
 
 The agent will first check if there is an existing scenario defined in the project. As we start from scratch, it will ask you to define a new scenario.
 
-Use the following description as input:
+👉 Use the following description as input:
 
 ```text
 In this scenario we focus on the development stage only. I need a developer environment on Cloud Foundry for our Inventory Management CAP application.
@@ -97,4 +97,4 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.sce
 
 The scenario description is captured and translated into structured infrastructure requirements. In the next exercise, the agent will translate this into a concrete account topology determining which subaccounts to create, in which region, and how to name them.
 
-Continue to - [Exercise 4 - Detail the account setup](../ex4/README.md)
+👉 Continue to - [Exercise 4 - Detail the account setup](../ex4/README.md)

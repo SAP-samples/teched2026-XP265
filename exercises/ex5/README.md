@@ -11,7 +11,7 @@ Based on the input we provided in the previous exercises the agent will derive t
 
 ## 🛠️ Execute the services command
 
-Execute the following command in the Claude Code terminal:
+👉 Execute the following command in the Claude Code terminal:
 
 ```powershell
 /sap-iac.services
@@ -38,7 +38,7 @@ Confirm the default choice for each service/app by stating `default`.
 
 #### Choice of deployment target for services
 
-It will also ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform (environment "Other" in the cockpit).
+👉 It will also ask you about the deployment target for the services as you can deploy them to Cloud Foundry or directly to the platform (environment "Other" in the cockpit).
 
 Select `BTP` **except for the destination service**. This service should be deployed to Cloud Foundry.
 
@@ -66,7 +66,7 @@ For **destination/lite** key in the following values:
 HTML5Runtime_enabled true
 ```
 
-After answering the questions the agent will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`.
+👉 After answering the questions the agent will present you the summary including the passed governance checks for confirmation before proceeding. Confirm by selecting `Yes`.
 
 The agent will create a new file in `specs/services.md`.
 
@@ -80,7 +80,7 @@ The technical foundation of this step is the skill `.claude/commands/sap-iac.ser
 2. For each service, it identifies the stage from `specs/landscape.md` (in this case `dev`) and validates the plan choice against the governance file.
 3. The skill asks for each service/app if it should be provisioned or entitled only as well as into which environment it should be provisioned to if no restrictions are already defined in the governance step.
 4. The output `specs/services.md` contains a dependency-order that will be preserved for the Terraform code generation.
-</summary>
+</details>
 
 ### ✅ Result
 
@@ -95,4 +95,4 @@ After the command completes:
 
 All services and subscriptions are specified. The next exercise defines the security configuration namely the trust with SAP Cloud Identity Services and the role collections for inventory users.
 
-Continue to - [Exercise 6 - Detail the security setup](../ex6/README.md)
+👉 Continue to - [Exercise 6 - Detail the security setup](../ex6/README.md)
