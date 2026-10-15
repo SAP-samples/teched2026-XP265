@@ -1,6 +1,6 @@
 # Motivation
 
-**Managing infrastructure manually** by clicking through a UI Cockpit or copy-pasting infrastructure **doesnt work** especially:-
+**Managing infrastructure manually** by clicking through a UI Cockpit or copy-pasting infrastructure **doesn't work** especially:-
 - A colleague needs to rebuild your exact environment.
 - When compliance audits ask **why a specific service plan was chosen**
 
@@ -26,7 +26,7 @@ The question therefore is: Do we have a sustainable alternative bringing togethe
 Instead of prompting *what to build*, you **prompt** on **what the system should do**
 
 You define specifications:
-- The behaviour of the system
+- The behavior of the system
 - Constraints (Guardrails)
 
 

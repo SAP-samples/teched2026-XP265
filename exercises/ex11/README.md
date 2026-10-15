@@ -66,7 +66,7 @@ After the generation of the files is complete, the agent wants to run `terraform
 
 👉 Confirm the execution if asked.
 
-After that the agent will format and valdidate the Terraform configuration by running the following commands:
+After that the agent will format and validate the Terraform configuration by running the following commands:
 
 ```powershell
 terraform fmt
