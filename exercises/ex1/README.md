@@ -34,15 +34,15 @@ On the system we are using [podman](https://podman.io/) as the container runtime
 
 👉 Execute the following command to start podman:
 
-      ```powershell
-      podman machine start
-      ```
+```powershell
+podman machine start
+```
 
 👉 Execute the following command to install and start the MCP server:
 
-      ```powershell
-      podman run -i --rm hashicorp/terraform-mcp-server
-      ```
+```powershell
+podman run -i --rm hashicorp/terraform-mcp-server
+```
 
 > [!NOTE]
 > Some error might occur stating the the `TFE client` and the `TFE tools` will not be available. This is okay as we do not connect to a Terraform Enterprise instance.
