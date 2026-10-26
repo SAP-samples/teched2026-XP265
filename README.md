@@ -8,7 +8,7 @@ This repository contains the material for the SAP TechEd 2026 session "XP265 - D
 
 This session introduces attendees to the concept of *spec-driven development* and how to use it for Infrastructure as Code (IaC) with Terraform on the SAP Business AI Platform. Attendees will experience an *end-to-end* flow from installing the relevant tooling, defining and refining the specification as well as generating and finally deploying the generated Terraform code to the platform.
 
-You find the overview presentation of the session [here](assets/XP265-overview.pdf).
+You find the overview presentation of the session [here](assets/SAPTechEd2026-XP265.pdf).
 
 ## Requirements
 
