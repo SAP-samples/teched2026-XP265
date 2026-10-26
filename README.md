@@ -1,5 +1,7 @@
 # XP265 - Define, generate, deploy: AI-driven spec-first Terraform
 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/teched2026-XP265)](https://api.reuse.software/info/github.com/SAP-samples/teched2026-XP265)
+
 ## Description
 
 This repository contains the material for the SAP TechEd 2026 session "XP265 - Define, generate, deploy: AI-driven spec-first Terraform".
